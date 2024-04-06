@@ -9,6 +9,8 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
+
 .vroom-text {
     padding-top: -5px;
     margin-top: -15%;
@@ -24,6 +26,7 @@ body {
 
 header {
     position: fixed;
+    height: 150px;
     top: 0;
     left: 0;
     width: 100%;
@@ -89,6 +92,7 @@ nav ul li a {
 }
 
 .contact-btn {
+    
     display: inline-block;
     padding: 12px 24px;
     background-color: #007bff;
@@ -182,35 +186,153 @@ nav ul li a {
     margin-right: 0;
 }
 
-
-
+/* Adjust background color of services panel */
 #services {
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack sections vertically */
+    height: 120vh;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background-color: #1c044600;
 }
 
-#video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+#services h3 {
+    font-size: 40px; /* Adjust the font size as needed */
+    margin-top: 30px; /* Add some bottom margin for spacing */
+}
+
+#services h2 {
+    font-size: 28px; /* Adjust the font size as needed */
+    font-weight: 700;
+    margin-bottom: 60px; /* Add some bottom margin for spacing */
+}
+
+/* Adjust service panel styles */
+.top-service-panels,
+.bottom-service-panels {
+    margin-top: 30px; /* Adjust top margin */
+    margin-bottom: 30px; /* Adjust bottom margin */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 150vh; /* Set height to half of the viewport height */
+}
+
+.service-panel {
+    width: calc(33.33% - 40px); /* Adjust width to fit three panels side by side with margin */
+    height: 400px; /* Set height of panels */
+    margin: 20px; /* Add margin to center the panels */
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5); /* Reduced opacity border */
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex; /* Use flexbox to center the panels */
+    flex-direction: column; /* Stack text vertically */
+    justify-content: center; /* Center align vertically */
+    align-items: center; /* Center align horizontally */
+    box-sizing: border-box; /* Include padding and border in the width */
+    color: #000000; /* Set text color to black */
+    transition: background-color 0.3s ease; /* Add transition effect */
+    text-align: center; /* Center align text */
+}
+
+/* Add hover effect for service panels */
+.service-panel:hover {
+    background-color: #7B2CF8; /* Change background color on hover */
+    color: #ffffff; /* Change text color on hover */
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.service-panel:hover li:before {
+    color: #ffffff; /* Change bullet point color to white on hover */
+}
+
+.service-panel h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-panel ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-panel li {
+    margin-bottom: 15px;
+}
+
+.service-panel li:before {
+    content: "\2022"; /* Unicode character for bullet point (•) */
+    color: #000000; /* Color of the bullet point */
+    font-size: 18px; /* Size of the bullet point */
+    margin-right: 5px; /* Spacing between bullet point and text */
+}
+
+
+
+
+/* Featured Cars Section */
+.featured-cars {
+    padding: 100px; /* Increase padding to add space inside the panel */
+    min-height: 130vh; /* Set a minimum height for the panel */
+    background-color: #787fa03c;
+}
+
+.featured-cars h2 {
+    text-align: center;
+    margin-top: 50px; 
+    margin-bottom: 100px; /* Increase bottom margin for spacing */
+    font-size: 36px; /* Increase header size */
+}
+
+.car-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center align the panels */
+}
+
+.car {
+    background-color: #fff;
+    width: 300px;
+    margin: 20px; /* Adjust margin for spacing */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.car img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the video covers the entire container */
-    z-index: -1; /* Place the video behind other content */
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-#featured-cars {
-    background-color: #007bff;
 
+/* Brands Section */
+#brands {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0%;
+    background-color: #800080, 0.3;
 }
+
 
 #brands {
-    background-color: #800080;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0%;
+    background-color: #800080, 0.3;
 }
 
 
 /* New styles for the contact panel */
 #contact {
+    margin-top: 0;
+    margin-bottom: 0;
     height: 40vh; /* Adjust height as needed */
     background-color: #12042a; /* Set background color to black */
     color: #fff; /* Set text color to white */
