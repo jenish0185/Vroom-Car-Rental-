@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vroom - Car Rentals</title>
+  <link rel="stylesheet" href="customerdash.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <h1>Vroom</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Car rentals</a></li>
+        <li><a href="#">Favorites</a></li>
+        <li><a href="#">Booking History</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+    <button class="currency-btn">NPR</button>
+    <button class="manage-btn">Manage Bookings</button>
+  </header>
+  <main>
+    <div class="left-panel">
+      <div id="map"></div>
+      <div class="filter-panel">
+        <h2>Filter</h2>
+        <!-- Filtering options -->
+        <label for="price">Price Per Day:</label>
+        <select id="price">
+          <option value="0-5000">0-5000</option>
+          <option value="5000-10000">5000-10000</option>
+          <option value="10000-15000">10000-15000</option>
+          <option value="15000-20000">15000-20000</option>
+        </select>
+        <br><br>
+        <label for="car-specs">Car Specs:</label><br>
+        <input type="checkbox" id="ac">
+        <label for="ac">Air Conditioning</label><br>
+        <input type="checkbox" id="seats">
+        <label for="seats">4+ seatings</label>
+      </div>
+    </div>
+    <div class="car-info-panel">
+      <div class="car-panel">
+        <div class="car-image">
+          <img src="car.webp" alt="Kia e-Niro">
+        </div>
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <ul>
+            <li><span class="icon-seat"></span>5 seats</li>
+            <li><span class="icon-gear"></span>Automatic</li>
+            <li><span class="icon-bag"></span>1 large bag</li>
+            <li><span class="icon-bag"></span>2 small bags</li>
+          </ul>
+        </div>
+        <div class="price">
+          <h4>Price for a day: </h4>
+          <p>Rs. 8,000</p>
+          <p class="free-cancel">Free cancellation</p>
+          <button class="rent-btn">Rent</button>
+          
+        </div>
+        <div class="review">
+          <span class="icon-star"></span>
+          <p class="rating">7</p>
+          <p class="review-count">10+ reviews</p>
+        </div>
+      </div>
+      <!-- Add more car panels as needed -->
+    </div>
+  </main>
+  <footer>
+    <!-- Footer content goes here -->
+  </footer>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="customerdash.js"></script>
+</body>
+</html>

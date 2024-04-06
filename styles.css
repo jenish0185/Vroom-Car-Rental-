@@ -1,0 +1,294 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.vroom-text {
+    padding-top: -5px;
+    margin-top: -15%;
+    font-family: "Meddon-Regular", sans-serif;
+    font-family: "Meddon", cursive;
+    font-weight: 400;
+    font-style: normal; 
+}
+
+.slogan-text {
+    color: #f2f2f2;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    background-color: transparent; /* Set initial transparent background */
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.hero {
+    margin-top: 0px;
+    position: relative;
+    background-image: url('2024-Hyundai-Kona-Electric-Gear.webp');
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 0, 128, 0.08); /* Adjust the color and opacity as needed */
+    z-index: 0; /* Ensure the overlay is behind other content */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #0056b3;
+}
+
+.panel {
+    height: 50vh; /* Adjust panel height */
+    background-color: #f2f2f2;
+    margin-top: 50px; /* Adjust top margin */
+}
+
+#brands {
+    height: 25vh; /* Adjust panel height */
+}
+
+/* Change header background color and overlay on scroll */
+.scrolled {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.scrolled .overlay {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/* New styles for Vroom branding */
+.branding {
+    float: left;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.branding h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.branding p {
+    font-size: 14px;
+    margin: 0;
+    color: #888;
+}
+
+/* New styles for Login button */
+.login-btn {
+    float: right;
+}
+
+.login-btn a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn a:hover {
+    background-color: #0056b3;
+}
+
+/* New styles for navigation items */
+.nav-items {
+    font-size: 20px;
+    /* font-weight: 300; */
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-top: 40px; /* Adjust the margin to move the items down */
+}
+
+.nav-items ul {
+    display: flex;
+    list-style-type: none;
+    margin-right: 100px;
+}
+
+.nav-items ul li {
+    margin-right: 20px;
+}
+
+.nav-items ul li:last-child {
+    margin-right: 0;
+}
+
+
+
+#services {
+    position: relative;
+    overflow: hidden;
+}
+
+#video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the video covers the entire container */
+    z-index: -1; /* Place the video behind other content */
+}
+
+#featured-cars {
+    background-color: #007bff;
+
+}
+
+#brands {
+    background-color: #800080;
+}
+
+
+/* New styles for the contact panel */
+#contact {
+    height: 40vh; /* Adjust height as needed */
+    background-color: #12042a; /* Set background color to black */
+    color: #fff; /* Set text color to white */
+    padding: 50px; /* Add padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Style for the headers */
+.contact-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Adjust margins for the headers */
+.vroom-header {
+    margin-right: 20px;
+}
+
+.about-vroom-header {
+    margin-right: 20px;
+}
+
+.top-brands-header {
+    margin-right: 20px;
+}
+
+/* Style for the list items */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.contact-list-item {
+    margin-bottom: 8px;
+}
+
+.contact-list-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Style for socials header */
+.socials-header {
+    margin-bottom: 10px; /* Add margin to create space between the header and icons */
+}
+
+/* Style for social icons */
+.socials {
+    display: flex;
+    flex-direction: column;
+}
+
+.social {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add margin to create space between each social icon and name */
+}
+
+.social a {
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent */
+}
+
+.social a:hover,
+.social a:focus {
+    color: #800080; /* Change color to purple/blue on hover or focus */
+}
+
+.social img {
+    width: 48px; /* Double the width of the image */
+    height: 48px; /* Double the height of the image */
+    margin-right: 10px;
+}
+
+.social span {
+    color: #fff;
+    font-size: 18px; /* Adjust font size for the name */
+    font-weight: bold; /* Make the name bold */
+}
