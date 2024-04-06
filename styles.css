@@ -278,7 +278,7 @@ nav ul li a {
 /* Featured Cars Section */
 .featured-cars {
     padding: 100px; /* Increase padding to add space inside the panel */
-    min-height: 130vh; /* Set a minimum height for the panel */
+    min-height: 120vh; /* Set a minimum height for the panel */
     background-color: #787fa03c;
 }
 
