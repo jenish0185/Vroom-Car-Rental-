@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map with Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <input type="text" id="locationInput" placeholder="Enter a location">
+  <button onclick="findLocation()">Find Location</button>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var map = L.map('map').setView([51.505, -0.09], 13); // Initial map center and zoom level
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker = L.marker([51.505, -0.09]).addTo(map); // Initial marker position
+
+    function onMapClick(e) {
+      marker.setLatLng(e.latlng);
+      updateLocationInput(e.latlng.lat, e.latlng.lng);
+    }
+
+    map.on('click', onMapClick);
+
+    function updateLocationInput(lat, lng) {
+      axios.get('https://nominatim.openstreetmap.org/reverse', {
+        params: {
+          format: 'jsonv2',
+          lat: lat,
+          lon: lng
+        }
+      })
+      .then(function (response) {
+        document.getElementById('locationInput').value = response.data.display_name;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    function findLocation() {
+      var locationString = document.getElementById('locationInput').value;
+      axios.get('https://nominatim.openstreetmap.org/search', {
+        params: {
+          format: 'jsonv2',
+          q: locationString
+        }
+      })
+      .then(function (response) {
+        if (response.data.length > 0) {
+          var lat = parseFloat(response.data[0].lat);
+          var lon = parseFloat(response.data[0].lon);
+          if (!isNaN(lat) && !isNaN(lon)) {
+            var latlng = L.latLng(lat, lon);
+            marker.setLatLng(latlng);
+            map.setView(latlng);
+          } else {
+            alert("Location not found.");
+          }
+        } else {
+          alert("Location not found.");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latlng = L.latLng(position.coords.latitude, position.coords.longitude);
+          marker.setLatLng(latlng);
+          map.setView(latlng);
+          updateLocationInput(position.coords.latitude, position.coords.longitude);
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+  </script>
+
+  <button onclick="getLocation()">Use Current Location</button>
+
+</body>
+</html>

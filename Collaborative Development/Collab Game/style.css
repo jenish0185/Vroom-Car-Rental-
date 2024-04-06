@@ -1,0 +1,28 @@
+.container {
+    text-align: center;
+  }
+  
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    margin: 20px auto;
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  

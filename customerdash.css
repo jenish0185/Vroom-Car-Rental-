@@ -11,7 +11,7 @@ body {
 
 
 header {
-  height: 170px;
+  height: 200px;
   background-color: #7B2CF8;
   color: white;
   padding: 20px;
@@ -30,11 +30,13 @@ header {
   font-family: 'meddon';
   font-size: 32px;
   margin-bottom: 5px;
+  margin-top: -70px;
 }
 
 .slogan-text {
   font-family: 'anek bangla';
-  font-size: 18px;
+  margin-top: -15%;
+  font-size: 15px;
 }
 
 .nav-links {
@@ -44,10 +46,16 @@ header {
 }
 
 .nav-links a {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Anek Bangla";
+  margin-top: 100px;
   color: white;
   text-decoration: none;
   padding: 10px 20px;
+  margin-right: 50px; /* Add margin between each link */
 }
+
 
 .currency-selector {
   display: flex;
@@ -62,17 +70,19 @@ header {
   border-radius: 5px;
   cursor: pointer;
   margin-right: 20px;
+  margin-top: -70px;
 }
 
 .profile-picture {
-  width: 90px;
-  height: 90px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  border: 2px solid white;
-  margin-right: 20px;
-  background-image: url('images.png'); /* Replace 'images.png' with your image path */
+  margin-right: -100px;
+  background-image: url('image.png'); /* Replace 'images.png' with your image path */
   background-size: cover;
+  border: none; /* Remove the border */
 }
+
 
 .manage-btn {
   background-color: #ffffff;
@@ -87,11 +97,11 @@ main {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  margin-top: 30px; /* Add a gap of 50px */
 }
 
 .left-panel {
   border-radius: 10px;
-  margin-top: 50px;
   margin-left: 20px;
   width: 40%;
 }
@@ -99,6 +109,7 @@ main {
 #map {
   width: 400px;
   height: 200px; /* Adjust height as needed */
+  margin-top: 50px;
   margin-bottom: 20px;
 }
 
@@ -109,29 +120,49 @@ main {
   padding: 20px;
 }
 
-.car-info-panel {
-  margin-top: 50px;
-  width: 55%;
+.filter-panelh2{
+  margin-bottom: 100px;
 }
 
 .car-panel {
-  background-color: #f0f0f0;
-  border-radius: 20px;
-  border: 2px solid #7B2CF8;
-  padding: 20px;
+  margin-top: 50px;
+  margin-right: 200px;
+  width: 900px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 20px;
+  border: 2px solid #000000;
   margin-bottom: 20px;
-  overflow: hidden;
+  padding: 20px;
+}
+
+.car-image {
+  width: 40%;
+}
+
+.car-image img {
+  width: 100%;
+  border-radius: 10px;
 }
 
 .car-details {
-  width: 60%;
+  flex: 1;
+  margin-left: 20px;
+}
+
+.car-details h3 {
+  margin-top: 0;
+  color: #000;
+  font-family: "Anek Bangla";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .car-specs {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .car-spec {
@@ -145,44 +176,82 @@ main {
   margin-right: 5px;
 }
 
+.price {
+  width: 30%;
+  text-align: center;
+}
+
+.price h4 {
+  margin-top: 0;
+  color: #000000a8;
+}
+
+.price p.number {
+  color: #000;
+  font-family: "Anek Bangla";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.free-cancel {
+  color: #119F1F;
+  font-family: "Anek Bangla";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.rent-btn {
+  width: 150px;
+  height: 50px;
+  background-color: #119F1F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 .location {
   margin-bottom: 10px;
 }
 
-.review {
+/* .review {
   margin-top: 20px;
-  border-top: 1px solid #ccc;
+  border-top: 2px solid #000000;
   padding-top: 20px;
   display: flex;
   align-items: center;
 }
 
-.icon-star {
+.review .icon-star {
   width: 20px;
   height: 20px;
   background-image: url('star-icon.png');
   background-size: cover;
 }
 
-.car-image {
-  width: 30%;
+.review .rating {
+  margin: 0 5px;
 }
 
-.car-image img {
-  width: 100%;
-  border-radius: 10px;
+.review-count {
+  margin-left: auto;
 }
 
-.price {
-  width: 20%;
-  text-align: center;
-}
-
-.rent-btn {
+.review-box {
   background-color: #7B2CF8;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 20px;
+  padding: 5px 10px;
 }
+
+.review-count {
+  margin-left: auto;
+  color: #7B2CF8;
+  font-family: "Anek Bangla";
+  font-size: 14px;
+  font-weight: 600;
+} */

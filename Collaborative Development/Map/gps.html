@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map with Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <style>
+    #map {
+      height: 400px;
+    }
+    #destinationPanel {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: none;
+      z-index: 1000;
+    }
+    .select2-container {
+      width: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <button onclick="toggleDestinationPanel()">Destination</button>
+  <div id="destinationPanel">
+    <div>
+      <input type="text" id="fromInput" class="locationInput" placeholder="From">
+      <button onclick="useCurrentLocation()">Use Current Location</button>
+    </div>
+    <select id="toInput" class="locationSelect" style="width: 100%;" placeholder="To">
+      <option value=""></option>
+    </select>
+    <button onclick="findRoute()">Find Route</button>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.locationSelect').select2({
+        placeholder: 'Search for a location',
+        ajax: {
+          url: 'https://nominatim.openstreetmap.org/search',
+          dataType: 'json',
+          delay: 250,
+          data: function(params) {
+            return {
+              q: params.term,
+              format: 'jsonv2'
+            };
+          },
+          processResults: function(data) {
+            return {
+              results: $.map(data, function(obj) {
+                return {
+                  id: obj.display_name,
+                  text: obj.display_name
+                };
+              })
+            };
+          },
+          cache: true
+        }
+      });
+    });
+
+    var map = L.map('map').setView([51.505, -0.09], 13); // Initial map center and zoom level
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var fromMarker, toMarker;
+    var destinationPanel = document.getElementById('destinationPanel');
+
+    function toggleDestinationPanel() {
+      if (destinationPanel.style.display === 'block') {
+        destinationPanel.style.display = 'none';
+        // Remove existing markers when closing the destination panel
+        if (fromMarker) {
+          map.removeLayer(fromMarker);
+        }
+        if (toMarker) {
+          map.removeLayer(toMarker);
+        }
+      } else {
+        destinationPanel.style.display = 'block';
+      }
+    }
+
+    function useCurrentLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          reverseGeocode(lat, lng, function(location) {
+            document.getElementById('fromInput').value = location;
+          });
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function reverseGeocode(lat, lng, callback) {
+      axios.get('https://nominatim.openstreetmap.org/reverse', {
+        params: {
+          format: 'jsonv2',
+          lat: lat,
+          lon: lng
+        }
+      })
+      .then(function(response) {
+        if (response.data && response.data.display_name) {
+          callback(response.data.display_name);
+        } else {
+          alert("Location not found.");
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+        alert("Error fetching location data.");
+      });
+    }
+
+    function findRoute() {
+      var from = document.getElementById('fromInput').value;
+      var to = document.getElementById('toInput').value;
+
+      if (!from || !to) {
+        alert("Please enter both 'From' and 'To' locations.");
+        return;
+      }
+
+      // Geocode 'from' location
+      axios.get('https://nominatim.openstreetmap.org/search', {
+        params: {
+          format: 'jsonv2',
+          q: from
+        }
+      })
+      .then(function(response) {
+        if (response.data.length > 0) {
+          var fromLat = parseFloat(response.data[0].lat);
+          var fromLon = parseFloat(response.data[0].lon);
+          if (!isNaN(fromLat) && !isNaN(fromLon)) {
+            if (fromMarker) {
+              fromMarker.setLatLng([fromLat, fromLon]);
+            } else {
+              fromMarker = L.marker([fromLat, fromLon]).addTo(map);
+            }
+          } else {
+            alert("From location not found.");
+            return;
+          }
+        } else {
+          alert("From location not found.");
+          return;
+        }
+
+        // Geocode 'to' location
+        axios.get('https://nominatim.openstreetmap.org/search', {
+          params: {
+            format: 'jsonv2',
+            q: to
+          }
+        })
+        .then(function(response) {
+          if (response.data.length > 0) {
+            var toLat = parseFloat(response.data[0].lat);
+            var toLon = parseFloat(response.data[0].lon);
+            if (!isNaN(toLat) && !isNaN(toLon)) {
+              if (toMarker) {
+                toMarker.setLatLng([toLat, toLon]);
+              } else {
+                toMarker = L.marker([toLat, toLon]).addTo(map);
+              }
+            } else {
+              alert("To location not found.");
+              return;
+            }
+          } else {
+            alert("To location not found.");
+            return;
+          }
+
+                    // Fit map to bounds of 'from' and 'to' markers
+                    var bounds = L.latLngBounds(fromMarker.getLatLng(), toMarker.getLatLng());
+          map.fitBounds(bounds);
+
+          // Add route
+          L.Routing.control({
+            waypoints: [
+              L.latLng(fromLat, fromLon),
+              L.latLng(toLat, toLon)
+            ],
+            routeWhileDragging: true
+          }).addTo(map);
+        })
+        .catch(function(error) {
+          console.error("Error fetching 'To' location:", error);
+          alert("Error fetching 'To' location.");
+        });
+      })
+      .catch(function(error) {
+        console.error("Error fetching 'From' location:", error);
+        alert("Error fetching 'From' location.");
+      });
+    }
+  </script>
+</body>
+</html>
