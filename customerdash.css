@@ -10,20 +10,8 @@ body {
 }
 
 
-.vroom-text {
-  padding-top: -5px;
-  margin-top: -15%;
-  font-family: "Meddon-Regular", sans-serif;
-  font-family: "Meddon", cursive;
-  font-weight: 400;
-  font-style: normal; 
-}
-
-.slogan-text {
-  color: #f2f2f2;
-}
-
 header {
+  height: 170px;
   background-color: #7B2CF8;
   color: white;
   padding: 20px;
@@ -32,14 +20,67 @@ header {
   align-items: center;
 }
 
-nav ul {
-  height : 100px;
-  list-style-type: none;
+.branding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-nav ul li {
-  display: inline;
+.vroom-text {
+  font-family: 'meddon';
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.slogan-text {
+  font-family: 'anek bangla';
+  font-size: 18px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  background-color: #7B2CF8;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+}
+
+.currency-btn {
+  background-color: white;
+  color: #7B2CF8;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 5px;
+  cursor: pointer;
   margin-right: 20px;
+}
+
+.profile-picture {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-right: 20px;
+  background-image: url('images.png'); /* Replace 'images.png' with your image path */
+  background-size: cover;
+}
+
+.manage-btn {
+  background-color: #ffffff;
+  color: #7B2CF8;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 main {
@@ -56,13 +97,13 @@ main {
 }
 
 #map {
-  width: 500px;
+  width: 400px;
   height: 200px; /* Adjust height as needed */
   margin-bottom: 20px;
 }
 
 .filter-panel {
-  width: 500px;
+  width: 400px;
   height: auto;
   background-color: #f0f0f0;
   padding: 20px;
@@ -75,39 +116,45 @@ main {
 
 .car-panel {
   background-color: #f0f0f0;
-  border-radius: 50px;
-  border: solid;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 2px solid #7B2CF8;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
   overflow: hidden;
 }
 
-.car-image {
-  position: relative;
-  width: 40%;
-  float: left;
-}
-
 .car-details {
-  padding: 20px;
-  width: 45%;
-  float: left;
+  width: 60%;
 }
 
-.car-details h3 {
+.car-specs {
   margin-bottom: 10px;
 }
 
-.price {
-  text-align: left;
-  padding: 20px;
-  width: 15%;
-  float: right;
+.car-spec {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.car-spec img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.location {
+  margin-bottom: 10px;
 }
 
 .review {
-  clear: both;
-  padding: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-star {
@@ -115,5 +162,27 @@ main {
   height: 20px;
   background-image: url('star-icon.png');
   background-size: cover;
-  margin-right: 5px;
+}
+
+.car-image {
+  width: 30%;
+}
+
+.car-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.price {
+  width: 20%;
+  text-align: center;
+}
+
+.rent-btn {
+  background-color: #7B2CF8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }

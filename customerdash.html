@@ -7,8 +7,21 @@
   <link rel="stylesheet" href="customerdash.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mate:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
+    />
 </head>
 <body>
+ 
   <header>
     <!-- For header/logo  -->
     <div class="branding">
@@ -16,16 +29,23 @@
       <p class="slogan-text">Drive, Explore, and Repeat</p>
     </div>
     <nav>
-      <ul>
-        <li><a href="#">Car rentals</a></li>
-        <li><a href="#">Favorites</a></li>
-        <li><a href="#">Booking History</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
+      <div class="nav-links">
+        <a href="#">Car rentals</a>
+        <a href="#">Favorites</a>
+        <a href="#">Booking History</a>
+        <a href="#">Settings</a>
+      </div>
     </nav>
-    <button class="currency-btn">NPR</button>
+    <div class="currency-selector">
+      <button class="currency-btn">NPR</button>
+      <div class="profile-picture"></div>
+    </div>
     <button class="manage-btn">Manage Bookings</button>
   </header>
+
+  
+  
+  
   <main>
     <div class="left-panel">
       <div id="map"></div>
@@ -49,31 +69,44 @@
     </div>
     <div class="car-info-panel">
       <div class="car-panel">
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="seats-icon.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="automatic-icon.png" alt="Automatic">
+              <span>Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="large-bag-icon.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="small-bag-icon.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location">Kathmandu</p>
+          <div class="review">
+            <span class="icon-star"></span>
+            <p class="rating">7</p>
+            <p class="review-count">10+ reviews</p>
+          </div>
+        </div>
         <div class="car-image">
           <img src="car.webp" alt="Kia e-Niro">
         </div>
-        <div class="car-details">
-          <h3>Kia e-Niro</h3>
-          <ul>
-            <li><span class="icon-seat"></span>5 seats</li>
-            <li><span class="icon-gear"></span>Automatic</li>
-            <li><span class="icon-bag"></span>1 large bag</li>
-            <li><span class="icon-bag"></span>2 small bags</li>
-          </ul>
-        </div>
         <div class="price">
-          <h4>Price for a day: </h4>
+          <h4>Price for a day:</h4>
           <p>Rs. 8,000</p>
           <p class="free-cancel">Free cancellation</p>
           <button class="rent-btn">Rent</button>
-          
-        </div>
-        <div class="review">
-          <span class="icon-star"></span>
-          <p class="rating">7</p>
-          <p class="review-count">10+ reviews</p>
         </div>
       </div>
+      
       <!-- Add more car panels as needed -->
     </div>
   </main>
