@@ -31,9 +31,9 @@
     </div>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
+        <form method="post" action="login.php"> <!-- Updated action attribute -->
+            <input type="email" name="email" placeholder="Email"> <!-- Added name attribute -->
+            <input type="password" name="password" placeholder="Password"> <!-- Added name attribute -->
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account already? <a href="signup.html">Sign Up</a></p>
