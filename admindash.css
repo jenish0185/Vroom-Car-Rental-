@@ -93,22 +93,37 @@
     cursor: pointer;
   }
   
+ 
+  
   main {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    margin-top: 30px; /* Add a gap of 50px */
+    margin-top: 50px; /* Add a gap between header and main content */
   }
-  
-
   
   .car-panel-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column; /* Change flex-direction to column */
   }
+
+  .car-panel-wrapper h1 {
+    margin-left: 120px;
+  }
+
+ 
+  
+  
+  
+
+  
+  
+  
   
   .car-panel {
     margin-top: 50px;
+    margin-left: 120px;
     width: 900px;
     display: flex;
     align-items: flex-start;
@@ -197,43 +212,54 @@
     cursor: pointer;
     margin-top: 10px;
   }
-  
-  
-  
-  /* .review {
-    margin-top: 20px;
-    border-top: 2px solid #000000;
-    padding-top: 20px;
+
+  .container {
     display: flex;
-    align-items: center;
   }
   
-  .review .icon-star {
-    width: 20px;
-    height: 20px;
-    background-image: url('star-icon.png');
-    background-size: cover;
+  .car-panel-wrapper {
+    margin-top: 50px;
+    width: 60%; /* Adjust as needed */
+    /* Your existing styles */
   }
   
-  .review .rating {
-    margin: 0 5px;
+  .right-panel {
+    position: absolute;
+    top: 400px;
+    right: 30px;
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5%;
+    margin-top: 20px; /* Adjust as needed */
+  }
+
+  .right-panel .wallet-content {
+    margin-top: 20px; /* Add space above */
+    margin-bottom: 20px; /* Add space below */
+    line-height: 2; /* Adjust line-height as needed */
   }
   
-  .review-count {
-    margin-left: auto;
+
+
+
+
+  
+  .earnings p {
+    margin: 10px 0;
   }
   
-  .review-box {
-    background-color: #7B2CF8;
-    border-radius: 20px;
-    padding: 5px 10px;
-  }
-  
-  .review-count {
-    margin-left: auto;
-    color: #7B2CF8;
-    font-family: "Anek Bangla";
-    font-size: 14px;
-    font-weight: 600;
-  } */
-  
+  .host-cars-btn {
+    position: absolute;
+    top: 290px; /* Adjust position */
+    right: 50px;
+    background-color: #4285F4;
+    color: #ffffff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    
