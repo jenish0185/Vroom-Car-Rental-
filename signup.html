@@ -31,12 +31,12 @@
     </div>
     <div class="signup-container">
         <h2>Sign Up</h2>
-        <form action="">
-            <input type="text" placeholder="Username">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input type="password" placeholder="Confirm Password">
-            <input type="tel" placeholder="Phone Number">
+        <form method="post" action="signup.php" id="signup-form"> <!-- Updated action attribute and added id -->
+            <input type="text" name="username" placeholder="Username">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="confirm_password" placeholder="Confirm Password">
+            <input type="tel" name="phone" placeholder="Phone Number">
             <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="login.html">Login</a></p>
@@ -50,5 +50,14 @@
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="google-signin.js"></script> <!-- Include your custom JavaScript file -->
+
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        // Optionally, you can add your form validation logic here before submitting the form
+        this.submit(); // Manually submit the form after preventing default behavior
+    });
+</script>
+
 </body>
 </html>
