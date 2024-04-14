@@ -2,9 +2,13 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../../../../xampp/htdocs"
 		}
 	],
 	"settings": {
-		"liveServer.settings.port": 5501
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "htdocs"
 	}
 }
