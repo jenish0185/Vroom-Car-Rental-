@@ -4,10 +4,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Establish database connection
-$servername = "localhost"; // Change this to your database server name
-$username = "root"; // Change this to your database username
-$password = ""; // Change this to your database password
-$dbname = "user_login"; // Change this to your database name
+$servername = "localhost"; 
+$username = "root"; 
+$password = "";
+$dbname = "user_login"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -15,7 +15,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } else {
-    echo "Database connected successfully!<br>";
+    echo "Database connected successfully!<br>"; // Connected successfully message
 }
 
 // Check if form is submitted
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check_result = $check_stmt->get_result();
 
     if ($check_result->num_rows > 0) {
-        echo "User with this email already exists!<br>";
+        echo "User with this email already exists!<br>"; // Inform if user already exists
     } else {
         // Insert new user into the database
         $insert_sql = "INSERT INTO users (username, email, password, phone, is_admin) VALUES (?, ?, ?, ?, ?)";
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: login.html");
             exit();
         } else {
-            echo "Error: " . $insert_stmt->error;
+            echo "Error: " . $insert_stmt->error; // Inform if there's an error during signup
         }
     }
 
