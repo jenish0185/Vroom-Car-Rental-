@@ -262,4 +262,20 @@
     border-radius: 5px;
     cursor: pointer;
     }
-    
+    .underline {
+      text-decoration: underline;
+    }
+
+    /* CSS styles for content display */
+    .car-hosting-content {
+      display: none;
+      /* Hide the content by default */
+    }
+
+    .car-hosting-content.active {
+      display: block;
+      /* Show the content when active class is applied */
+    }
+    .nav-links a.underline {
+      text-decoration: underline;
+    }

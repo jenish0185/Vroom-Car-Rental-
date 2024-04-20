@@ -215,6 +215,9 @@ main {
   margin-top: 10px;
 }
 
+.nav-links a.underline {
+  text-decoration: underline;
+}
 .location {
   margin-bottom: 10px;
 }
