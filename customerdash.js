@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var currentPage = window.location.href;
   
   // Find the "Car rentals" link in the navigation bar
-  var carrentalLink = document.querySelector('.nav-links a[href="carrental.html"]');
+  var carrentalLink = document.querySelector('.nav-links a[href="customerdash.php"]');
   
   // Check if the current page is the carrental page
   if (currentPage.includes("customerdash.php")) {

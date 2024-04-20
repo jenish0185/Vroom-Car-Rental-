@@ -30,6 +30,7 @@
         <p class="number">Rs. <?php echo number_format($row['carPrice'], 2); ?></p>
         <p class="free-cancel">Free cancellation</p>
         <div class="rent-btn">
+            <!-- Ensure the href attribute points to the correct file -->
             <a href="rentCar.html">Rent</a>
         </div>
 

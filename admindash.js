@@ -23,6 +23,6 @@ function underlineLink(event) {
 
 // Add an event listener to the "Car hostings" link
 document.querySelector('.nav-links a[href="#"]').addEventListener('click', function(event) {
-    navigateTo('admindash.html', this);
+    navigateTo('admindash.php', this);
     underlineLink(event);
 });

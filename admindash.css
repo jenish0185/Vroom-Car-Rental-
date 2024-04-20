@@ -202,28 +202,6 @@ main {
   line-height: normal;
 }
 
-.update-btn {
-  width: 150px;
-  height: 50px;
-  background-color: #119F1F;
-  color: white; /* Set text color to white */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 50px; /* Add margin to the left */
-}
-
-/* Apply styles to anchor tag within .update-btn */
-.update-btn a {
-  text-decoration: none; /* Remove underline */
-  color: white; /* Set text color to white */
-}
-
-
 .container {
   display: flex;
 }
@@ -264,16 +242,17 @@ main {
 
 #hostButton {
   position: absolute;
-  margin-top: 250px; /* Adjust position */
-  margin-right: 50px;
+  top: 280px; /* Adjust top position */
+  right: 50px; /* Adjust right position */
   background-color: #4285F4;
   color: #ffffff;
   border: none;
-  padding: 20px 30px; /* Increase padding */
+  padding: 10px 20px; /* Adjust padding */
   border-radius: 5px;
   cursor: pointer;
-  font-size: 18px; /* Increase font size */
+  font-size: 16px; /* Adjust font size */
 }
+
 
 
 

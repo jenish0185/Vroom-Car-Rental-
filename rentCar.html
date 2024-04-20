@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vroom - Car Rentals</title>
-  <link rel="stylesheet" href="customerdash.css">
+  <link rel="stylesheet" href="rentCar.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap">
@@ -13,29 +13,119 @@
 </head>
 <body>
  
-<header>
-  <!-- For header/logo  -->
-  <div class="branding">
-    <h1 class="vroom-text">Vroom</h1>
-    <p class="slogan-text">Drive, Explore, and Repeat</p>
-  </div>
-  <nav>
-    <div class="nav-links">
-      <a href="#">Car rentals</a>
-      <a href="#">Favorites</a>
-      <a href="#">Booking History</a>
-      <a href="#">Settings</a>
+  <header>
+    <!-- For header/logo  -->
+    <div class="branding">
+      <h1 class="vroom-text">Vroom</h1>
+      <p class="slogan-text">Drive, Explore, and Repeat</p>
     </div>
-  </nav>
-  <div class="currency-selector">
-    <button class="currency-btn">NPR</button>
-    <div class="profile-picture"></div>
+    <nav>
+      <div class="nav-links">
+        <a href="customerdash.php" class="underline">Car rentals</a>
+        <a href="favorites.html" onclick="navigateTo('favorites.html', this)">Favorites</a>
+        <a href="book-history.html" onclick="navigateTo('book-history.html', this)">Booking History</a>
+        <a href="settings.html" onclick="navigateTo('settings.html', this)">Settings</a>
+      </div>
+    </nav>
+    <div class="currency-selector">
+      <button class="currency-btn">NPR</button>
+      <div class="profile-picture"></div>
+    </div>
+    <button class="manage-btn">Manage Bookings</button>
+  </header>
+
+<main>
+  <div class="container">
+    <div class="details">
+      <div class="car-details">
+        <h2>Kia e-Niro</h2>
+        <p>5 seats</p>
+        <p>Automatic</p>
+        <p>1 large bag, 2 small bags</p>
+        <p>Location: Kathmandu</p>
+        <p class="rating">Good <span>(10+ reviews)</span></p>
+        <p class="important-info">Important info</p>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="pick-up-drop-off">
+        <h2>Pick-up - Drop-off Location</h2>
+        <div class="location-info">
+          <div class="info-icon">⏰</div>
+          <p>Mon, May 13 - 10:00 AM</p>
+        </div>
+        <div class="location-info">
+          <div class="info-icon">📍</div>
+          <p>Kathmandu</p>
+        </div>
+      </div>
+
+      <div class="car-price-breakdown">
+        <h2>Car Price Breakdown</h2>
+        <p>Price for 31 days:</p>
+        <p class="price">Rs. 187,900 <span>(includes any taxes and charges)</span></p>
+      </div>
+
+      <button id="continue-to-book">Continue to book</button>
+    </div>
   </div>
-  <button class="manage-btn">Manage Bookings</button>
-</header>
+</main>
 
+<!-- Payment Options Panel -->
+<div class="payment-options-panel" style="display: none;">
+  <h2>Select Payment Method</h2>
+  <button id="pay-with-card">Pay with Card</button>
+  <button id="pay-with-esewa">Pay with eSewa</button>
+  <button id="pay-with-khalti">Pay with Khalti</button>
+</div>
 
+<!-- Bottom Panel for Payment Details -->
+<div class="payment-details-panel" style="display: none;">
+  <!-- Payment details will be dynamically updated based on the selected payment method -->
+</div>
+
+<!-- Include PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+<!-- Include eSewa SDK -->
+<script src="https://dev.esewa.com.np/epay/main.js"></script>
 
 <script src="customerdash.js"></script>
+<!-- Include PayPal Sandbox SDK -->
+<script src="https://www.sandbox.paypal.com/sdk/js?client-id=sb-client-id"></script>
+
+<script>
+  // Add event listener to handle payment with card
+  document.getElementById('pay-with-card').addEventListener('click', function() {
+    // Show payment details for card payment
+    document.querySelector('.payment-details-panel').innerHTML = `
+      <h2>Payment Details</h2>
+      <p>Please enter your card details to complete the payment.</p>
+      <!-- Add input fields and other necessary elements for card payment -->
+      <div id="paypal-button-container"></div>
+    `;
+    document.querySelector('.payment-details-panel').style.display = 'block';
+
+    // Render PayPal buttons for card payment
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '1.00' // Placeholder amount, replace with actual amount
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          // Show success message or redirect to success page
+          alert('Transaction completed by ' + details.payer.name.given_name);
+        });
+      }
+    }).render('#paypal-button-container');
+  });
+</script>
+
 </body>
 </html>

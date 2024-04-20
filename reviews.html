@@ -16,6 +16,28 @@
   <!-- Additional styles -->
   <style>
     /* Add any additional styles specific to the Reviews page */
+    .review {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .review img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-right: 15px;
+      float: left;
+    }
+
+    .review .stars {
+      color: #f2b01e;
+    }
+
+    .review .comment {
+      clear: both;
+    }
   </style>
 </head>
 
@@ -50,7 +72,21 @@
 
     <div class="car-panel-wrapper">
       <!-- Your reviews content goes here -->
-      <h1>Reviews Content Goes Here</h1>
+      <div class="review">
+        <img src="0x0.webp" alt="User 1">
+        <div class="stars">★★★★★</div>
+        <div class="comment">Excellent service, will rent again!</div>
+      </div>
+      <div class="review">
+        <img src="car.webp" alt="User 2">
+        <div class="stars">★★★★☆</div>
+        <div class="comment">Good car, a bit dirty though.</div>
+      </div>
+      <div class="review">
+        <img src="oldcar.jpg" alt="User 3">
+        <div class="stars">★★★☆☆</div>
+        <div class="comment">Not a good car. We had many bad experiences in this car.</div>
+      </div>
     </div>
 
   </main>

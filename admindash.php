@@ -19,6 +19,136 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
     />
+    <style>
+       /* Overlay styles */
+        .overlay {
+
+        position: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+        backdrop-filter: blur(8px); /* Blurred effect */
+        z-index: 1000; /* Ensure it's above other content */
+        display: none; /* Hide initially */
+        }
+
+        /* Panel styles */
+        .panel {
+        width: 500px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2000;
+        border: 2px solid #000;
+        padding: 20px;
+        text-align: center;
+        border-radius: 12px;
+        background-color: #fff;
+        }
+
+
+        /* Container styles */
+        .container {
+        position: relative;
+        z-index: 2000; /* Ensure it's above the overlay */
+        padding: 20px; /* Add padding */
+        }
+
+
+
+        /* Styles for input and select elements */
+        .panel input[type="text"],
+        .panel select,
+        .panel input[type="number"] {
+        margin-bottom: 10px; /* Add bottom margin */
+        width: calc(100% - 20px); /* Full width with padding */
+        padding: 8px; /* Add padding */
+        box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        .panel button {
+        margin-top: 20px;
+        }
+
+        /* Adjustments for file input */
+        .panel input[type="file"] {
+        display: none; /* Hide the original file input */
+        }
+
+        /* Custom file upload styles */
+        .file-upload {
+        margin-top: 10px;
+        position: relative;
+        width: calc(100% - 20px);
+        }
+
+        .upload-btn {
+        color: #333;
+        text-decoration: underline;
+        cursor: pointer;
+        }
+
+        .file-display {
+        margin-top: 5px;
+        }
+
+        .file-display a {
+        color: blue;
+        text-decoration: none;
+        }
+
+        .button {
+        background-color: #4285F4;
+        color: #ffffff;
+        border: none;
+        padding: 20px 40px; /* Larger padding for bigger buttons */
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px; /* Increase font size */
+        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .button:hover {
+        background-color: #3367D6; /* Darker shade of blue on hover */
+        }
+
+        .update-btn {
+        width: 150px;
+        height: 50px;
+        background-color: #119F1F;
+        color: white; /* Set text color to white */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 50px; /* Add margin to the left */
+        }
+
+        /* Apply styles to anchor tag within .update-btn */
+        .update-btn a {
+        text-decoration: none; /* Remove underline */
+        color: white; /* Set text color to white */
+        }
+
+        /* Update existing or add new CSS styles */
+        .host-btn {
+            position: absolute;
+            top: 10px; /* Adjust the top position as needed */
+            right: 10px; /* Adjust the right position as needed */
+            z-index: 100; /* Ensure it's above other elements */
+        }
+
+
+
+
+
+    </style>
 </head>
 <body>
  
@@ -43,6 +173,7 @@
       <div class="profile-picture"></div>
     </div>
     <button class="manage-btn">Manage Cars</button>
+    <button id="hostButton" onclick="showPanels()">Host</button>
   </header>
 
   
@@ -114,7 +245,7 @@
         </div>
       </div>
 
-      <button id="hostButton" onclick="showPanels()">Host</button>
+      
 
         <!-- Overlay -->
       <div class="overlay"></div>
@@ -270,15 +401,21 @@
         function goBack() {
             var currentPanel = document.querySelector('.panel[style*="display: block"]');
             var previousPanel = currentPanel.previousElementSibling;
-            currentPanel.style.display = 'none';
-            previousPanel.style.display = 'block';
 
-            // Hide overlay
-            document.querySelector('.overlay').style.display = 'none';
+            // If the current panel is the first panel, hide the overlay and return to the default page
+            if (currentPanel.id === "firstPanel") {
+                document.querySelector('.overlay').style.display = 'none';
+                window.location.href = "admindash.php"; // Redirect to the default page
+            } else {
+                // Otherwise, just hide the current panel and show the previous one
+                currentPanel.style.display = 'none';
+                previousPanel.style.display = 'block';
+            }
 
             // Prevent form submission
             event.preventDefault();
-          }
+        }
+
 
 
         
@@ -301,7 +438,7 @@
 
             // Show first panel
             document.getElementById("firstPanel").style.display = "block";
-            document.getElementById("hostButton").style.display = "none";
+            document.getElementById("hostButton").style.display = "block";
             
         }
 
