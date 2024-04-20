@@ -414,3 +414,53 @@ nav ul li a {
     font-size: 18px; /* Adjust font size for the name */
     font-weight: bold; /* Make the name bold */
 }
+
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px; /* Reduce the base font size for smaller screens */
+    }
+
+    header {
+        height: 100px; /* Decrease the header height for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .branding {
+        margin-top: 0; /* Remove top margin for branding on smaller screens */
+    }
+
+    .nav-items {
+        margin-top: 20px; /* Adjust top margin for navigation items */
+    }
+
+    .nav-items ul {
+        margin-right: 20px; /* Reduce right margin for navigation items */
+    }
+
+    .nav-items ul li {
+        margin-right: 10px; /* Reduce right margin for navigation items */
+    }
+
+    .hero-content h1 {
+        font-size: 24px; /* Decrease font size for hero heading */
+    }
+
+    .hero-content p {
+        font-size: 14px; /* Decrease font size for hero paragraph */
+        margin-bottom: 20px; /* Adjust bottom margin for hero paragraph */
+    }
+
+    .featured-cars {
+        padding: 50px; /* Decrease padding for featured cars section */
+    }
+
+    .featured-cars h2 {
+        font-size: 28px; /* Decrease font size for featured cars heading */
+        margin-bottom: 50px; /* Adjust bottom margin for featured cars heading */
+    }
+
+    .car {
+        width: calc(50% - 20px); /* Adjust width for cars in smaller screens */
+    }
+}
