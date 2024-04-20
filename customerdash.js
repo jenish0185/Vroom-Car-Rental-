@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var carrentalLink = document.querySelector('.nav-links a[href="carrental.html"]');
   
   // Check if the current page is the carrental page
-  if (currentPage.includes("customerdash.html")) {
+  if (currentPage.includes("customerdash.php")) {
     // Add the "underline" class to the "Car rentals" link if it's the current page
     carrentalLink.classList.add("underline");
   }

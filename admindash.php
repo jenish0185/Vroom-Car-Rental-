@@ -74,7 +74,7 @@
         // Output car panels
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                include 'car_panel.php'; // Include the car panel template
+                include 'adminCarList.php'; // Include the car panel template
             }
         } else {
             echo "No cars available";

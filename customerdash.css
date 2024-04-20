@@ -208,13 +208,22 @@ main {
   width: 150px;
   height: 50px;
   background-color: #119F1F;
-  color: white;
+  color: white; /* Set text color to white */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px; /* Add margin to the left */
 }
 
+/* Apply styles to anchor tag within .update-btn */
+.rent-btn a {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Set text color to white */
+}
 .nav-links a.underline {
   text-decoration: underline;
 }
