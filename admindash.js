@@ -7,7 +7,7 @@ function navigateTo(page, element) {
     element.classList.add('active');
   
     // Navigate to the specified page
-    window.location.href = 'admindash.html';
+    window.location.href = 'admindash.php';
 }
 
 function underlineLink(event) {

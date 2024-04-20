@@ -1,32 +1,34 @@
-<?php
-// Database configuration
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "car_rental"; // Name of your database
+<div class="car-panel">
+    <div class="car-image">
+        <img src="<?php echo $row['carImage']; ?>" alt="<?php echo $row['carName']; ?>">
+    </div>
+    
+    <div class="car-details">
+        <h3><?php echo $row['carName']; ?></h3>
+        <div class="car-spec">
+            <img src="brand-image.png" alt="Brand Icon">
+            <span><?php echo $row['carBrand']; ?></span>
+        </div>
+        <div class="car-spec">
+            <img src="vehicles.png" alt="Type Icon">
+            <span><?php echo $row['carType']; ?></span>
+        </div>
+        <div class="car-spec">
+            <img src="car-chair.png" alt="Seats">
+            <span><?php echo $row['carSeats']; ?> seats</span>
+        </div>
+        <div class="car-spec">
+            <img src="gear-shift.png" alt="Transmission">
+            <span style="color: <?php echo ($row['carTransmission'] == 'Automatic') ? 'rgb(2, 255, 2)' : 'rgb(255, 0, 0)'; ?>"><?php echo $row['carTransmission']; ?></span>
+        </div>
+        <!-- Add more specifications as needed -->
+        <p class="location" style="color:<?php echo ($row['carLocation'] == 'Kathmandu') ? '#4285F4' : '#F4B400'; ?>"><?php echo $row['carLocation']; ?></p>
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// SQL query to insert data into the cars table
-$sql = "INSERT INTO cars (car_name, image_url, description, price)
-VALUES
-    ('Kia e-Niro', 'C:/Users/jenis/OneDrive/Pictures/Vroom/car.png', 'Automatic transmission, 5 seats, 1 large bag, 2 small bags', 8000.00),
-    ('Lamborghini', 'C:/Users/jenis/OneDrive/Pictures/Vroom/car.png', 'Manual transmission, 4 seats, 2 large bags, 1 small bag', 15000.00),
-    ('Toyota Corolla', 'C:/Users/jenis/OneDrive/Pictures/Vroom/car.png', 'Automatic transmission, 5 seats, 1 large bag, 2 small bags', 7000.00)";
-
-// Execute SQL query
-if ($conn->query($sql) === TRUE) {
-    echo "Data inserted successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-// Close connection
-$conn->close();
-?>
+    </div>
+    <div class="price">
+        <h4>Price for a day:</h4>
+        <p class="number">Rs. <?php echo number_format($row['carPrice'], 2); ?></p>
+        <p class="free-cancel">Free cancellation</p>
+        <button class="rent-btn">Rent</button>
+    </div>
+</div>
