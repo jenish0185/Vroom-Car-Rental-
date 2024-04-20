@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Page</title>
     <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mate:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
+    />
 </head>
 <body>
 
@@ -17,12 +31,12 @@
     </div>
     <div class="signup-container">
         <h2>Sign Up</h2>
-        <form action="">
-            <input type="text" placeholder="Username">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input type="password" placeholder="Confirm Password">
-            <input type="tel" placeholder="Phone Number">
+        <form method="post" action="signup.php" id="signup-form"> <!-- Updated action attribute and added id -->
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+            <input type="tel" name="phone" id="phone" placeholder="Phone Number">
             <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="login.html">Login</a></p>
@@ -34,7 +48,50 @@
     </div>
 </main>
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="google-signin.js"></script> <!-- Include your custom JavaScript file -->
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        if (validateForm()) {
+            this.submit(); // Manually submit the form after validating the inputs
+        }
+    });
+
+    function validateForm() {
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.replace(/\s/g, ''); // Remove spaces
+        const confirm_password = document.getElementById('confirm_password').value.replace(/\s/g, ''); // Remove spaces
+        const phone = document.getElementById('phone').value.trim();
+        const emailRegex = /^[a-zA-Z0-9.@$#&]+@[a-zA-Z]+\.(com|COM)$/; // Updated email regex
+
+        if (!username.match(/^[A-Za-z]{1}[a-z]{2,12}$/)) {
+            alert('Please enter a valid username. It should start with a letter, have at least 3 characters, and maximum 13 characters.');
+            return false;
+        }
+
+        if (!email.match(emailRegex)) {
+            alert('Please enter a valid email address.');
+            return false;
+        }
+
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters long and cannot contain spaces.');
+            return false;
+        }
+
+        if (password !== confirm_password) {
+            alert('Passwords do not match.');
+            return false;
+        }
+
+        if (!phone.match(/^\d{10}$/)) {
+            alert('Please enter a valid 10-digit phone number.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 </body>
 </html>

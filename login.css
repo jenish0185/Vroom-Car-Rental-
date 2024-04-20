@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Anek Bangla';
     height: 100%;
 }
 
@@ -157,3 +157,5 @@ button[type="submit"]:hover {
     height: 24px;
     margin-right: 10px; /* Add space between logo and text */
 }
+
+

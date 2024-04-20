@@ -7,35 +7,61 @@
   <link rel="stylesheet" href="customerdash.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mate:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
+    />
 </head>
 <body>
+ 
   <header>
-    <h1>Vroom</h1>
+    <!-- For header/logo  -->
+    <div class="branding">
+      <h1 class="vroom-text">Vroom</h1>
+      <p class="slogan-text">Drive, Explore, and Repeat</p>
+    </div>
     <nav>
-      <ul>
-        <li><a href="#">Car rentals</a></li>
-        <li><a href="#">Favorites</a></li>
-        <li><a href="#">Booking History</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
+      <div class="nav-links">
+        <a href="#">Car rentals</a>
+        <a href="#">Favorites</a>
+        <a href="#">Booking History</a>
+        <a href="#">Settings</a>
+      </div>
     </nav>
-    <button class="currency-btn">NPR</button>
+    <div class="currency-selector">
+      <button class="currency-btn">NPR</button>
+      <div class="profile-picture"></div>
+    </div>
     <button class="manage-btn">Manage Bookings</button>
   </header>
+
+  
+  
+  
   <main>
     <div class="left-panel">
       <div id="map"></div>
       <div class="filter-panel">
-        <h2>Filter</h2>
+        <h2>Filter</h2><br>
         <!-- Filtering options -->
-        <label for="price">Price Per Day:</label>
-        <select id="price">
-          <option value="0-5000">0-5000</option>
-          <option value="5000-10000">5000-10000</option>
-          <option value="10000-15000">10000-15000</option>
-          <option value="15000-20000">15000-20000</option>
-        </select>
-        <br><br>
+        <label for="price">Price Per Day:</label><br>
+        <input type="radio" id="price-0-5000" name="price" value="0-5000">
+        <label for="price-0-5000">0-5000</label><br>
+        <input type="radio" id="price-5000-10000" name="price" value="5000-10000">
+        <label for="price-5000-10000">5000-10000</label><br>
+        <input type="radio" id="price-10000-15000" name="price" value="10000-15000">
+        <label for="price-10000-15000">10000-15000</label><br>
+        <input type="radio" id="price-15000-20000" name="price" value="15000-20000">
+        <label for="price-15000-20000">15000-20000</label><br>
+        <br>
         <label for="car-specs">Car Specs:</label><br>
         <input type="checkbox" id="ac">
         <label for="ac">Air Conditioning</label><br>
@@ -43,39 +69,231 @@
         <label for="seats">4+ seatings</label>
       </div>
     </div>
+    
+    
     <div class="car-info-panel">
+      <h1>Available Cars:</h1>
       <div class="car-panel">
         <div class="car-image">
           <img src="car.webp" alt="Kia e-Niro">
         </div>
         <div class="car-details">
           <h3>Kia e-Niro</h3>
-          <ul>
-            <li><span class="icon-seat"></span>5 seats</li>
-            <li><span class="icon-gear"></span>Automatic</li>
-            <li><span class="icon-bag"></span>1 large bag</li>
-            <li><span class="icon-bag"></span>2 small bags</li>
-          </ul>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="car-chair.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="gear-shift.png" alt="Automatic">
+              <span style="color: rgb(2, 255, 2);">Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="suitcase.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="bag.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location" style="color:#4285F4;">Kathmandu</p>
         </div>
         <div class="price">
-          <h4>Price for a day: </h4>
-          <p>Rs. 8,000</p>
+          <h4>Price for a day:</h4>
+          <p class="number">Rs. 8,000</p>
           <p class="free-cancel">Free cancellation</p>
           <button class="rent-btn">Rent</button>
-          
-        </div>
-        <div class="review">
-          <span class="icon-star"></span>
-          <p class="rating">7</p>
-          <p class="review-count">10+ reviews</p>
         </div>
       </div>
-      <!-- Add more car panels as needed -->
+      <!-- <div class="review">
+        <span class="icon-star"></span>
+        <div class="review-box">
+          <p class="rating">7</p>
+        </div>
+        <p class="review-count">10+ reviews</p>
+      </div> -->
+
+      <div class="car-panel">
+        <div class="car-image">
+          <img src="car.webp" alt="Kia e-Niro">
+        </div>
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="car-chair.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="gear-shift.png" alt="Automatic">
+              <span style="color: rgb(2, 255, 2);">Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="suitcase.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="bag.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location" style="color:#4285F4;">Kathmandu</p>
+        </div>
+        <div class="price">
+          <h4>Price for a day:</h4>
+          <p class="number">Rs. 8,000</p>
+          <p class="free-cancel">Free cancellation</p>
+          <button class="rent-btn">Rent</button>
+        </div>
+      </div>
+
+
+      <div class="car-panel">
+        <div class="car-image">
+          <img src="car.webp" alt="Kia e-Niro">
+        </div>
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="car-chair.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="gear-shift.png" alt="Automatic">
+              <span style="color: rgb(2, 255, 2);">Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="suitcase.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="bag.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location" style="color:#4285F4;">Kathmandu</p>
+        </div>
+        <div class="price">
+          <h4>Price for a day:</h4>
+          <p class="number">Rs. 8,000</p>
+          <p class="free-cancel">Free cancellation</p>
+          <button class="rent-btn">Rent</button>
+        </div>
+      </div>
+
+
+
+      <div class="car-panel">
+        <div class="car-image">
+          <img src="car.webp" alt="Kia e-Niro">
+        </div>
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="car-chair.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="gear-shift.png" alt="Automatic">
+              <span style="color: rgb(2, 255, 2);">Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="suitcase.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="bag.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location" style="color:#4285F4;">Kathmandu</p>
+        </div>
+        <div class="price">
+          <h4>Price for a day:</h4>
+          <p class="number">Rs. 8,000</p>
+          <p class="free-cancel">Free cancellation</p>
+          <button class="rent-btn">Rent</button>
+        </div>
+      </div>
+
+
+
+      <div class="car-panel">
+        <div class="car-image">
+          <img src="car.webp" alt="Kia e-Niro">
+        </div>
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="car-chair.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="gear-shift.png" alt="Automatic">
+              <span style="color: rgb(2, 255, 2);">Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="suitcase.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="bag.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location" style="color:#4285F4;">Kathmandu</p>
+        </div>
+        <div class="price">
+          <h4>Price for a day:</h4>
+          <p class="number">Rs. 8,000</p>
+          <p class="free-cancel">Free cancellation</p>
+          <button class="rent-btn">Rent</button>
+        </div>
+      </div>
+
+
+      <div class="car-panel">
+        <div class="car-image">
+          <img src="car.webp" alt="Kia e-Niro">
+        </div>
+        <div class="car-details">
+          <h3>Kia e-Niro</h3>
+          <div class="car-specs">
+            <div class="car-spec">
+              <img src="car-chair.png" alt="Seats">
+              <span>5 seats</span>
+            </div>
+            <div class="car-spec">
+              <img src="gear-shift.png" alt="Automatic">
+              <span style="color: rgb(2, 255, 2);">Automatic</span>
+            </div>
+            <div class="car-spec">
+              <img src="suitcase.png" alt="Large Bag">
+              <span>1 large bag</span>
+            </div>
+            <div class="car-spec">
+              <img src="bag.png" alt="Small Bag">
+              <span>2 small bags</span>
+            </div>
+          </div>
+          <p class="location" style="color:#4285F4;">Kathmandu</p>
+        </div>
+        <div class="price">
+          <h4>Price for a day:</h4>
+          <p class="number">Rs. 8,000</p>
+          <p class="free-cancel">Free cancellation</p>
+          <button class="rent-btn">Rent</button>
+        </div>
+      </div>
     </div>
-  </main>
-  <footer>
-    <!-- Footer content goes here -->
-  </footer>
+    
+    
+    </main>
+
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="customerdash.js"></script>
 </body>

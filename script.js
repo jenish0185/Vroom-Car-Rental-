@@ -3,25 +3,19 @@ window.addEventListener('scroll', function() {
     header.classList.toggle('scrolled', window.scrollY > 0);
 
     var sections = document.querySelectorAll('.panel');
-    var navItems = document.querySelectorAll('nav ul li a');
-    
     var scrollPosition = window.scrollY;
 
     sections.forEach(function(section) {
-        var sectionTop = section.offsetTop - 100; // Adjust offset as needed
-        var sectionBottom = sectionTop + section.offsetHeight;
+        var rect = section.getBoundingClientRect();
+        var sectionTop = rect.top;
+        var sectionBottom = rect.bottom;
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        if ((sectionTop <= window.innerHeight / 2 && sectionBottom >= window.innerHeight / 2) ||
+            (sectionTop >= 0 && sectionBottom <= window.innerHeight)) {
             var sectionId = section.getAttribute('id');
-            navItems.forEach(function(item) {
-                if (item.getAttribute('href') === '#' + sectionId) {
-                    item.style.color = 'purple';
-                } else if (sectionId === 'home') {
-                    item.style.color = 'purple';
-                } else {
-                    item.style.color = 'white';
-                }
-            });
+            if (sectionId === 'home' && scrollPosition < 200) { // Highlight home panel at top of the page
+                return;
+            }
         }
     });
 });

@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mate:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
+    />
 </head>
 <body>
 
@@ -17,9 +31,9 @@
     </div>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
+        <form method="post" action="login.php"> <!-- Updated action attribute -->
+            <input type="email" name="email" placeholder="Email"> <!-- Added name attribute -->
+            <input type="password" name="password" placeholder="Password"> <!-- Added name attribute -->
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account already? <a href="signup.html">Sign Up</a></p>
@@ -33,4 +47,4 @@
 </main>
 
 </body>
-</html>
+</html>3b 
