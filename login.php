@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         if ($user['is_admin'] == 1) {
             // If user is admin, redirect to admin dashboard
-            header("Location: admindash.html");
+            header("Location: admindash.php");
             exit();
         } else {
             // If user is regular user, redirect to customer dashboard
-            header("Location: customerdash.html");
+            header("Location: customerdash.php");
             exit();
         }
     } else {

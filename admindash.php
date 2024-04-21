@@ -416,6 +416,16 @@
             event.preventDefault();
         }
 
+        // Function to go back to the default page and hide overlay
+        function goBackToDefaultPage() {
+            // Hide the overlay
+            document.querySelector('.overlay').style.display = 'none';
+            
+            // Redirect to the default page
+            window.location.href = "admindash.php";
+}
+
+
 
 
         
@@ -494,6 +504,8 @@
                 console.log(data);
                 // Re-enable the submit button after the request is completed
                 document.getElementById("submitButton").disabled = false;
+                // Redirect to the default page after successful submission
+                goBackToDefaultPage();
             })
             .catch(error => {
                 console.error("Fetch error:", error);

@@ -29,6 +29,6 @@
         <h4>Price for a day:</h4>
         <p class="number">Rs. <?php echo number_format($row['carPrice'], 2); ?></p>
         <p class="free-cancel">Free cancellation</p>
-        <a href="UpdateCarDetails.php" class="update-btn">Rent</a>
+        <a href="UpdateCarDetails.php" class="update-btn">Update</a>
     </div>
 </div>
