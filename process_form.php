@@ -44,7 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $parkingAssistance = isset($_POST["parkingAssistance"]) ? 1 : 0;
     $airConditioning = isset($_POST["airConditioning"]) ? 1 : 0;
     $heating = isset($_POST["heating"]) ? 1 : 0;
-    $carImage = $_POST["carImage"]; // Assuming the image URL is sent through POST
+
+    // Convert image to base64
+    $carImage = base64_encode(file_get_contents($_FILES["carImage"]["tmp_name"]));
 
     // Execute the statement
     if ($stmt->execute()) {
