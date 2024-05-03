@@ -35,17 +35,25 @@
         <p class="location" style="color:<?php echo ($row['carLocation'] == 'Kathmandu') ? '#4285F4' : '#F4B400'; ?>"><?php echo $row['carLocation']; ?></p>
     </div>
     
-    <!-- Price Section -->
+    <!-- Display car price, free cancellation, and delete button -->
     <div class="price">
-        <!-- Price for a day -->
         <h4>Price for a day:</h4>
         <p class="number">Rs. <?php echo number_format($row['carPrice'], 2); ?></p>
-        <!-- Free cancellation -->
         <p class="free-cancel">Free cancellation</p>
-        <!-- Rent Button -->
-        <div class="rent-btn">
-            <!-- Ensure the href attribute points to the correct file -->
-            <a href="rentCar.html">Rent</a>
-        </div>
+        <!-- Delete button with confirmation -->
+        <form id="deleteForm_<?php echo $row['id']; ?>" method="post" action="deleteCar.php">
+            <input type="hidden" name="car_id" value="<?php echo $row['id']; ?>">
+            <button type="button" class="delete-btn" onclick="confirmDelete(<?php echo $row['id']; ?>)">Delete</button>
+        </form>
     </div>
 </div>
+
+<script>
+    // Function to confirm deletion
+    function confirmDelete(carId) {
+        if (confirm("Are you sure you want to delete this car?")) {
+            // If user confirms, submit the form asynchronously
+            document.getElementById("deleteForm_" + carId).submit();
+        }
+    }
+</script>

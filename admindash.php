@@ -172,7 +172,8 @@
       <button class="currency-btn">NPR</button>
       <div class="profile-picture"></div>
     </div>
-    <button class="manage-btn">Manage Cars</button>
+    <a href="ManageCarList.php" class="manage-btn">Manage Cars</a>
+
     <button id="hostButton" onclick="showPanels()">Host</button>
   </header>
 
