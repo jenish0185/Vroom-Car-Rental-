@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Car Details</title>
+  <title>Manage Cars</title>
   <link rel="stylesheet" href="admindash.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -19,7 +19,32 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
     />
+
+    <style>
+    .delete-btn {
+        width: 150px;
+        height: 50px;
+        background-color: red;
+        color: white; /* Set text color to white */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 50px; /* Add margin to the left */
+        }
+
+        /* Apply styles to anchor tag within .update-btn */
+        .delete-btn a {
+        text-decoration: none; /* Remove underline */
+        color: white; /* Set text color to white */
+        }
+    </style>
 </head>
+<styles>
+
 <body>
 <header>
     <!-- For header/logo  -->
@@ -45,60 +70,38 @@
   </header>
   
 <main>
-    <h2>Update Car Details</h2>
-    <!-- Form to update car details -->
-    <?php
-    // Retrieve car ID from URL parameter
-    if (isset($_GET['car_id']) && is_numeric($_GET['car_id'])) {
-        $car_id = $_GET['car_id'];
-        
-        // Database configuration
+<div class="car-panel-wrapper">
+        <h1>Your Hosted Cars:</h1>
+        <?php
+        // Establish database connection
         $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "car_rental";
-        
-        // Create connection
+
         $conn = new mysqli($servername, $username, $password, $dbname);
-        
+
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        
-        // Prepare and bind the SQL statement
-        $stmt = $conn->prepare("SELECT * FROM car_details WHERE id = ?");
-        $stmt->bind_param("i", $car_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        // Check if query was successful
+
+        // Fetch car data from the database
+        $sql = "SELECT * FROM car_details";
+        $result = $conn->query($sql);
+
+        // Output car panels
         if ($result->num_rows > 0) {
-            // Fetch car details as an associative array
-            $row = $result->fetch_assoc();
-    ?>
-    <form action="update_process.php" method="post">
-        <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
-        <label for="carName">Car Name:</label>
-        <input type="text" id="carName" name="carName" value="<?php echo $row['carName']; ?>"><br><br>
-        <!-- Add other form fields for updating car details -->
-        <label for="carBrand">Car Brand:</label>
-        <input type="text" id="carBrand" name="carBrand" value="<?php echo $row['carBrand']; ?>"><br><br>
-        <!-- Add more input fields for other columns as needed -->
-        <button type="submit">Confirm</button>
-    </form>
-    <?php
+            while ($row = $result->fetch_assoc()) {
+                include 'ManageCar.php'; // Include the car panel template
+            }
         } else {
-            echo "No car found with ID: $car_id";
+            echo "No cars available";
         }
-        
-        // Close statement and connection
-        $stmt->close();
+
         $conn->close();
-    } else {
-        echo "Invalid car ID!";
-    }
-    ?>
+        ?>
+    </div>
 </main>
 </body>
 </html>

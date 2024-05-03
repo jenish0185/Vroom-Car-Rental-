@@ -172,7 +172,8 @@
       <button class="currency-btn">NPR</button>
       <div class="profile-picture"></div>
     </div>
-    <button class="manage-btn">Manage Cars</button>
+    <a href="ManageCarList.php" class="manage-btn">Manage Cars</a>
+
     <button id="hostButton" onclick="showPanels()">Host</button>
   </header>
 
@@ -182,10 +183,10 @@
   <main>
 
     
-    <div class="car-panel-wrapper">
-        <h1> Your Hosted Car:</h1>
+  <div class="car-panel-wrapper">
+        <h1>Your Hosted Cars:</h1>
         <?php
-        // Establish database connection (replace with your database credentials)
+        // Establish database connection
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -198,7 +199,7 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Fetch car data from the database (replace with your actual database query)
+        // Fetch car data from the database
         $sql = "SELECT * FROM car_details";
         $result = $conn->query($sql);
 
@@ -213,6 +214,9 @@
 
         $conn->close();
         ?>
+    </div>
+
+
         
 
       <div class="right-panel">
