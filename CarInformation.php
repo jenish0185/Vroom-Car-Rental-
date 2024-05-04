@@ -74,10 +74,11 @@ if(isset($_GET['car_id'])) {
     <!-- Add more car details as needed -->
 
     <!-- Rent button (optional) -->
-    <form action="rentCar.php" method="post">
+    <form action="payment.php" method="post">
       <input type="hidden" name="car_id" value="<?php echo $row['id']; ?>">
-      <button type="submit">Rent</button>
+      <button type="submit">Continue to book</button>
     </form>
+
   </div>
 </body>
 </html>
