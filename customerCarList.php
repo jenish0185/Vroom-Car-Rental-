@@ -45,7 +45,7 @@
         <!-- Rent Button -->
         <div class="rent-btn">
             <!-- Ensure the href attribute points to the correct file -->
-            <a href="rentCar.html">Rent</a>
+            <a href="CarInformation.php?car_id=<?php echo $row['id']; ?>">Rent</a>
         </div>
     </div>
 </div>
