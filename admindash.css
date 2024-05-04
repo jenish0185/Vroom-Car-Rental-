@@ -241,7 +241,7 @@ main {
 }
 
 #hostButton {
-  position: absolute;
+  position: absolute; 
   top: 280px; /* Adjust top position */
   right: 50px; /* Adjust right position */
   background-color: #4285F4;
