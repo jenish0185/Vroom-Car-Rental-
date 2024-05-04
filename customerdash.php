@@ -60,25 +60,25 @@
           <input type="radio" id="price-15000-20000" name="price" value="15000-20000">
           <label for="price-15000-20000">15000-20000</label><br>
           <br>
-          <label for="car-specs">Car Specs:</label><br>
-          <input type="checkbox" id="airbags" name="specs[]" value="airbags">
+          <input type="checkbox" id="airbags" name="specs[]" value="airbags" <?php if(isset($_POST['specs']) && in_array('airbags', $_POST['specs'])) echo 'checked'; ?>>
           <label for="airbags">Airbags</label><br>
-          <input type="checkbox" id="absBrakes" name="specs[]" value="absBrakes">
+          <input type="checkbox" id="absBrakes" name="specs[]" value="absBrakes" <?php if(isset($_POST['specs']) && in_array('absBrakes', $_POST['specs'])) echo 'checked'; ?>>
           <label for="absBrakes">ABS Brakes</label><br>
-          <input type="checkbox" id="tractionControl" name="specs[]" value="tractionControl">
+          <input type="checkbox" id="tractionControl" name="specs[]" value="tractionControl" <?php if(isset($_POST['specs']) && in_array('tractionControl', $_POST['specs'])) echo 'checked'; ?>>
           <label for="tractionControl">Traction Control</label><br>
-          <input type="checkbox" id="audioSystem" name="specs[]" value="audioSystem">
+          <input type="checkbox" id="audioSystem" name="specs[]" value="audioSystem" <?php if(isset($_POST['specs']) && in_array('audioSystem', $_POST['specs'])) echo 'checked'; ?>>
           <label for="audioSystem">Audio System</label><br>
-          <input type="checkbox" id="bluetooth" name="specs[]" value="bluetooth">
+          <input type="checkbox" id="bluetooth" name="specs[]" value="bluetooth" <?php if(isset($_POST['specs']) && in_array('bluetooth', $_POST['specs'])) echo 'checked'; ?>>
           <label for="bluetooth">Bluetooth</label><br>
-          <input type="checkbox" id="navigation" name="specs[]" value="navigation">
+          <input type="checkbox" id="navigation" name="specs[]" value="navigation" <?php if(isset($_POST['specs']) && in_array('navigation', $_POST['specs'])) echo 'checked'; ?>>
           <label for="navigation">Navigation</label><br>
-          <input type="checkbox" id="parkingAssistance" name="specs[]" value="parkingAssistance">
+          <input type="checkbox" id="parkingAssistance" name="specs[]" value="parkingAssistance" <?php if(isset($_POST['specs']) && in_array('parkingAssistance', $_POST['specs'])) echo 'checked'; ?>>
           <label for="parkingAssistance">Parking Assistance</label><br>
-          <input type="checkbox" id="airConditioning" name="specs[]" value="airConditioning">
+          <input type="checkbox" id="airConditioning" name="specs[]" value="airConditioning" <?php if(isset($_POST['specs']) && in_array('airConditioning', $_POST['specs'])) echo 'checked'; ?>>
           <label for="airConditioning">Air Conditioning</label><br>
-          <input type="checkbox" id="heating" name="specs[]" value="heating">
+          <input type="checkbox" id="heating" name="specs[]" value="heating" <?php if(isset($_POST['specs']) && in_array('heating', $_POST['specs'])) echo 'checked'; ?>>
           <label for="heating">Heating</label><br>
+
           <input type="submit" name="filter" value="Filter">
         </form>
 
@@ -88,81 +88,105 @@
     <div class="car-info-panel">
       <h1>Available Cars:</h1>
       <?php
-        // Establish database connection 
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "car_rental";
+      // Establish database connection 
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "car_rental";
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+      $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+      // Check connection
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
 
-        // Fetch car data from the database based on filters 
-        if (isset($_POST['filter'])) {
-            $sql = "SELECT * FROM car_details WHERE ";
+      // Fetch car data from the database based on filters 
+      if (isset($_POST['filter'])) {
+        $sql = "SELECT * FROM car_details";
 
-            $price = isset($_POST['price']) ? $_POST['price'] : '';
+        $price = isset($_POST['price']) ? $_POST['price'] : '';
+        $specs = isset($_POST['specs']) ? $_POST['specs'] : [];
+
+        if (!empty($price) || !empty($specs)) {
+            $sql .= " WHERE";
+
             if (!empty($price)) {
-                $sql .= "carPrice BETWEEN $price";
+                $sql .= " carPrice BETWEEN $price";
             }
 
-            $specs = isset($_POST['specs']) ? $_POST['specs'] : [];
             if (!empty($specs)) {
                 if (!empty($price)) {
-                    $sql .= " AND ";
+                    $sql .= " AND";
                 }
+
+                $sql .= " (";
+
+                // Iterate through each selected spec
+                $specConditions = []; // Array to hold individual spec conditions
+
                 foreach ($specs as $spec) {
-                    if ($spec === 'air_conditioning') {
-                        $sql .= "airConditioning = 1";
-                    } elseif ($spec === 'absBrakes') {
-                        $sql .= "absBrakes = 1";
-                    } elseif ($spec === 'tractionControl') {
-                        $sql .= "tractionControl = 1";
-                    } elseif ($spec === 'audioSystem') {
-                        $sql .= "audioSystem = 1";
-                    } elseif ($spec === 'bluetooth') {
-                        $sql .= "bluetooth = 1";
-                    } elseif ($spec === 'navigation') {
-                        $sql .= "navigation = 1";
-                    } elseif ($spec === 'parkingAssistance') {
-                        $sql .= "parkingAssistance = 1";
-                    } elseif ($spec === 'airConditioning') {
-                        $sql .= "airConditioning = 1";
-                    } elseif ($spec === 'heating') {
-                        $sql .= "heating = 1";
+                    switch ($spec) {
+                        case 'airConditioning':
+                            $specConditions[] = "airConditioning = 1";
+                            break;
+                        case 'airbags':
+                            $specConditions[] = "airbags = 1";
+                            break;
+                        case 'absBrakes':
+                            $specConditions[] = "absBrakes = 1";
+                            break;
+                        case 'tractionControl':
+                            $specConditions[] = "tractionControl = 1";
+                            break;
+                        case 'audioSystem':
+                            $specConditions[] = "audioSystem = 1";
+                            break;
+                        case 'bluetooth':
+                            $specConditions[] = "bluetooth = 1";
+                            break;
+                        case 'navigation':
+                            $specConditions[] = "navigation = 1";
+                            break;
+                        case 'parkingAssistance':
+                            $specConditions[] = "parkingAssistance = 1";
+                            break;
+                        case 'heating':
+                            $specConditions[] = "heating = 1";
+                            break;
+                        default:
+                            // Handle unsupported specs or ignore them
+                            break;
                     }
                 }
-            }
 
-            $result = $conn->query($sql);
+                // Combine individual spec conditions with AND
+                $sql .= implode(" AND ", $specConditions);
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    include 'customerCarList.php'; 
-                }
-            } else {
-                echo "No cars available";
-            }
-        } else {
-            // If no filters applied, fetch all car data
-            $sql = "SELECT * FROM car_details";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    include 'customerCarList.php'; // Include the car panel template
-                }
-            } else {
-                echo "No cars available";
+                $sql .= ")";
             }
         }
 
-        $conn->close();
-        ?>
+
+        
+      } else {
+          // If no filters applied, fetch all car data
+          $sql = "SELECT * FROM car_details";
+      }
+
+      $result = $conn->query($sql);
+
+      if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+              include 'customerCarList.php'; 
+          }
+      } else {
+          echo "No cars available";
+      }
+
+      $conn->close();
+      ?>
+
 
     </div>
   </main>
