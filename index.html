@@ -6,6 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vroom</title>
     <style>
+        .alert {
+        color: rgb(255, 0, 0);
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    
+        .search-box {
+            margin-top: 500px;
+            bottom: 50px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between; /* Space items evenly */
+            align-items: top; /* Align items vertically */
+            width: 1000px;
+            padding: 20px;
+            border: 2px solid #080606;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+        }
+
+        .input-container {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px; /* Add some space between inputs */
+        
+        }
+
+        .input-container input {
+        width: 300px; /* Adjust width as needed */
+        padding: 12px;
+        border: 2px solid #0e0e0e;
+        border-radius: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        }
+
+        .input-container input[type="datetime-local"] {
+        width: 90px; /* Adjust the width as needed */
+        padding: 10px; /* Adjust the padding as needed */
+        }
+
+        .search-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 8px;
+        }
+        #pickUpDateInput{
+        width: 130px;
+
+        }
+        #pickUpTimeInput{
+        width:100px;
+        }
+        #dropOffDateInput{
+        width:130px;
+        }
+        #dropOffTimeInput{
+        width:100px;
+        }
+
+        #search-btn {
+            width: 150px;
+            height: 50px;
+            background-color:#7B2CF8;
+            color: white; /* Set text color to white */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px; /* Add margin to the left */
+            
+        }
+        
+        /* Apply styles to anchor tag within .update-btn */
+        #search-btn a {
+            text-decoration: none; /* Remove underline */
+            color: white; /* Set text color to white */
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Meddon&display=swap');
     </style>
     <!-- styles link -->
@@ -45,7 +135,7 @@
             </nav>
             <!-- login button -->
             <div class="login-btn">
-                <a href="login.html">Login</a>
+                <a href="login.php">Login</a>
             </div>
         </div>
     </header>
@@ -58,6 +148,48 @@
             <p>"Unlock the Drive to Adventure: Your Perfect Ride Awaits! Explore, Experience, and Embrace the Journey!"
             </p>
             <a href="https://mail.google.com/mail" class="contact-btn">Contact Us</a>
+
+            <div class="redirect">
+                <div class="search-box">
+                    <!-- Location input with label -->
+                    <div class="input-container">
+                        <label for="locationInput">Pick-up Location:</label>
+                        <input type="text" id="locationInput" placeholder="&#128269; Kathmandu">
+                        <div id="locationAlert" class="alert"></div>
+                    </div>
+                    
+                    <!-- Pick-up date input with label -->
+                    <div class="input-container">
+                        <label for="pickUpDateInput">Pick-up Date:</label>
+                        <input type="date" id="pickUpDateInput" placeholder="Pick-up date">
+                        <div id="pickUpDateAlert" class="alert"></div>
+                    </div>
+                    
+                    <!-- Pick-up time input with label -->
+                    <div class="input-container">
+                        <label for="pickUpTimeInput">Pick-up Time:</label>
+                        <input type="time" id="pickUpTimeInput" placeholder="Pick-up time">
+                        <div id="pickUpTimeAlert" class="alert"></div>
+                    </div>
+                    
+                    <!-- Drop-off date input with label -->
+                    <div class="input-container">
+                        <label for="dropOffDateInput">Drop-off Date:</label>
+                        <input type="date" id="dropOffDateInput" placeholder="Drop-off date (at least 24 hours from pickup)">
+                        <div id="dropOffDateAlert" class="alert"></div>
+                    </div>
+                    
+                    <!-- Drop-off time input with label -->
+                    <div class="input-container">
+                        <label for="dropOffTimeInput">Drop-off Time:</label>
+                        <input type="time" id="dropOffTimeInput" placeholder="Drop-off time">
+                        <div id="dropOffTimeAlert" class="alert"></div>
+                    </div>
+                    
+                    <!-- Search button -->
+                    <button id="search-btn" onclick="storeSearchParameters()">Search</button>
+                </div>
+            </div>
         </div>
         <div class="overlay"></div> <!-- Add overlay div for the hero section -->
     </section>
@@ -245,6 +377,77 @@
     
 
     <script src="script.js"></script>
+
+    <script> 
+    function storeSearchParameters() {
+        var location = document.getElementById('locationInput').value.trim().toLowerCase();
+        var pickUpDate = document.getElementById('pickUpDateInput').value;
+        var pickUpTime = document.getElementById('pickUpTimeInput').value;
+        var dropOffDate = document.getElementById('dropOffDateInput').value;
+        var dropOffTime = document.getElementById('dropOffTimeInput').value;
+
+        var locationAlert = document.getElementById('locationAlert');
+        var pickUpDateAlert = document.getElementById('pickUpDateAlert');
+        var pickUpTimeAlert = document.getElementById('pickUpTimeAlert');
+        var dropOffDateAlert = document.getElementById('dropOffDateAlert');
+        var dropOffTimeAlert = document.getElementById('dropOffTimeAlert');
+
+        locationAlert.innerHTML = '';
+        pickUpDateAlert.innerHTML = '';
+        pickUpTimeAlert.innerHTML = '';
+        dropOffDateAlert.innerHTML = '';
+        dropOffTimeAlert.innerHTML = '';
+
+        if (location !== 'kathmandu') {
+            locationAlert.innerHTML = 'Location must be Kathmandu';
+            return;
+        }
+
+        if (!pickUpDate || !dropOffDate) {
+            if (!pickUpDate) {
+                pickUpDateAlert.innerHTML = 'Please select pick-up date';
+            }
+            if (!dropOffDate) {
+                dropOffDateAlert.innerHTML = 'Please select drop-off date';
+            }
+            return;
+        }
+
+        if (!pickUpTime) {
+            pickUpTimeAlert.innerHTML = 'Please select pick-up time';
+            return;
+        }
+
+        if (!dropOffTime) {
+            dropOffTimeAlert.innerHTML = 'Please select drop-off time';
+            return;
+        }
+
+        var currentDate = new Date();
+        var pickUpDateTime = new Date(pickUpDate + 'T' + pickUpTime);
+        var dropOffDateTime = new Date(dropOffDate + 'T' + dropOffTime);
+
+        if (pickUpDateTime < currentDate) {
+            pickUpDateAlert.innerHTML = 'Pick-up date must be after the current date';
+            return;
+        }
+
+        if (dropOffDateTime < pickUpDateTime || dropOffDateTime - pickUpDateTime < 86400000) {
+            dropOffDateAlert.innerHTML = 'Drop-off date must be at least 24 hours after the pick-up date';
+            return;
+        }
+
+        // Store search parameters in session storage
+        sessionStorage.setItem('location', location);
+        sessionStorage.setItem('pickUpDate', pickUpDate);
+        sessionStorage.setItem('pickUpTime', pickUpTime);
+        sessionStorage.setItem('dropOffDate', dropOffDate);
+        sessionStorage.setItem('dropOffTime', dropOffTime);
+
+        // Redirect to search results page
+        window.location.href = 'customerdash.php';
+    }
+</script>
 </body>
 
 </html>

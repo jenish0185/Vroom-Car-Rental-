@@ -1,3 +1,4 @@
+// Function to navigate to a specified page and apply styling to the clicked navbar item
 function navigateTo(page, element) {
     // Remove active class from all navbar items
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -10,6 +11,7 @@ function navigateTo(page, element) {
     window.location.href = 'admindash.php';
 }
 
+// Function to underline the clicked navigation link
 function underlineLink(event) {
     // Remove underline from all navigation links
     var navLinks = document.querySelectorAll('.nav-links a');
@@ -23,6 +25,8 @@ function underlineLink(event) {
 
 // Add an event listener to the "Car hostings" link
 document.querySelector('.nav-links a[href="#"]').addEventListener('click', function(event) {
+    // Call navigateTo function to navigate and apply styling
     navigateTo('admindash.php', this);
+    // Call underlineLink function to underline the clicked link
     underlineLink(event);
 });

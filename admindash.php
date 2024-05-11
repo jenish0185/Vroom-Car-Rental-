@@ -144,6 +144,92 @@
             z-index: 100; /* Ensure it's above other elements */
         }
 
+          /* New styles for the contact panel */
+          #contact {
+            margin-top: 250px;
+            margin-bottom: 0;
+            height: 60vh; /* Adjust height as needed */
+            background-color: #12042a; /* Set background color to black */
+            color: #fff; /* Set text color to white */
+            padding: 50px; /* Add padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+          }
+
+          /* Style for the headers */
+          .contact-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+          }
+
+          /* Adjust margins for the headers */
+          .vroom-header {
+            margin-right: 20px;
+          }
+
+          .about-vroom-header {
+            margin-right: 20px;
+          }
+
+          .top-brands-header {
+            margin-right: 20px;
+          }
+
+          /* Style for the list items */
+          .contact-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+          }
+
+          .contact-list-item {
+            margin-bottom: 8px;
+          }
+
+          .contact-list-item:last-child {
+            margin-bottom: 0;
+          }
+
+          /* Style for socials header */
+          .socials-header {
+            margin-bottom: 10px; /* Add margin to create space between the header and icons */
+          }
+
+          /* Style for social icons */
+          .socials {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .social {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            margin-bottom: 10px; /* Add margin to create space between each social icon and name */
+          }
+
+          .social a {
+            text-decoration: none;
+            color: inherit; /* Inherit color from parent */
+          }
+
+          .social a:hover,
+          .social a:focus {
+            color: #800080; /* Change color to purple/blue on hover or focus */
+          }
+
+          .social img {
+            width: 48px; /* Double the width of the image */
+            height: 48px; /* Double the height of the image */
+            margin-right: 10px;
+          }
+
+          .social span {
+            color: #fff;
+            font-size: 18px; /* Adjust font size for the name */
+            font-weight: bold; /* Make the name bold */
+          }
+
 
 
 
@@ -155,14 +241,14 @@
   <header>
     <!-- For header/logo  -->
     <div class="branding">
-      <h1 class="vroom-text">Vroom</h1>
+      <h1 href="Index.html" class="vroom-text" >Vroom</h1>
       <p class="slogan-text">Drive, Explore, and Repeat</p>
     </div>
     <nav>
       <div class="nav-links">
         <a href="admindash.php"class="underline">Car hostings</a>
         <a href="wallet.html" onclick="navigateTo('wallet.html', this)">Wallet</a>
-        <a href="reviews.html" onclick="navigateTo('reviews.html', this)">Reviews</a>
+        <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
         <a href="setting.html" onclick="navigateTo('setting.html', this)">Settings</a>
 
       </div>
@@ -400,6 +486,8 @@
           </div>
 
       </form>
+
+      
       <script>
 
         function goBack() {
@@ -557,7 +645,7 @@
     </main>
 
 
-
+   
   
 </body>
 </html>

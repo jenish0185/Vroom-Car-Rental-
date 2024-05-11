@@ -5,17 +5,17 @@ body {
   }
   
   h1, h2 {
-    text-align: center;
+    text-align: left;
   }
   
   .payment-option {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin-bottom: 20px;
   }
   
   .panel {
-    width: 100px;
+    width: 300px;
     height: 200px;
     margin: 0 5px;
     padding: 10px;
@@ -31,7 +31,7 @@ body {
   }
   
   .panel img {
-    width: 80px; /* Adjust as needed */
+    width: 300px; /* Adjust as needed */
     height: 80px; /* Adjust as needed */
     margin-bottom: 10px;
   }

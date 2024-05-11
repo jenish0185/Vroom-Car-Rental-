@@ -58,24 +58,27 @@ nav ul li a {
     background-size: cover;
     background-position: top;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
+    z-index: 0; /* Ensure the hero section is behind other content */
 }
 
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Cover the entire width of the hero section */
+    height: 100%; /* Cover the entire height of the hero section */
     background-color: rgba(128, 0, 128, 0.08); /* Adjust the color and opacity as needed */
-    z-index: 0; /* Ensure the overlay is behind other content */
+    z-index: -1; /* Ensure the overlay is behind other content */
 }
 
+
+
 .hero-content {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     text-align: center;
     color: #fff;
@@ -89,6 +92,20 @@ nav ul li a {
 .hero-content p {
     font-size: 18px;
     margin-bottom: 40px;
+}
+
+.redirect {
+    z-index: 1;
+    position: absolute;
+    bottom: 50px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    /* background-color: white; */
+    align-items: center;
+    flex-direction: column; /* Align items vertically */
+    margin-top: 50px; /* Adjust margin as needed */
 }
 
 .contact-btn {
@@ -105,6 +122,102 @@ nav ul li a {
 .contact-btn:hover {
     background-color: #0056b3;
 }
+
+.alert {
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+}
+.search-box {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: top;
+    width: 1000px;
+    padding: 20px;
+    border: 2px solid #636363;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+    
+
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* Add some space between inputs */
+
+}
+
+.input-container input {
+    width: 300px; /* Adjust width as needed */
+    padding: 12px;
+    border: 2px solid #0e0e0e;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.input-container input[type="datetime-local"] {
+    width: 90px; /* Adjust the width as needed */
+    padding: 10px; /* Adjust the padding as needed */
+}
+
+.search-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+#pickUpDateInput{
+    width: 130px;
+
+}
+#pickUpTimeInput{
+    width:100px;
+}
+#dropOffDateInput{
+    width:130px;
+}
+#dropOffTimeInput{
+    width:100px;
+}
+
+#search-btn {
+    width: 150px;
+    height: 50px;
+    background-color:#7B2CF8;
+    color: white; /* Set text color to white */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px; /* Add margin to the left */
+}
+
+/* Apply styles to anchor tag within .update-btn */
+#search-btn a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set text color to white */
+}
+
+   
+
+    
+
 
 .panel {
     height: 50vh; /* Adjust panel height */
@@ -414,7 +527,6 @@ nav ul li a {
     font-size: 18px; /* Adjust font size for the name */
     font-weight: bold; /* Make the name bold */
 }
-
 
 @media screen and (max-width: 768px) {
     body {

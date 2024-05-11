@@ -138,10 +138,13 @@ main {
 }
 
 .car-image {
+  
   width: 40%;
 }
 
 .car-image img {
+  margin-top: -10px;
+  margin-left: -10px;
   width: 100%;
   border-radius: 10px;
 }
@@ -219,7 +222,6 @@ main {
   margin-left: 50px; /* Add margin to the left */
 }
 
-/* Apply styles to anchor tag within .update-btn */
 .rent-btn a {
   text-decoration: none; /* Remove underline */
   color: white; /* Set text color to white */

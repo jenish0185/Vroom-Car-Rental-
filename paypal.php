@@ -1,5 +1,16 @@
 <?php
-// payment.php
+// paypal.php
+// Retrieve the user ID from the POST data
+if(isset($_POST['user_id'])) {
+    $user_id = $_POST['user_id'];
+    echo "<script>console.log('User ID:', $user_id);</script>";
+  } else {
+    // Handle the case where user ID is not provided
+    // For example, redirect the user to an error page or ask them to log in again
+    // This depends on your application's logic
+    header("Location: error.php");
+    exit();
+  }
 
 // Database configuration
 $db_host = 'localhost';
@@ -15,12 +26,31 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Retrieve the car ID from the form submission
-if(isset($_POST['car_id'])) {
-    $car_id = $_POST['car_id'];
-    
-    // Retrieve car price from the database
-    $query = "SELECT carprice FROM car_details WHERE id = ?";
+// Function to retrieve car ID from either POST or GET parameters
+function get_car_id() {
+    if(isset($_POST['car_id'])) {
+        return $_POST['car_id'];
+    } elseif(isset($_GET['car_id'])) {
+        return $_GET['car_id'];
+    } else {
+        return false;
+    }
+}
+
+// Function to generate the cancel URL
+function generate_cancel_url($car_id) {
+    $base_url = 'http://localhost/Login%20page/payment.php';
+    // Append the car_id parameter to the URL
+    $cancel_url = $base_url . '?car_id=' . $car_id;
+    return $cancel_url;
+}
+
+// Retrieve the car ID
+$car_id = get_car_id();
+
+if($car_id !== false) {
+    // Retrieve car price from the database based on car ID
+    $query = "SELECT carPrice FROM car_details WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $car_id);
     $stmt->execute();
@@ -29,16 +59,16 @@ if(isset($_POST['car_id'])) {
     if ($result->num_rows > 0) {
         // Fetch the car price
         $row = $result->fetch_assoc();
-        $car_price = $row['carprice'];
+        $car_price = $row['carPrice'];
 
         // PayPal API endpoint
         $api_url = 'https://api.sandbox.paypal.com/v1/payments/payment';
         
         // PayPal API credentials
-        $client_id = 'Aex6ZS8fYXkxMa1i6E_0LLy1D8V5YoOQmAtvIy-_BqFzOAmnyhTTFVWRZl1MUEHct-T715DRtTN6oHDZ';
-        $secret_key = 'EPE7FJMvrgjrFhmO2Q_K8DI2-Vk4lpEs12EbjWog1K4yrodvkvdcXl4lzbD86Kyw9RlD-6I-2-ba1p9l';
+        $client_id = 'AWLRTqhuVzuolpUAihvWuJjl7yGAmk41eT24_tHkiaD37HQwGORKTMxruF_Du00aa9XLT6t76Skt0kUT';
+        $secret_key = 'ELN0C0CMJewLE_Z4vZwj-YZ0svBuUFE7OS68nkgh8FkavqOunUPlE73h8RgjjISo61hKfIu-zGqD0PHo';
 
-        // Sample payment data including test credit card details
+        // Sample payment data
         $data = array(
             'intent' => 'sale',
             'payer' => array(
@@ -48,30 +78,14 @@ if(isset($_POST['car_id'])) {
                 array(
                     'amount' => array(
                         'total' => $car_price, // Use retrieved car price
-                        'currency' => 'USD'
+                        'currency' => 'USD' // Change currency code if needed
                     )
                 )
             ),
             'redirect_urls' => array(
-                'return_url' => 'http://localhost/Login%20page/success.php', // Modify as needed
-                'cancel_url' => 'http://localhost/Login%20page/CarInformation.php?car_id=17'   // Modify as needed
-            ),
-            'payment_method' => 'credit_card',
-            'credit_card' => array(
-                'number' => '4111111111111111', // Test credit card number
-                    'type' => 'visa',
-                    'expire_month' => 12,
-                    'expire_year' => 2023,
-                    'cvv2' => '123', // Test CVV number
-                    'first_name' => 'Jenish',
-                    'last_name' => 'Shrestha',
-                    'billing_address' => array(
-                        'line1' => '123 Naxal Kathmandu', // Address line 1
-                        'city' => 'Kathmandu', // City
-                        'state' => 'Bagmati', // State
-                        'postal_code' => '44600', // Postal code
-                        'country_code' => 'Nepal' // Country code
-                    )
+                'return_url' => 'http://localhost/Login%20page/ReserveCar.php?car_id=' . $car_id . '&user_id=' . $user_id,
+                'cancel_url' => generate_cancel_url($car_id) // Generate the cancel URL with the car_id parameter
+
             )
         );
 
@@ -118,6 +132,7 @@ if(isset($_POST['car_id'])) {
         echo "Car not found.";
     }
 } else {
+    // Handle error if car ID is not provided
     echo "Car ID not provided.";
 }
 ?>

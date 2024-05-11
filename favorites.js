@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var currentPage = window.location.href;
     
     // Find the "Favorites" link in the navigation bar
-    var favoritesLink = document.querySelector('.nav-links a[href="favorites.html"]');
+    var favoritesLink = document.querySelector('.nav-links a[href="favorites.php"]');
     
     // Check if the current page is the favorites page
-    if (currentPage.includes("favorites.html")) {
+    if (currentPage.includes("favorites.php")) {
       // Add the "underline" class to the "Favorites" link if it's the current page
       favoritesLink.classList.add("underline");
     }

@@ -40,12 +40,24 @@
         <!-- Price for a day -->
         <h4>Price for a day:</h4>
         <p class="number">Rs. <?php echo number_format($row['carPrice'], 2); ?></p>
+
         <!-- Free cancellation -->
         <p class="free-cancel">Free cancellation</p>
+        
         <!-- Rent Button -->
         <div class="rent-btn">
-            <!-- Ensure the href attribute points to the correct file -->
-            <a href="CarInformation.php?car_id=<?php echo $row['id']; ?>">Rent</a>
+            <?php
+            // Check if user_id is set
+            if(isset($user_id)) {
+                // If user_id is set, redirect to CarInformation.php with both car_id and user_id
+                echo '<a href="CarInformation.php?car_id='.$row['id'].'&user_id='.$user_id.'">Rent</a>';
+            } else {
+                // If user_id is not set, redirect to login.php
+                echo '<a href="login.php">Rent</a>';
+            }
+            ?>
         </div>
+
+
     </div>
 </div>

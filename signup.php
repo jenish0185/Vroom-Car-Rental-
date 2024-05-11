@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($insert_stmt->execute() === TRUE) {
             // Signup successful, redirect to login page
-            header("Location: login.html");
+            header("Location: login.php");
             exit();
         } else {
             echo "Error: " . $insert_stmt->error; // Inform if there's an error during signup
