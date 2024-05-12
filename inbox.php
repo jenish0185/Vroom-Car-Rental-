@@ -237,29 +237,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['notification_id'])) {
 
 <body>
 
-    <header>
-        <!-- Header/logo section -->
-        <div class="branding">
-            <h1 class="vroom-text">Vroom</h1>
-            <p class="slogan-text">Drive, Explore, and Repeat</p>
-        </div>
-        <!-- Navigation section -->
-        <nav>
-            <div class="nav-links">
-                <a href="admindash.php">Car hostings</a>
-                <a href= "wallet.html">Wallet</a>
-                <a href="inbox.php" class="underline">Inbox</a>
-                <a href="setting.html" onclick="navigateTo('setting.html', this)">Settings</a>
-            </div>
-        </nav>
-        <!-- Currency selector and profile picture section -->
-        <div class="currency-selector">
-            <button class="currency-btn">NPR</button>
-            <div class="profile-picture"></div>
-        </div>
-        <!-- Manage cars button -->
-        <button class="manage-btn">Manage Cars</button>
-    </header>
+<header>
+    <!-- For header/logo  -->
+    <div class="branding">
+      <h1 href="Index.html" class="vroom-text" >Vroom</h1>
+      <p class="slogan-text">Drive, Explore, and Repeat</p>
+    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="admindash.php" onclick="navigateTo('admindash.php', this)">Car hostings</a>
+        <a href="wallet.php" onclick="navigateTo('wallet.php', this)">Wallet</a>
+        <a href="inbox.php" class="underline">Inbox</a>
+        <a href="setting.php" onclick="navigateTo('setting.php', this)">Settings</a>
+
+      </div>
+    </nav>
+    
+    <div class="currency-selector">
+      <button class="currency-btn">NPR</button>
+      <div class="profile-picture"></div>
+    </div>
+    <a href="ManageCarList.php" class="manage-btn">Manage Cars</a>
+
+  </header>
+  
 
     <h1>Inbox</h1>
 

@@ -248,70 +248,55 @@
     
     
 
+    <?php
+    // Establish database connection
+    $servername = "localhost"; // Assuming your database is hosted locally
+    $username = "root";
+    $password = "";
+    $dbname = "car_rental";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // SQL query to fetch car details
+    $sql = "SELECT carName, carSeats, carPrice, carTransmission, carImage FROM car_details LIMIT 10";
+    $result = $conn->query($sql);
+    ?>
+
     <div class="featured-cars">
         <h2>Checkout the Featured Cars</h2>
         <div class="car-list">
-            <!-- First row of cars -->
-            <div class="car">
-                <img src="car.webp" alt="Car 1">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            <div class="car">
-                <img src="car.webp" alt="Car 2">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            <div class="car">
-                <img src="car.webp" alt="Car 3">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            <div class="car">
-                <img src="car.webp" alt="Car 4">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            
-            <!-- Second row of cars -->
-            <div class="car">
-                <img src="car.webp" alt="Car 5">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            <div class="car">
-                <img src="car.webp" alt="Car 6">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            <div class="car">
-                <img src="car.webp" alt="Car 7">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
-            <div class="car">
-                <img src="car.webp" alt="Car 8">
-                <h3>BMW 6-Series Gran Coupe</h3>
-                <p>Model: 2017</p>
-                <p>Price: $89,995</p>
-                <p>Automatic</p>
-            </div>
+            <?php
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo '<a href="customerdash.php" class="car-link">';
+                    echo '<div class="car">';
+                    // Decode the base64 encoded image retrieved from the database
+                    $imageData = base64_decode($row['carImage']);
+                    // Output the image data
+                    echo '<img src="data:image/jpeg;base64,'.base64_encode($imageData).'" alt="'.$row['carName'].'">';
+                    echo '<h3 class="car-name">' . $row["carName"] . '</h3>';
+                    echo '<p>Seats: ' . $row["carSeats"] . '</p>';
+                    echo '<p>Price: ' . $row["carPrice"] . '</p>';
+                    echo '<p>' . $row["carTransmission"] . '</p>';
+                    echo '</div>';
+                    echo '</a>';
+                }
+            } else {
+                echo "0 results";
+            }
+            $conn->close();
+            ?>
         </div>
     </div>
+
+
+
     
     <section id="brands" class="panel">
         <!-- Content for brands section -->

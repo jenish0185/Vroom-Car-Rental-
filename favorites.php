@@ -1,11 +1,14 @@
 <?php
+// Start the session
+session_start();
+
 if(isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     echo "<script>console.log('User ID:', $user_id);</script>";
 } else {
-     // Redirect back to the login page if user_id parameter is missing
-     header("Location: login.php");
-     exit();
+    // Redirect back to the login page if user_id parameter is missing
+    header("Location: login.php");
+    exit();
 }
 ?>
 
@@ -32,6 +35,25 @@ if(isset($_GET['user_id'])) {
       href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
     />
     <style>
+      .remove-btn {
+        width: 150px;
+        height: 50px;
+        background-color: red;
+        color: white; /* Set text color to white */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 50px; /* Add margin to the left */
+      }
+
+      .remove-btn a {
+        text-decoration: none; /* Remove underline */
+        color: white; /* Set text color to white */
+      }
           /* New styles for the contact panel */
           #contact {
         margin-top: 250px;
@@ -147,7 +169,100 @@ if(isset($_GET['user_id'])) {
 
     <div class="favorites-panel-wrapper">
       <!-- Your Favorites content goes here -->
-      <h1>Favorites Content Goes Here</h1>
+      <h1>Favorites List:</h1>
+
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = ""; // Assuming there's no password
+      $dbname = "car_rental";
+
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
+      // Check connection
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
+
+      // Prepare and execute the SQL statement to fetch favorite cars
+      $sql = "SELECT car_details.*
+              FROM favorites
+              INNER JOIN car_details ON favorites.car_id = car_details.id
+              WHERE favorites.user_id = $user_id";
+      $result = $conn->query($sql);
+
+      // Check if there are favorite cars
+      if ($result->num_rows > 0) {
+          // Output each favorite car
+          while ($row = $result->fetch_assoc()) {
+              ?>
+              <div class="car-panel">
+                  <div class="car-image">
+                      <?php
+                      // Decode the base64 encoded image retrieved from the database
+                      $imageData = base64_decode($row['carImage']);
+                      // Output the image data
+                      echo '<img src="data:image/jpeg;base64,'.base64_encode($imageData).'" alt="'.$row['carName'].'">';
+                      ?>
+                  </div>
+                  
+                  <div class="car-details">
+                      <!-- Display car name -->
+                      <h3><?php echo $row['carName']; ?></h3>
+                      <!-- Display car brand -->
+                      <div class="car-spec">
+                          <img src="brand-image.png" alt="Brand Icon">
+                          <span><?php echo $row['carBrand']; ?></span>
+                      </div>
+                      <!-- Display car type -->
+                      <div class="car-spec">
+                          <img src="vehicles.png" alt="Type Icon">
+                          <span><?php echo $row['carType']; ?></span>
+                      </div>
+                      <!-- Display number of seats -->
+                      <div class="car-spec">
+                          <img src="car-chair.png" alt="Seats">
+                          <span><?php echo $row['carSeats']; ?> seats</span>
+                      </div>
+                      <!-- Display transmission type with color indicating automatic or manual -->
+                      <div class="car-spec">
+                          <img src="gear-shift.png" alt="Transmission">
+                          <span style="color: <?php echo ($row['carTransmission'] == 'Automatic') ? 'rgb(2, 255, 2)' : 'rgb(255, 0, 0)'; ?>"><?php echo $row['carTransmission']; ?></span>
+                      </div>
+                      <!-- Display car location with color indicating different locations -->
+                      <p class="location" style="color:<?php echo ($row['carLocation'] == 'Kathmandu') ? '#4285F4' : '#F4B400'; ?>"><?php echo $row['carLocation']; ?></p>
+                  </div>
+                  
+                  <!-- Price Section -->
+                  <div class="price">
+                      <!-- Price for a day -->
+                      <h4>Price for a day:</h4>
+                      <p class="number">Rs. <?php echo number_format($row['carPrice'], 2); ?></p>
+
+                      <!-- Free cancellation -->
+                      <p class="free-cancel">Free cancellation</p>
+                      
+                      <!-- Remove from Favorites Button -->
+                      <div class="remove-btn">
+                          <?php
+                          // Display remove button
+                          echo '<a href="favorites.php?user_id='.$user_id.'&car_id='.$row['id'].'">Remove from Favorites</a>';
+                          ?>
+                      </div>
+                  </div>
+              </div>
+              <?php
+          }
+      } else {
+          echo "<p>No favorite cars found.</p>";
+      }
+
+      // Close the database connection
+      $conn->close();
+      ?>
+
+
     </div>
 
   </main>
@@ -209,6 +324,15 @@ if(isset($_GET['user_id'])) {
 </section>
 
   <script src="favorites.js"></script>
+  <script>
+     // Make the remove message disappear after 2-3 seconds
+     setTimeout(function() {
+        var message = document.getElementById('remove-message');
+        if (message) {
+            message.style.display = 'none';
+        }
+    }, 3000); // Adjust the time as needed
+  </script>
 
   
 </body>

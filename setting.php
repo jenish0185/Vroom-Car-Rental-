@@ -1,52 +1,51 @@
 <?php
-// Check if the user ID is provided in the URL parameters
-if(isset($_GET['user_id'])) {
-    // Retrieve the user ID from the URL parameters and sanitize it
-    $user_id = intval($_GET['user_id']); // Convert to integer to prevent SQL injection
+// Set the user ID to 1 by default
+$user_id = 1;
 
-    // Establish database connection
-    $servername = "localhost";
-    $username = "root"; // Replace with your actual database username
-    $password = ""; // Replace with your actual database password
-    $dbname = "user_login"; // Replace with your actual database name
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+// Output the user ID to the browser console
+echo "<script>console.log('User ID:', $user_id);</script>";
 
-    // Prepare and bind SQL statement
-    $stmt = $conn->prepare("SELECT username, profile_picture FROM users WHERE id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        // Fetch user details
-        $user_details = $result->fetch_assoc();
+// Establish database connection
+$servername = "localhost";
+$username = "root"; // Replace with your actual database username
+$password = ""; // Replace with your actual database password
+$dbname = "user_login"; // Replace with your actual database name
 
-        // Close statement
-        $stmt->close();
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Close connection
-        $conn->close();
-    } else {
-        // Handle the case where user details are not found
-        echo "User details not found.";
-        $stmt->close();
-        $conn->close();
-        exit();
-    }
-} else {
-     // Redirect back to the login page if user_id parameter is missing
-     header("Location: login.php");
-     exit();
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-?>
 
+// Prepare and bind SQL statement
+$stmt = $conn->prepare("SELECT username, profile_picture FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    // Fetch user details
+    $user_details = $result->fetch_assoc();
+
+    // Close statement
+    $stmt->close();
+
+    // Close connection
+    $conn->close();
+} else {
+    // Handle the case where user details are not found
+    echo "User details not found.";
+    $stmt->close();
+    $conn->close();
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,8 +159,8 @@ if(isset($_GET['user_id'])) {
       background-color: #0056b3;
     }
 
-     /* New styles for the contact panel */
-     #contact {
+    /* New styles for the contact panel */
+    #contact {
         margin-top: 250px;
         margin-bottom: 0;
         height: 60vh; /* Adjust height as needed */
@@ -250,28 +249,31 @@ if(isset($_GET['user_id'])) {
 </head>
 <body>
 
-  <header>
+<header>
     <!-- For header/logo  -->
     <div class="branding">
-      <h1 class="vroom-text">Vroom</h1>
+      <h1 href="Index.html" class="vroom-text" >Vroom</h1>
       <p class="slogan-text">Drive, Explore, and Repeat</p>
     </div>
     <nav>
-    <div class="nav-links">
-        <a href="customerdash.php?user_id=<?php echo $_GET['user_id']; ?>" onclick="navigateTo('customerdash.php', this)">Car rentals</a>
-        <a href="favorites.php?user_id=<?php echo $_GET['user_id']; ?>" onclick="navigateTo('favorites.php', this)">Favorites</a>
-        <a href="book-history.php?user_id=<?php echo $_GET['user_id']; ?>" onclick="navigateTo('book-history.php', this)">Booking History</a>
-        <a href="settings.php?user_id=<?php echo $_GET['user_id']; ?>" class="underline">Settings</a>
-    </div>
-
-
+      <div class="nav-links">
+        <a href="admindash.php" onclick="navigateTo('admindash.php', this)">Car hostings</a>
+        <a href="wallet.php" onclick="navigateTo('wallet.php', this)">Wallet</a>
+        <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
+        <a href="setting.php" class="underline">Settings</a>
+      </div>
     </nav>
+    
     <div class="currency-selector">
       <button class="currency-btn">NPR</button>
       <div class="profile-picture"></div>
     </div>
-    <a href="ManageBookedCars.php?user_id=<?php echo htmlspecialchars($_GET['user_id']); ?>" class="manage-btn">Manage Booked Cars</a>
+    <a href="ManageCarList.php" class="manage-btn">Manage Cars</a>
+
   </header>
+  
+
+
   <main>
     <div class="main-left">
       <div class="profile-container">
@@ -296,7 +298,7 @@ if(isset($_GET['user_id'])) {
 
       </div>
       <div class="settings-links">
-      <a href="account.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="fas fa-user"></i> Account</a>
+      <a href="admin_account.php"><i class="fas fa-user"></i> Account</a>
 
         <a href="#"><i class="fas fa-question-circle"></i> How to use vroom</a>
         <a href="#"><i class="fas fa-shield-alt"></i> contact support</a>

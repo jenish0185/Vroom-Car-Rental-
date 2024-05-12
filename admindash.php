@@ -1,3 +1,10 @@
+<?php
+// Set the user ID to 1 by default
+$user_id = 1;
+
+// Output the user ID to the browser console
+echo "<script>console.log('User ID:', $user_id);</script>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,90 +152,90 @@
         }
 
           /* New styles for the contact panel */
-          #contact {
-            margin-top: 250px;
-            margin-bottom: 0;
-            height: 60vh; /* Adjust height as needed */
-            background-color: #12042a; /* Set background color to black */
-            color: #fff; /* Set text color to white */
-            padding: 50px; /* Add padding */
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-          }
+      #contact {
+        margin-top: 250px;
+        margin-bottom: 0;
+        height: 60vh; /* Adjust height as needed */
+        background-color: #12042a; /* Set background color to black */
+        color: #fff; /* Set text color to white */
+        padding: 50px; /* Add padding */
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
 
-          /* Style for the headers */
-          .contact-header {
-            font-size: 24px;
-            margin-bottom: 10px;
-          }
+      /* Style for the headers */
+      .contact-header {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
 
-          /* Adjust margins for the headers */
-          .vroom-header {
-            margin-right: 20px;
-          }
+      /* Adjust margins for the headers */
+      .vroom-header {
+        margin-right: 20px;
+      }
 
-          .about-vroom-header {
-            margin-right: 20px;
-          }
+      .about-vroom-header {
+        margin-right: 20px;
+      }
 
-          .top-brands-header {
-            margin-right: 20px;
-          }
+      .top-brands-header {
+        margin-right: 20px;
+      }
 
-          /* Style for the list items */
-          .contact-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-          }
+      /* Style for the list items */
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+      }
 
-          .contact-list-item {
-            margin-bottom: 8px;
-          }
+      .contact-list-item {
+        margin-bottom: 8px;
+      }
 
-          .contact-list-item:last-child {
-            margin-bottom: 0;
-          }
+      .contact-list-item:last-child {
+        margin-bottom: 0;
+      }
 
-          /* Style for socials header */
-          .socials-header {
-            margin-bottom: 10px; /* Add margin to create space between the header and icons */
-          }
+      /* Style for socials header */
+      .socials-header {
+        margin-bottom: 10px; /* Add margin to create space between the header and icons */
+      }
 
-          /* Style for social icons */
-          .socials {
-            display: flex;
-            flex-direction: column;
-          }
+      /* Style for social icons */
+      .socials {
+        display: flex;
+        flex-direction: column;
+      }
 
-          .social {
-            display: flex;
-            align-items: center; /* Align items vertically */
-            margin-bottom: 10px; /* Add margin to create space between each social icon and name */
-          }
+      .social {
+        display: flex;
+        align-items: center; /* Align items vertically */
+        margin-bottom: 10px; /* Add margin to create space between each social icon and name */
+      }
 
-          .social a {
-            text-decoration: none;
-            color: inherit; /* Inherit color from parent */
-          }
+      .social a {
+        text-decoration: none;
+        color: inherit; /* Inherit color from parent */
+      }
 
-          .social a:hover,
-          .social a:focus {
-            color: #800080; /* Change color to purple/blue on hover or focus */
-          }
+      .social a:hover,
+      .social a:focus {
+        color: #800080; /* Change color to purple/blue on hover or focus */
+      }
 
-          .social img {
-            width: 48px; /* Double the width of the image */
-            height: 48px; /* Double the height of the image */
-            margin-right: 10px;
-          }
+      .social img {
+        width: 48px; /* Double the width of the image */
+        height: 48px; /* Double the height of the image */
+        margin-right: 10px;
+      }
 
-          .social span {
-            color: #fff;
-            font-size: 18px; /* Adjust font size for the name */
-            font-weight: bold; /* Make the name bold */
-          }
+      .social span {
+        color: #fff;
+        font-size: 18px; /* Adjust font size for the name */
+        font-weight: bold; /* Make the name bold */
+      }
 
 
 
@@ -246,10 +253,10 @@
     </div>
     <nav>
       <div class="nav-links">
-        <a href="admindash.php"class="underline">Car hostings</a>
-        <a href="wallet.html" onclick="navigateTo('wallet.html', this)">Wallet</a>
+        <a href="admindash.php" class="underline">Car hostings</a>
+        <a href="wallet.php" onclick="navigateTo('wallet.php', this)">Wallet</a>
         <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
-        <a href="setting.html" onclick="navigateTo('setting.html', this)">Settings</a>
+        <a href="setting.php" onclick="navigateTo('setting.php', this)">Settings</a>
 
       </div>
     </nav>
@@ -346,21 +353,49 @@
               <h2>Enter Car Details</h2>
               <input type="text" id="carName" name="carName" placeholder="Car Name"><br>
               <select id="carBrand" name="carBrand" style="color: rgba(0, 0, 0, 0.5);">
-                  <option value="" disabled selected>-----Car Brand-------</option>
-                  <option value="Toyota">Toyota</option>
-                  <option value="Honda">Honda</option>
-                  <option value="Ford">Ford</option>
-                  <!-- Add more options here -->
-              </select><br>
+                <option value="" disabled selected>-----Car Brand-------</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Ford">Ford</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="BMW">BMW</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Audi">Audi</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Kia">Kia</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Porsche">Porsche</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Aston Martin">Aston Martin</option>
+                <option value="Tesla">Tesla</option>
+                <option value="Jaguar">Jaguar</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Jeep">Jeep</option>
+                <!-- Add more options here if needed -->
+            </select><br>
+
               
               <!-- Car Type Selector -->
               <select id="carType" name="carType" style="color: rgba(0, 0, 0, 0.5);">
-                  <option value="" disabled selected>-----Car Type-------</option>
-                  <option value="SUV">SUV</option>
-                  <option value="Offroad">Offroad</option>
-                  <option value="Sports">Sports</option>
-                  <!-- Add more options here -->
-              </select><br>
+                <option value="" disabled selected>-----Car Type-------</option>
+                <option value="SUV">SUV</option>
+                <option value="Offroad">Offroad</option>
+                <option value="Sports">Sports</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Coupe">Coupe</option>
+                <option value="Convertible">Convertible</option>
+                <option value="Electric">Electric</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Luxury">Luxury</option>
+                <option value="Compact">Compact</option>
+                <option value="Microcar">Microcar</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
               
               <!-- Car Seats Selector -->
               <select id="carSeats" name="carSeats" style="color: rgba(0, 0, 0, 0.5);">
@@ -386,8 +421,14 @@
                   <option value="" disabled selected>-----Transmission Type-------</option>
                   <option value="Automatic">Automatic</option>
                   <option value="Manual">Manual</option>
-                  <!-- Add more options here -->
+                  <option value="Continuously Variable Transmission (CVT)">Continuously Variable Transmission (CVT)</option>
+                  <option value="Automated Manual Transmission (AMT)">Automated Manual Transmission (AMT)</option>
+                  <option value="Dual-Clutch Transmission (DCT)">Dual-Clutch Transmission (DCT)</option>
+                  <option value="Sequential Manual Transmission (SMT)">Sequential Manual Transmission (SMT)</option>
+                  <option value="Tiptronic Transmission">Tiptronic Transmission</option>
+                  <!-- Add more options as needed -->
               </select><br>
+
       
               <!-- Car Engine Selector -->
               <select id="carEngine" name="carEngine" style="color: rgba(0, 0, 0, 0.5);">
@@ -395,23 +436,32 @@
                   <option value="Petrol">Petrol</option>
                   <option value="Diesel">Diesel</option>
                   <option value="Hybrid">Hybrid</option>
-                  <!-- Add more options here -->
+                  <option value="Electric">Electric</option>
+                  <option value="Plug-in Hybrid">Plug-in Hybrid</option>
+                  <!-- Add more options as needed -->
               </select><br>
+
       
               <!-- Car Mileage Selector -->
               <select id="carMileage" name="carMileage" style="color: rgba(0, 0, 0, 0.5);">
-                  <option value="" disabled selected>-----Mileage-------</option>
-                  <option value="Unlimited">Unlimited</option>
-                  <!-- Add more options here -->
-              </select><br>
+                <option value="" disabled selected>-----Mileage-------</option>
+                <option value="Less than 10,000 miles">Less than 10,000 miles</option>
+                <option value="10,000 - 20,000 miles">10,000 - 20,000 miles</option>
+                <option value="20,000 - 30,000 miles">20,000 - 30,000 miles</option>
+                <option value="30,000 - 40,000 miles">30,000 - 40,000 miles</option>
+                <option value="40,000 - 50,000 miles">40,000 - 50,000 miles</option>
+                <option value="50,000 - 60,000 miles">50,000 - 60,000 miles</option>
+                <option value="60,000 - 70,000 miles">60,000 - 70,000 miles</option>
+                <option value="70,000 - 80,000 miles">70,000 - 80,000 miles</option>
+                <option value="80,000 - 90,000 miles">80,000 - 90,000 miles</option>
+                <option value="90,000 - 100,000 miles">90,000 - 100,000 miles</option>
+                <option value="Over 100,000 miles">Over 100,000 miles</option>
+                <option value="Unlimited">Unlimited</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
       
-              <!-- Electric Selector -->
-              <select id="electric" name="electric" style="color: rgba(0, 0, 0, 0.5);">
-                  <option value="" disabled selected>-----Power Source-------</option>
-                  <option value="Electric">Electric</option>
-                  <option value="Fuel">Fuel</option>
-                  <!-- Add more options here -->
-              </select><br>
+            
       
               <input type="number" id="carPrice" name="carPrice" placeholder="Price"><br>
       
@@ -643,6 +693,9 @@
       
     
     </main>
+
+
+    
 
 
    

@@ -1,15 +1,3 @@
-<?php
-if(isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
-    echo "<script>console.log('User ID:', $user_id);</script>";
-} else {
-    // Handle the case where user ID is not provided
-    // For example, redirect the user to an error page or ask them to log in again
-    // This depends on your application's logic
-    header("Location: error.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,10 +44,9 @@ if(isset($_GET['user_id'])) {
         .settings-container form button:hover {
             background-color: #0056b3;
         }
-
         /* New styles for the contact panel */
      #contact {
-        margin-top: 600px;
+        margin-top: 250px;
         margin-bottom: 0;
         height: 60vh; /* Adjust height as needed */
         background-color: #12042a; /* Set background color to black */
@@ -146,28 +133,31 @@ if(isset($_GET['user_id'])) {
 </head>
 <body>
 
-  <header>
+<header>
     <!-- For header/logo  -->
     <div class="branding">
-      <h1 class="vroom-text">Vroom</h1>
+      <h1 href="Index.html" class="vroom-text" >Vroom</h1>
       <p class="slogan-text">Drive, Explore, and Repeat</p>
     </div>
     <nav>
-    <div class="nav-links">
-        <a href="customerdash.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('customerdash.php', this)">Car rentals</a>
-        <a href="favorites.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('favorites.html', this)">Favorites</a>
-        <a href="book-history.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('book-history.html', this)">Booking History</a>
-        <a href="settings.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('settings.php', this)">Settings</a>
-    </div>
-
-
+        <div class="nav-links">
+            <a href="admindash.php" onclick="navigateTo('admindash.php', this)">Car hostings</a>
+            <a href="wallet.php" onclick="navigateTo('wallet.php', this)">Wallet</a>
+            <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
+            <a href="setting.php" class="underline">Settings</a>
+        </div>
     </nav>
+    
     <div class="currency-selector">
       <button class="currency-btn">NPR</button>
       <div class="profile-picture"></div>
     </div>
-    <a href="ManageBookedCars.php?user_id=<?php echo htmlspecialchars($_GET['user_id']); ?>" class="manage-btn">Manage Booked Cars</a>
+    <a href="ManageCarList.php" class="manage-btn">Manage Cars</a>
+
   </header>
+  
+
+
   <main>
     <div class="settings-container">
         <!-- Display user information and form to update -->
@@ -187,8 +177,8 @@ if(isset($_GET['user_id'])) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Retrieve user ID from URL parameter
-        $user_id = $_GET['user_id'];
+        // Set user ID to 1 by default
+        $user_id = 1;
 
         // Retrieve user information from the database
         $query = "SELECT * FROM users WHERE id = $user_id";
@@ -208,11 +198,11 @@ if(isset($_GET['user_id'])) {
             mysqli_query($conn, $update_query);
 
             // Redirect to the same page to refresh user data
-            header("Location: account.php?user_id=$user_id");
+            header("Location: ".$_SERVER['PHP_SELF']);
             exit();
         }
         ?>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?user_id=$user_id"; ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <label for="new_username">Username:</label>
             <input type="text" id="new_username" name="new_username" value="<?php echo $user['username']; ?>">
             
@@ -229,7 +219,7 @@ if(isset($_GET['user_id'])) {
         </form>
         <form id="uploadForm" enctype="multipart/form-data">
             <input type="file" name="profile_picture" id="profile_picture">
-            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_GET['user_id']); ?>">
+            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
             <button type="submit">Upload</button>
         </form>
 

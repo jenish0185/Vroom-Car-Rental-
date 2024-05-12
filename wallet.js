@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var reviewsLink = document.querySelector('.nav-links a[href="inbox.php"]');
   
   // Check if the current page is the reviews page
-  if (currentPage.includes("inbox.php")) {
+  if (currentPage.includes("wallet.php")) {
     // Add the "underline" class to the "Reviews" link if it's the current page
     reviewsLink.classList.add("underline");
   }

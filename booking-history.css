@@ -1,0 +1,136 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  header {
+    height: 200px;
+    background-color: #7B2CF8;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .vroom-text {
+    font-family: 'meddon';
+    font-size: 32px;
+    margin-bottom: 5px;
+    margin-top: -70px;
+  }
+  
+  .slogan-text {
+    font-family: 'anek bangla';
+    margin-top: -15%;
+    font-size: 15px;
+  }
+  
+  .nav-links {
+    display: flex;
+    justify-content: space-around;
+    background-color: #7B2CF8;
+  }
+  
+  .nav-links a {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Anek Bangla";
+    margin-top: 100px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-right: 50px; /* Add margin between each link */
+  }
+  
+  
+  .currency-selector {
+    display: flex;
+    align-items: center;
+  }
+  
+  .currency-btn {
+    background-color: white;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: -70px;
+  }
+  
+  .profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-right: -100px;
+    background-image: url('image.png'); /* Replace 'images.png' with your image path */
+    background-size: cover;
+    border: none; /* Remove the border */
+  }
+  
+  
+  .manage-btn {
+    background-color: #ffffff;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  main {
+    display: flex;
+    min-height: 300px; /* Set a minimum height */
+    height: auto; /* Set height to auto to allow content to expand it */
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 200px; /* Add a gap of 50px */
+  }
+
+/* New styles for the contact panel */
+#contact {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 60vh; /* Adjust height as needed */
+  background-color: #12042a; /* Set background color to black */
+  color: #fff; /* Set text color to white */
+  padding: 50px; /* Add padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Style for the headers */
+.contact-header {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Adjust margins for the headers */
+.vroom-header {
+  margin-right: 20px;
+}
+
+.about-vroom-header {
+  margin-right: 20px;
+}
+
+.top-brands-header {
+  margin-right: 20px;
+}
+

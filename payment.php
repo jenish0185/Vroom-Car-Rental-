@@ -129,6 +129,92 @@ if(isset($_POST['car_id'])) {
         text-decoration: none; /* Remove underline */
         color: white; /* Set text color to white */
       }
+
+       /* New styles for the contact panel */
+       #contact {
+        margin-top: 250px;
+        margin-bottom: 0;
+        height: 60vh; /* Adjust height as needed */
+        background-color: #12042a; /* Set background color to black */
+        color: #fff; /* Set text color to white */
+        padding: 50px; /* Add padding */
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      /* Style for the headers */
+      .contact-header {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      /* Adjust margins for the headers */
+      .vroom-header {
+        margin-right: 20px;
+      }
+
+      .about-vroom-header {
+        margin-right: 20px;
+      }
+
+      .top-brands-header {
+        margin-right: 20px;
+      }
+
+      /* Style for the list items */
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+      }
+
+      .contact-list-item {
+        margin-bottom: 8px;
+      }
+
+      .contact-list-item:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Style for socials header */
+      .socials-header {
+        margin-bottom: 10px; /* Add margin to create space between the header and icons */
+      }
+
+      /* Style for social icons */
+      .socials {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .social {
+        display: flex;
+        align-items: center; /* Align items vertically */
+        margin-bottom: 10px; /* Add margin to create space between each social icon and name */
+      }
+
+      .social a {
+        text-decoration: none;
+        color: inherit; /* Inherit color from parent */
+      }
+
+      .social a:hover,
+      .social a:focus {
+        color: #800080; /* Change color to purple/blue on hover or focus */
+      }
+
+      .social img {
+        width: 48px; /* Double the width of the image */
+        height: 48px; /* Double the height of the image */
+        margin-right: 10px;
+      }
+
+      .social span {
+        color: #fff;
+        font-size: 18px; /* Adjust font size for the name */
+        font-weight: bold; /* Make the name bold */
+      }
   </style>
 </head>
 <body>
@@ -158,59 +244,161 @@ if(isset($_POST['car_id'])) {
 
   <main>
     <div class="container">
-      <!-- Payment options -->
-      <h1 class="total-price">Total Price: Rs. <?php echo number_format($car_price, 2); ?></h1>
-      <h2>Payment Options</h2>
+        <!-- Payment options -->
+        <h1 class="total-price">Total Price: Rs. <?php echo number_format($car_price, 2); ?></h1>
+        <h2>Payment Options</h2>
 
-      <div class="payment-option">
-        <div class="panel" id="panel1" onclick="selectPayment('mobile_banking', 'Esewa', 'esewa-qr.jpg')">
-          <img src="esewa-logo.png" alt="Esewa">
-          <p>Esewa</p>
+        <div class="payment-option">
+            <div class="panel" id="panel1" onclick="selectPayment('mobile_banking', 'Esewa', 'esewa-qr.jpg')">
+                <img src="esewa-logo.png" alt="Esewa">
+                <p>Esewa</p>
+            </div>
+            <div class="panel" id="panel2" onclick="selectPayment('mobile_banking', 'Khalti', 'khalti-qr.png')">
+                <img src="khatli-logo.jpg" alt="Khalti">
+                <p>Khalti</p>
+            </div>
+            <div class="panel" id="panel3" onclick="showPayPal()">
+                <img src="PayPal-Logo.png" alt="PayPal">
+                <p>PayPal</p>
+            </div>
         </div>
-        <div class="panel" id="panel2" onclick="selectPayment('mobile_banking', 'Khalti', 'khalti-qr.png')">
-          <img src="khatli-logo.jpg" alt="Khalti">
-          <p>Khalti</p>
+
+        <!-- Image and button for PayPal -->
+        <div id="paypalSection" style="display: none;">
+            <img src="" alt="PayPal Logo" id="paypalImg" class="payment-img">
+            
+            <form id="paypalForm" action="paypal.php" method="post">
+                <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>"> <!-- Add this line -->
+                <button type="submit" class="ContinueToRent-btn">Continue to Pay</button>
+            </form>
         </div>
-        <div class="panel" id="panel3" onclick="showPayPal()">
-          <img src="PayPal-Logo.png" alt="PayPal">
-          <p>PayPal</p>
+
+        <!-- Image and button for PayPal -->
+        <div id="paypalSection" style="display: none;">
+            <img src="" alt="PayPal Logo" id="paypalImg" class="payment-img">
+            
+            <form id="paypalForm" action="paypal.php" method="post">
+                <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                <button type="submit" class="ContinueToRent-btn">Continue to Pay</button>
+            </form>
         </div>
-      </div>
 
-      <!-- Image and button for PayPal -->
-      <div id="paypalSection" style="display: none;">
-        <img src="" alt="PayPal Logo" id="paypalImg" class="payment-img">
-        
-        <form id="paypalForm" action="paypal.php" method="post">
-          <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
-          <input type="hidden" name="user_id" value="<?php echo $user_id; ?>"> <!-- Add this line -->
-          <button type="submit" class="ContinueToRent-btn">Continue to Pay</button>
-        </form>
+        <!-- Image and button for Esewa -->
+        <div id="esewaSection" style="display: none;">
+            <img src="esewa-qr.jpg" alt="Esewa QR Code" class="payment-img">
+            <button class="ContinueToRent-btn" onclick="continueToEsewa('<?php echo $user_id; ?>', '<?php echo $car_id; ?>')">Continue to Esewa</button>
+        </div>
 
-
-      </div>
+        <!-- Image and button for Khalti -->
+        <div id="khaltiSection" style="display: none;">
+            <img src="khalti-qr.png" alt="Khalti QR Code" class="payment-img">
+            <button class="ContinueToRent-btn" onclick="continueToKhalti('<?php echo $user_id; ?>', '<?php echo $car_id; ?>')">Continue to Khalti</button>
+        </div>
 
     </div>
+</main>
+
+
+  <section id="contact" class="panel">
+      <div class="vroom-info">
+          <h2 class="contact-header vroom-header">Vroom</h2>
+          <p>Email: vroom@gmail.com</p>
+          <p>Phone: +977 1234567890</p>
+      </div>
+      <div class="about-vroom">
+          <h3 class="contact-header about-vroom-header">About Vroom</h3>
+          <ul class="contact-list">
+              <li class="contact-list-item">About Us</li>
+              <li class="contact-list-item">Career</li>
+              <li class="contact-list-item">Terms of Service</li>
+              <li class="contact-list-item">Privacy Policy</li>
+          </ul>
+      </div>
+      <div class="top-affiliated-brands">
+          <h3 class="contact-header top-brands-header">Top Affiliated Brands</h3>
+          <ul class="contact-list">
+              <li class="contact-list-item">BMW</li>
+              <li class="contact-list-item">Lamborghini</li>
+              <li class="contact-list-item">Ferrari</li>
+              <li class="contact-list-item">Audi</li>
+              <li class="contact-list-item">Honda</li>
+              <li class="contact-list-item">Ford</li>
+              <li class="contact-list-item">Mercedes</li>
+              <li class="contact-list-item">Nissan</li>
+              <li class="contact-list-item">Bentley</li>
+              <li class="contact-list-item">Porsche</li>
+              <!-- Add more brands as needed -->
+          </ul>
+      </div>
+      <div class="socials">
+          <h3 class="contact-header socials-header">Socials</h3>
+          <div class="social">
+              <a href="https://www.facebook.com">
+                  <img src="facebook.webp" alt="Facebook">
+                  <span>Facebook</span>
+              </a>
+          </div>
+          <div class="social">
+              <a href="https://www.instagram.com/">
+                  <img src="instagram-logo.png" alt="Instagram">
+                  <span>Instagram</span>
+              </a>
+          </div>
+          <div class="social">
+              <a href="https://twitter.com/">
+                  <img src="x-logo.png" alt="Twitter">
+                  <span>Twitter</span>
+              </a>
+          </div>
+      </div>
+  </section>
 
     <script>
       function selectPayment(paymentMethod, provider, image) {
         console.log("Selecting payment:", paymentMethod, provider);
-        // Set the image source based on the selected payment option
-        document.getElementById("paymentImg").src = image;
-        // Make the image visible
-        document.getElementById("paymentImg").style.display = "block";
-      }
+        document.getElementById("paypalSection").style.display = "none";
+        document.getElementById("esewaSection").style.display = "none";
+        document.getElementById("khaltiSection").style.display = "none";
 
-      function showPayPal() {
+        if (provider === 'Esewa') {
+            document.getElementById("esewaSection").style.display = "block";
+        } else if (provider === 'Khalti') {
+            document.getElementById("khaltiSection").style.display = "block";
+        } else {
+            document.getElementById("paypalSection").style.display = "block";
+            document.getElementById("paypalImg").src = image;
+        }
+    }
+
+    function showPayPal() {
         document.getElementById("paypalImg").src = "PayPal-Logo.png";
         document.getElementById("paypalSection").style.display = "block";
-      }
+        document.getElementById("esewaSection").style.display = "none";
+        document.getElementById("khaltiSection").style.display = "none";
+    }
 
       function continueToPay() {
         document.getElementById("paypalForm").submit();
       }
-    </script>
-  </main>
+
+      function continueToEsewa(user_id, car_id) {
+          console.log("Continue to Esewa");
+          // Redirect to reserve-car.php with user_id and car_id parameters
+          window.location.href = "ReserveCar.php?user_id=" + user_id + "&car_id=" + car_id;
+      }
+
+      function continueToKhalti(user_id, car_id) {
+          console.log("Continue to Khalti");
+          // Redirect to reserve-car.php with user_id and car_id parameters
+          window.location.href = "ReserveCar.php?user_id=" + user_id + "&car_id=" + car_id;
+      }
+</script>
+
+
+  
+  
 
 </body>
 </html>
