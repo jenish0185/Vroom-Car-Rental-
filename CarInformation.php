@@ -236,10 +236,10 @@ if(isset($_GET['car_id'])) {
  
   <header>
     <!-- For header/logo  -->
-    <div class="branding">
-      <h1 class="vroom-text">Vroom</h1>
-      <p class="slogan-text">Drive, Explore, and Repeat</p>
-    </div>
+    <a href="index.php" class="vroom-text">
+        <h1>Vroom</h1>
+    </a>
+    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
     <nav>
     <div class="nav-links">
         <a href="customerdash.php?user_id=<?php echo $_GET['user_id']; ?>" class="underline" >Car rentals</a>

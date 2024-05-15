@@ -149,8 +149,10 @@ if(isset($_GET['user_id'])) {
   <header>
     <!-- For header/logo  -->
     <div class="branding">
-      <h1 class="vroom-text">Vroom</h1>
-      <p class="slogan-text">Drive, Explore, and Repeat</p>
+      <a href="index.php" class="vroom-text">
+          <h1>Vroom</h1>
+      </a>
+      <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
     </div>
     <nav>
     <div class="nav-links">

@@ -248,8 +248,11 @@ echo "<script>console.log('User ID:', $user_id);</script>";
   <header>
     <!-- For header/logo  -->
     <div class="branding">
-      <h1 href="Index.html" class="vroom-text" >Vroom</h1>
-      <p class="slogan-text">Drive, Explore, and Repeat</p>
+    <a href="index.php" class="vroom-text">
+        <h1>Vroom</h1>
+    </a>
+    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
+
     </div>
     <nav>
       <div class="nav-links">
@@ -310,21 +313,7 @@ echo "<script>console.log('User ID:', $user_id);</script>";
     </div>
 
 
-        
 
-      <div class="right-panel">
-        <!-- Wallet panel content -->
-        <h2>Wallet</h2>
-        <div class="wallet-content">
-          <h3>Today's Earnings:</h3>
-          <p>Rs. 0</p>
-          <h3>This Week's Earnings:</h3>
-          <p>Rs. 999</p>
-          <h3>This Month's Earnings:</h3>
-          <p>Rs. 994,923</p>
-        </div>
-      </div>
-      
 
 
       
@@ -444,21 +433,21 @@ echo "<script>console.log('User ID:', $user_id);</script>";
       
               <!-- Car Mileage Selector -->
               <select id="carMileage" name="carMileage" style="color: rgba(0, 0, 0, 0.5);">
-                <option value="" disabled selected>-----Mileage-------</option>
-                <option value="Less than 10,000 miles">Less than 10,000 miles</option>
-                <option value="10,000 - 20,000 miles">10,000 - 20,000 miles</option>
-                <option value="20,000 - 30,000 miles">20,000 - 30,000 miles</option>
-                <option value="30,000 - 40,000 miles">30,000 - 40,000 miles</option>
-                <option value="40,000 - 50,000 miles">40,000 - 50,000 miles</option>
-                <option value="50,000 - 60,000 miles">50,000 - 60,000 miles</option>
-                <option value="60,000 - 70,000 miles">60,000 - 70,000 miles</option>
-                <option value="70,000 - 80,000 miles">70,000 - 80,000 miles</option>
-                <option value="80,000 - 90,000 miles">80,000 - 90,000 miles</option>
-                <option value="90,000 - 100,000 miles">90,000 - 100,000 miles</option>
-                <option value="Over 100,000 miles">Over 100,000 miles</option>
-                <option value="Unlimited">Unlimited</option>
-                <!-- Add more options as needed -->
-            </select><br>
+                  <option value="" disabled selected>-----Mileage-------</option>
+                  <option value="Less than 10,000 miles">Less than 10,000 miles</option>
+                  <option value="10,000 - 20,000 miles">10,000 - 20,000 miles</option>
+                  <option value="20,000 - 30,000 miles">20,000 - 30,000 miles</option>
+                  <option value="30,000 - 40,000 miles">30,000 - 40,000 miles</option>
+                  <option value="40,000 - 50,000 miles">40,000 - 50,000 miles</option>
+                  <option value="50,000 - 60,000 miles">50,000 - 60,000 miles</option>
+                  <option value="60,000 - 70,000 miles">60,000 - 70,000 miles</option>
+                  <option value="70,000 - 80,000 miles">70,000 - 80,000 miles</option>
+                  <option value="80,000 - 90,000 miles">80,000 - 90,000 miles</option>
+                  <option value="90,000 - 100,000 miles">90,000 - 100,000 miles</option>
+                  <option value="Over 100,000 miles">Over 100,000 miles</option>
+                  <option value="Unlimited">Unlimited</option>
+                  <!-- Add more options as needed -->
+              </select><br>
 
       
             

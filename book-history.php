@@ -1,11 +1,26 @@
 <?php
+// Database configuration
+$db_host = 'localhost'; // Change this to your database host
+$db_user = 'root'; // Change this to your database username
+$db_pass = ''; // Change this to your database password
+$db_name = 'car_rental'; // Change this to your database name
+
+// Create connection
+$car_rental_conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+// Check connection
+if ($car_rental_conn->connect_error) {
+    die("Connection failed: " . $car_rental_conn->connect_error);
+}
+
+// Check if user_id is set in the GET parameters
 if(isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     echo "<script>console.log('User ID:', $user_id);</script>";
 } else {
-     // Redirect back to the login page if user_id parameter is missing
-     header("Location: login.php");
-     exit();
+    // Redirect back to the login page if user_id parameter is missing
+    header("Location: login.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -117,8 +132,10 @@ if(isset($_GET['user_id'])) {
   <header>
     <!-- Header Content -->
     <div class="branding">
-      <h1 class="vroom-text">Vroom</h1>
-      <p class="slogan-text">Drive, Explore, and Repeat</p>
+    <a href="index.php" class="vroom-text">
+        <h1>Vroom</h1>
+    </a>
+    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
     </div>
     <!-- Navigation -->
     <nav>
@@ -142,11 +159,131 @@ if(isset($_GET['user_id'])) {
   </header>
 
   <main>
-    <!-- Main Content Section -->
-    <div class="booking-history-panel-wrapper">
-      <!-- Booking History Content -->
-      <h1>Booking History Content Goes Here</h1>
+  <h2>Booked Cars:</h2>
+    <?php
+      // Fetch booked cars for the user from car_rental database
+      $booked_cars_query = "SELECT * FROM booking WHERE user_id = ?";
+      $booked_cars_stmt = $car_rental_conn->prepare($booked_cars_query);
+      $booked_cars_stmt->bind_param("i", $user_id);
+      $booked_cars_stmt->execute();
+      $booked_cars_result = $booked_cars_stmt->get_result();
+
+      // Loop through booked cars
+      if ($booked_cars_result->num_rows > 0) {
+        while ($row = $booked_cars_result->fetch_assoc()) {
+          // Fetch car details for the current booking
+          $car_id = $row['car_id'];
+          $car_details_query = "SELECT * FROM car_details WHERE id = ?";
+          $car_details_stmt = $car_rental_conn->prepare($car_details_query);
+          $car_details_stmt->bind_param("i", $car_id);
+          $car_details_stmt->execute();
+          $car_details_result = $car_details_stmt->get_result();
+
+          // Check if car details are found
+          if ($car_details_result->num_rows > 0) {
+            $car_row = $car_details_result->fetch_assoc(); // Fetch car details
+            // Now, you can display the car information
+    ?>
+    
+    <div class="car-panel">
+      
+      <div class="car-image">
+        <?php
+          // Decode the base64 encoded image retrieved from the database
+          $imageData = base64_decode($car_row['carImage']);
+          // Output the image data
+          echo '<img src="data:image/jpeg;base64,'.base64_encode($imageData).'" alt="'.$car_row['carName'].'">';
+        ?>
+      </div>
+        
+      <div class="car-details">
+        <!-- Display car name -->
+        <h3><?php echo $car_row['carName']; ?></h3>
+        <!-- Display car brand -->
+        <div class="car-spec">
+          <img src="brand-image.png" alt="Brand Icon">
+          <span><?php echo $car_row['carBrand']; ?></span>
+        </div>
+        <!-- Display car type -->
+        <div class="car-spec">
+          <img src="vehicles.png" alt="Type Icon">
+          <span><?php echo $car_row['carType']; ?></span>
+        </div>
+        <!-- Display number of seats -->
+        <div class="car-spec">
+          <img src="car-chair.png" alt="Seats">
+          <span><?php echo $car_row['carSeats']; ?> seats</span>
+        </div>
+        <!-- Display transmission type with color indicating automatic or manual -->
+        <div class="car-spec">
+          <img src="gear-shift.png" alt="Transmission">
+          <span style="color: <?php echo ($car_row['carTransmission'] == 'Automatic') ? 'rgb(2, 255, 2)' : 'rgb(255, 0, 0)'; ?>"><?php echo $car_row['carTransmission']; ?></span>
+        </div>
+        <!-- Display car location with color indicating different locations -->
+        <p class="location" style="color:<?php echo ($car_row['carLocation'] == 'Kathmandu') ? '#4285F4' : '#F4B400'; ?>"><?php echo $car_row['carLocation']; ?></p>
+      </div>
+        
+      <!-- Price Section -->
+      <div class="price">
+        <!-- Price for a day -->
+        <h4>Price for a day:</h4>
+        <p class="number">Rs. <?php echo number_format($car_row['carPrice'], 2); ?></p>
+        <!-- Free cancellation -->
+        <p class="free-cancel">Free cancellation</p>
+
+
+        <!-- Cancel Button -->
+        <form action="cancel_booking.php" method="POST">
+            <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
+            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+            <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
+            <button type="submit" class="cancel-btn">Cancel</button>
+        </form>
+
+
+        <!-- Finish Booking Button -->
+        <form id="finishBookingForm" action="finish_booking.php" method="post">
+            <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
+            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+            <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
+            <button class="finish-btn" type="submit">Finish Booking</button>
+        </form>
+
+
+      </div>
     </div>
+    <?php
+          } else {
+            echo "<p>Car details not found.</p>";
+          }
+        }
+      } else {
+        echo "<p>No cars booked for this user.</p>";
+      }
+
+      // Close connection to car_rental database
+      mysqli_close($car_rental_conn);
+    ?>
+
+    <script>
+      // Function to cancel booking
+      function cancelBooking(bookingId) {
+        // Ask for confirmation before canceling the booking
+        if(confirm("Are you sure you want to cancel this booking?")) {
+          // Redirect to cancel booking page or perform appropriate action
+          window.location.href = "cancel_booking.php?booking_id=" + bookingId;
+        }
+      }
+
+      // Function to finish booking
+      function finishBooking(bookingId) {
+        // Ask for confirmation before finishing the booking
+        if(confirm("Are you sure you want to finish this booking?")) {
+          // Redirect to finish booking page or perform appropriate action
+          window.location.href = "finish_booking.php?booking_id=" + bookingId;
+        }
+      }
+    </script>
   </main>
 
   <section id="contact" class="panel">

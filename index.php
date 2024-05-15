@@ -87,6 +87,7 @@
             justify-content: center;
             align-items: center;
             margin-left: 10px; /* Add margin to the left */
+            margin-top: 30px;
             
         }
         
@@ -149,7 +150,10 @@
             </p>
             <a href="https://mail.google.com/mail" class="contact-btn">Contact Us</a>
 
-            <div class="redirect">
+           
+        </div>
+
+        <div class="redirect">
                 <div class="search-box">
                     <!-- Location input with label -->
                     <div class="input-container">
@@ -190,7 +194,6 @@
                     <button id="search-btn" onclick="storeSearchParameters()">Search</button>
                 </div>
             </div>
-        </div>
         <div class="overlay"></div> <!-- Add overlay div for the hero section -->
     </section>
     
