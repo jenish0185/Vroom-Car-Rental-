@@ -1,0 +1,501 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'anek bangla';
+}
+
+
+
+.vroom-text {
+    padding-top: -5px;
+    margin-top: -15%;
+    font-family: "Meddon-Regular", sans-serif;
+    font-family: "Meddon", cursive;
+    font-weight: 400;
+    font-style: normal; 
+}
+
+.slogan-text {
+    color: #f2f2f2;
+}
+
+header {
+    position: fixed;
+    height: 150px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    background-color: transparent; /* Set initial transparent background */
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.hero {
+    margin-top: 0px;
+    position: relative;
+    background-image: url('2024-Hyundai-Kona-Electric-Gear.webp');
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0; /* Ensure the hero section is behind other content */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Cover the entire width of the hero section */
+    height: 100%; /* Cover the entire height of the hero section */
+    background-color: rgba(128, 0, 128, 0.08); /* Adjust the color and opacity as needed */
+    z-index: -1; /* Ensure the overlay is behind other content */
+}
+
+
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.redirect {
+    z-index: 0;
+    margin-top: 500px; /* Adjust as needed */
+    margin-left: 300px;
+    display: flex;
+    /* background-color: white; */
+    align-items: center;
+    flex-direction: column; /* Align items vertically */
+}
+
+.contact-btn {
+    
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #0056b3;
+}
+
+
+    
+
+
+.panel {
+    height: 50vh; /* Adjust panel height */
+    background-color: #f2f2f2;
+    margin-top: 50px; /* Adjust top margin */
+}
+
+#brands {
+    height: 25vh; /* Adjust panel height */
+}
+
+/* Change header background color and overlay on scroll */
+.scrolled {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.scrolled .overlay {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/* New styles for Vroom branding */
+.branding {
+    float: left;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.branding h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.branding p {
+    font-size: 14px;
+    margin: 0;
+    color: #888;
+}
+
+/* New styles for Login button */
+.login-btn {
+    float: right;
+}
+
+.login-btn a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn a:hover {
+    background-color: #0056b3;
+}
+
+/* New styles for navigation items */
+.nav-items {
+    font-size: 20px;
+    /* font-weight: 300; */
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-top: 40px; /* Adjust the margin to move the items down */
+}
+
+.nav-items ul {
+    display: flex;
+    list-style-type: none;
+    margin-right: 100px;
+}
+
+.nav-items ul li {
+    margin-right: 20px;
+}
+
+.nav-items ul li:last-child {
+    margin-right: 0;
+}
+
+/* Adjust background color of services panel */
+#services {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack sections vertically */
+    height: 120vh;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background-color: #1c044600;
+}
+
+#services h3 {
+    font-size: 40px; /* Adjust the font size as needed */
+    margin-top: 30px; /* Add some bottom margin for spacing */
+}
+
+#services h2 {
+    font-size: 28px; /* Adjust the font size as needed */
+    font-weight: 700;
+    margin-bottom: 60px; /* Add some bottom margin for spacing */
+}
+
+/* Adjust service panel styles */
+.top-service-panels,
+.bottom-service-panels {
+    margin-top: 30px; /* Adjust top margin */
+    margin-bottom: 30px; /* Adjust bottom margin */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 150vh; /* Set height to half of the viewport height */
+}
+
+.service-panel {
+    width: calc(33.33% - 40px); /* Adjust width to fit three panels side by side with margin */
+    height: 400px; /* Set height of panels */
+    margin: 20px; /* Add margin to center the panels */
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5); /* Reduced opacity border */
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex; /* Use flexbox to center the panels */
+    flex-direction: column; /* Stack text vertically */
+    justify-content: center; /* Center align vertically */
+    align-items: center; /* Center align horizontally */
+    box-sizing: border-box; /* Include padding and border in the width */
+    color: #000000; /* Set text color to black */
+    transition: background-color 0.3s ease; /* Add transition effect */
+    text-align: center; /* Center align text */
+}
+
+/* Add hover effect for service panels */
+.service-panel:hover {
+    background-color: #7B2CF8; /* Change background color on hover */
+    color: #ffffff; /* Change text color on hover */
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.service-panel:hover li:before {
+    color: #ffffff; /* Change bullet point color to white on hover */
+}
+
+.service-panel h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-panel ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-panel li {
+    margin-bottom: 15px;
+}
+
+.service-panel li:before {
+    content: "\2022"; /* Unicode character for bullet point (•) */
+    color: #000000; /* Color of the bullet point */
+    font-size: 18px; /* Size of the bullet point */
+    margin-right: 5px; /* Spacing between bullet point and text */
+}
+
+
+
+
+/* Featured Cars Section */
+.featured-cars {
+    padding: 100px; /* Increase padding to add space inside the panel */
+    min-height: 120vh; /* Set a minimum height for the panel */
+    background-color: #787fa03c;
+}
+
+.featured-cars h2 {
+    text-align: center;
+    margin-top: 50px; 
+    margin-bottom: 100px; /* Increase bottom margin for spacing */
+    font-size: 36px; /* Increase header size */
+}
+
+.car-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center align the panels */
+}
+
+.car {
+    background-color: #fff;
+    width: 300px;
+    margin: 20px; /* Adjust margin for spacing */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.car img {
+    width: 100%;
+    height: 200px; /* Set a fixed height for the images */
+    object-fit: cover; /* Ensure the images cover the entire space */
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+.car-link {
+    text-decoration: none; /* Remove underline from anchor tags */
+    color: inherit; /* Inherit text color */
+}
+
+.car-link .car-name {
+    /* Remove underline from car name */
+    text-decoration: none;
+}
+
+.car-link:hover {
+    /* Optional: Add hover effect */
+    opacity: 0.8;
+}
+
+
+
+/* Brands Section */
+#brands {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0%;
+    background-color: #800080, 0.3;
+}
+
+
+#brands {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0%;
+    background-color: #800080, 0.3;
+}
+
+
+/* New styles for the contact panel */
+#contact {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 60vh; /* Adjust height as needed */
+    background-color: #12042a; /* Set background color to black */
+    color: #fff; /* Set text color to white */
+    padding: 50px; /* Add padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Style for the headers */
+.contact-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Adjust margins for the headers */
+.vroom-header {
+    margin-right: 20px;
+}
+
+.about-vroom-header {
+    margin-right: 20px;
+}
+
+.top-brands-header {
+    margin-right: 20px;
+}
+
+/* Style for the list items */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.contact-list-item {
+    margin-bottom: 8px;
+}
+
+.contact-list-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Style for socials header */
+.socials-header {
+    margin-bottom: 10px; /* Add margin to create space between the header and icons */
+}
+
+/* Style for social icons */
+.socials {
+    display: flex;
+    flex-direction: column;
+}
+
+.social {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add margin to create space between each social icon and name */
+}
+
+.social a {
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent */
+}
+
+.social a:hover,
+.social a:focus {
+    color: #800080; /* Change color to purple/blue on hover or focus */
+}
+
+.social img {
+    width: 48px; /* Double the width of the image */
+    height: 48px; /* Double the height of the image */
+    margin-right: 10px;
+}
+
+.social span {
+    color: #fff;
+    font-size: 18px; /* Adjust font size for the name */
+    font-weight: bold; /* Make the name bold */
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px; /* Reduce the base font size for smaller screens */
+    }
+
+    header {
+        height: 100px; /* Decrease the header height for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .branding {
+        margin-top: 0; /* Remove top margin for branding on smaller screens */
+    }
+
+    .nav-items {
+        margin-top: 20px; /* Adjust top margin for navigation items */
+    }
+
+    .nav-items ul {
+        margin-right: 20px; /* Reduce right margin for navigation items */
+    }
+
+    .nav-items ul li {
+        margin-right: 10px; /* Reduce right margin for navigation items */
+    }
+
+    .hero-content h1 {
+        font-size: 24px; /* Decrease font size for hero heading */
+    }
+
+    .hero-content p {
+        font-size: 14px; /* Decrease font size for hero paragraph */
+        margin-bottom: 20px; /* Adjust bottom margin for hero paragraph */
+    }
+
+    .featured-cars {
+        padding: 50px; /* Decrease padding for featured cars section */
+    }
+
+    .featured-cars h2 {
+        font-size: 28px; /* Decrease font size for featured cars heading */
+        margin-bottom: 50px; /* Adjust bottom margin for featured cars heading */
+    }
+
+    .car {
+        width: calc(50% - 20px); /* Adjust width for cars in smaller screens */
+    }
+}

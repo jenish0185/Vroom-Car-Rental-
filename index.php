@@ -13,9 +13,9 @@
     }
     
         .search-box {
-            margin-top: 500px;
             bottom: 50px;
-            margin-top: 50px;
+            margin-left: 1800px;
+            margin-top: 650px;
             display: flex;
             justify-content: space-between; /* Space items evenly */
             align-items: top; /* Align items vertically */

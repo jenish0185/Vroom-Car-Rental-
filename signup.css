@@ -1,0 +1,155 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Anek Bangla';
+    height: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #6a0080;
+    padding: 20px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.5rem; /* Use rem units for font size */
+}
+
+main {
+    position: relative; /* Set main container as relative for absolute positioning */
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+.background-image-container {
+    position: relative;
+    width: 70%;
+    background-image: url('Car_INSTA_1080x1080_f44a19ee-849b-460c-8d6e-4aadfeca6b9b.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.logo-container {
+    position: absolute;
+    top: 20px; /* Adjust top position */
+    left: 20px; /* Adjust left position */
+    z-index: 1; /* Ensure the logo appears above the overlay */
+}
+
+.logo-circle {
+    width: 200px; /* Adjust circle size */
+    height: 200px;
+    background-color: #fff; /* White circle background */
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-circle img {
+    max-width: 95%; /* Adjust logo size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+.background-image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(106, 0, 128, 0.2); /* Purple color with 20% opacity */
+}
+
+.signup-container, .login-others {
+    width: calc(25% - 20px); /* Adjust width and add gap between panels */
+    padding: 20px;
+    background-color: #fff; /* White panel background */
+    position: absolute; /* Set panels as absolute */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Add border */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.signup-container {
+    top: 5%; /* Adjust top position and add gap between panels */
+    right: 30px; /* Position signup panel from right with gap */
+    height: 450px; /* Decrease panel height */
+}
+
+.login-others {
+    top: 65%; /* Adjust top position and add gap between panels */
+    right: 30px; /* Position login with others panel from right with gap */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 90%; /* Set input width to 100% */
+    padding: 0.5rem; /* Use rem units for input padding */
+    margin-bottom: 20px; /* Add more space between input fields */
+    border: none; /* Remove default input border */
+    background-color: rgba(106, 0, 128, 0.1); /* Purple input field background with 10% opacity */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Add bottom border */
+    border-radius: 5px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #6a0080;
+}
+
+button[type="submit"] {
+    width: 90%; /* Set button width to 100% */
+    padding: 0.5rem;
+    margin-top: 20px; /* Add more space between input field and button */
+    border: none;
+    background-color: #6a0080;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold; /* Make text bold */
+    font-size: 1.2rem; /* Increase font size */
+}
+
+button[type="submit"]:hover {
+    background-color: #4b005c;
+}
+
+.google-btn,
+.facebook-btn {
+    display: block;
+    width: 90%; /* Set button width to 100% */
+    padding: 15px;
+    margin-top: 20px; /* Add more space between buttons */
+    background-color: #fff;
+    color: #333; /* Adjust text color */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Adjust font size */
+    text-align: center;
+    cursor: pointer;
+}
+
+.google-btn:hover,
+.facebook-btn:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+}
+
+.google-btn img,
+.facebook-btn img {
+    vertical-align: middle; /* Align logo vertically */
+    width: 24px; /* Adjust logo size */
+    height: 24px;
+    margin-right: 10px; /* Add space between logo and text */
+}

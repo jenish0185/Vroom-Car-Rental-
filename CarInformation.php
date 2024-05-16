@@ -234,26 +234,35 @@ if(isset($_GET['car_id'])) {
 </head>
 <body>
  
-  <header>
+<header>
     <!-- For header/logo  -->
+    <div class="branding">
     <a href="index.php" class="vroom-text">
         <h1>Vroom</h1>
     </a>
     <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
-    <nav>
-    <div class="nav-links">
-        <a href="customerdash.php?user_id=<?php echo $_GET['user_id']; ?>" class="underline" >Car rentals</a>
-        <a href="favorites.php?user_id=<?php echo $_GET['user_id']; ?>" onclick="navigateTo('favorites.php', this)">Favorites</a>
-        <a href="book-history.php?user_id=<?php echo $_GET['user_id']; ?>" onclick="navigateTo('book-history.php', this)">Booking History</a>
-        <a href="settings.php?user_id=<?php echo $_GET['user_id']; ?>" onclick="navigateTo('settings.php', this)">Settings</a>
     </div>
-
+    
+      <nav>
+        <div class="nav-links">
+            <a href="<?php echo isset($_GET['user_id']) ? 'customerdash.php?user_id='.$_GET['user_id'] : 'customerdash.php'; ?>" class="underline">Car rentals</a>
+            <a href="<?php echo isset($_GET['user_id']) ? 'favorites.php?user_id='.$_GET['user_id'] : 'favorites.php'; ?>" onclick="navigateTo('favorites.php', this)">Favorites</a>
+            <a href="<?php echo isset($_GET['user_id']) ? 'book-history.php?user_id='.$_GET['user_id'] : 'book-history.php'; ?>" onclick="navigateTo('book-history.php', this)">Booking History</a>
+            <a href="<?php echo isset($_GET['user_id']) ? 'settings.php?user_id='.$_GET['user_id'] : 'settings.php'; ?>" onclick="navigateTo('settings.php', this)">Settings</a>
+        </div>
     </nav>
+
+
+  
+
     <div class="currency-selector">
       <button class="currency-btn">NPR</button>
       <div class="profile-picture"></div>
     </div>
-    <a href="ManageBookedCars.php?user_id=<?php echo htmlspecialchars($_GET['user_id']); ?>" class="manage-btn">Manage Booked Cars</a>
+
+    
+    <a href="<?php echo isset($_GET['user_id']) ? 'ManageBookedCars.php?user_id='.htmlspecialchars($_GET['user_id']) : 'ManageBookedCars.php'; ?>" class="manage-btn">Manage Booked Cars</a>
+
   </header>
 
   <main>

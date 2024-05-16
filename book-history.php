@@ -1,48 +1,199 @@
 <?php
-// Database configuration
-$db_host = 'localhost'; // Change this to your database host
-$db_user = 'root'; // Change this to your database username
-$db_pass = ''; // Change this to your database password
-$db_name = 'car_rental'; // Change this to your database name
+session_start();
 
-// Create connection
-$car_rental_conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-// Check connection
-if ($car_rental_conn->connect_error) {
-    die("Connection failed: " . $car_rental_conn->connect_error);
-}
-
-// Check if user_id is set in the GET parameters
+// Check if user_id parameter exists in the URL
 if(isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
-    echo "<script>console.log('User ID:', $user_id);</script>";
+
+    // Database configurations
+    $car_rental_db_host = 'localhost';
+    $car_rental_db_username = 'root';
+    $car_rental_db_password = '';
+    $car_rental_db_name = 'car_rental'; // Database name for car_rental
+
+    // Create connection to car_rental database
+    $car_rental_conn = mysqli_connect($car_rental_db_host, $car_rental_db_username, $car_rental_db_password, $car_rental_db_name);
+
+    // Check connection
+    if (!$car_rental_conn) {
+        die("Connection to car_rental database failed: " . mysqli_connect_error());
+    }
 } else {
     // Redirect back to the login page if user_id parameter is missing
     header("Location: login.php");
     exit();
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Title -->
-  <title>Vroom - Booking History</title>
-  <!-- External Stylesheets -->
-  <link rel="stylesheet" href="customerdash.css">
+  <title>Car Information</title>
+  <link rel="stylesheet" href="ManageBookedCars.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mate:wght@400&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"/>
-</head>
-<style>
-      /* New styles for the contact panel */
-      #contact {
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Meddon:wght@400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mate:wght@400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap">
+  <style>
+    .car-panel {
+      margin-top: 50px;
+      margin-left: 100px;
+      width: 900px;
+      display: flex;
+      align-items: flex-start;
+      background-color: white;
+      border-radius: 20px;
+      border: 2px solid #000000;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+
+    .car-image {
+      width: 40%;
+    }
+
+    .car-image img {
+      margin-top: -10px;
+      margin-left: -10px;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .car-details {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .car-details h3 {
+      margin-top: 0;
+      color: #000;
+      font-family: "Anek Bangla";
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .car-specs {
+      margin-bottom: 20px;
+    }
+
+    .car-spec {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .car-spec img {
+      width: 20px;
+      margin-right: 5px;
+    }
+
+    .price {
+      width: 30%;
+      text-align: center;
+    }
+
+    .price h4 {
+      margin-top: 0;
+      color: #000000a8;
+    }
+
+    .price p.number {
+      color: #000;
+      font-family: "Anek Bangla";
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .free-cancel {
+      color: #119F1F;
+      font-family: "Anek Bangla";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+    .manage-btn {
+      background-color: #ffffff;
+      color: #7B2CF8;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .finish-btn {
+      width: 150px;
+      height: 50px;
+      background-color: #119F1F;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      margin-left: 50px;
+      text-decoration: none;
+    }
+
+    .finish-btn:hover {
+      background-color: #0a7d15;
+    }
+
+    .finish-btn:active {
+      background-color: #096511;
+    }
+
+    .finish-btn:focus {
+      outline: none;
+    }
+
+    .cancel-btn {
+      width: 150px;
+      height: 50px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
+    .cancel-btn:hover {
+      background-color: #cc0000;
+    }
+
+    .cancel-btn:active {
+      background-color: #aa0000;
+    }
+
+    .cancel-btn:focus {
+      outline: none;
+    }
+
+    .nav-links a.underline {
+      text-decoration: underline;
+    }
+
+    .location {
+      margin-bottom: 10px;
+    }
+
+    /* New styles for the contact panel */
+    #contact {
         margin-top: 250px;
         margin-bottom: 0;
         height: 60vh; /* Adjust height as needed */
@@ -126,37 +277,33 @@ if(isset($_GET['user_id'])) {
         font-size: 18px; /* Adjust font size for the name */
         font-weight: bold; /* Make the name bold */
       }
-</style>
+  </style>
+</head>
 <body>
-
-  <header>
-    <!-- Header Content -->
+ 
+<header>
+    <!-- For header/logo  -->
     <div class="branding">
     <a href="index.php" class="vroom-text">
         <h1>Vroom</h1>
     </a>
     <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
     </div>
-    <!-- Navigation -->
     <nav>
-    <div class="nav-links">
-        <!-- Navigation Links with onclick events -->
-        <a href="customerdash.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('customerdash.php', this)">Car rentals</a>
-        <a href="favorites.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('favorites.php', this)">Favorites</a>
-        <a href="book-history.php?user_id=<?php echo $user_id; ?>" class="underline">Booking History</a>
-        <a href="settings.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('settings.php', this)">Settings</a>
-    </div>
-
-    
+        <div class="nav-links">
+            <a href="customerdash.php?user_id=<?php echo $user_id; ?>">Car rentals</a>
+            <a href="favorites.php?user_id=<?php echo $user_id; ?>">Favorites</a>
+            <a href="book-history.php?user_id=<?php echo $user_id; ?>" class="underline">Booking History</a>
+            <a href="settings.php?user_id=<?php echo $user_id; ?>">Settings</a>
+        </div>
     </nav>
-    <!-- Currency Selector and Profile Picture -->
     <div class="currency-selector">
-      <button class="currency-btn">NPR</button>
-      <div class="profile-picture"></div>
+        <button class="currency-btn">NPR</button>
+        <div class="profile-picture"></div>
     </div>
-    <!-- Manage Bookings Button -->
-    <a href="ManageBookedCars.php?user_id=<?php echo htmlspecialchars($_GET['user_id']); ?>" class="manage-btn">Manage Booked Cars</a>
-  </header>
+    <a href="ManageBookedCars.php?user_id=<?php echo $user_id; ?>" class="manage-btn">Manage Booked Cars</a>
+</header>
+
 
   <main>
   <h2>Booked Cars:</h2>
@@ -285,65 +432,61 @@ if(isset($_GET['user_id'])) {
       }
     </script>
   </main>
-
-  <section id="contact" class="panel">
-    <div class="vroom-info">
-        <h2 class="contact-header vroom-header">Vroom</h2>
-        <p>Email: vroom@gmail.com</p>
-        <p>Phone: +977 1234567890</p>
-    </div>
-    <div class="about-vroom">
-        <h3 class="contact-header about-vroom-header">About Vroom</h3>
-        <ul class="contact-list">
-            <li class="contact-list-item">About Us</li>
-            <li class="contact-list-item">Career</li>
-            <li class="contact-list-item">Terms of Service</li>
-            <li class="contact-list-item">Privacy Policy</li>
-        </ul>
-    </div>
-    <div class="top-affiliated-brands">
-        <h3 class="contact-header top-brands-header">Top Affiliated Brands</h3>
-        <ul class="contact-list">
-            <li class="contact-list-item">BMW</li>
-            <li class="contact-list-item">Lamborghini</li>
-            <li class="contact-list-item">Ferrari</li>
-            <li class="contact-list-item">Audi</li>
-            <li class="contact-list-item">Honda</li>
-            <li class="contact-list-item">Ford</li>
-            <li class="contact-list-item">Mercedes</li>
-            <li class="contact-list-item">Nissan</li>
-            <li class="contact-list-item">Bentley</li>
-            <li class="contact-list-item">Porsche</li>
-            <!-- Add more brands as needed -->
-        </ul>
-    </div>
-    <div class="socials">
-        <h3 class="contact-header socials-header">Socials</h3>
-        <div class="social">
-            <a href="https://www.facebook.com">
-                <img src="facebook.webp" alt="Facebook">
-                <span>Facebook</span>
-            </a>
-        </div>
-        <div class="social">
-            <a href="https://www.instagram.com/">
-                <img src="instagram-logo.png" alt="Instagram">
-                <span>Instagram</span>
-            </a>
-        </div>
-        <div class="social">
-            <a href="https://twitter.com/">
-                <img src="x-logo.png" alt="Twitter">
-                <span>Twitter</span>
-            </a>
-        </div>
-    </div>
-    
-    
-</section>
-
-  <!-- External JavaScript -->
-  <script src="book-history.js"></script>
   
+  <section id="contact" class="panel">
+      <div class="vroom-info">
+          <h2 class="contact-header vroom-header">Vroom</h2>
+          <p>Email: vroom@gmail.com</p>
+          <p>Phone: +977 1234567890</p>
+      </div>
+      <div class="about-vroom">
+          <h3 class="contact-header about-vroom-header">About Vroom</h3>
+          <ul class="contact-list">
+              <li class="contact-list-item">About Us</li>
+              <li class="contact-list-item">Career</li>
+              <li class="contact-list-item">Terms of Service</li>
+              <li class="contact-list-item">Privacy Policy</li>
+          </ul>
+      </div>
+      <div class="top-affiliated-brands">
+          <h3 class="contact-header top-brands-header">Top Affiliated Brands</h3>
+          <ul class="contact-list">
+              <li class="contact-list-item">BMW</li>
+              <li class="contact-list-item">Lamborghini</li>
+              <li class="contact-list-item">Ferrari</li>
+              <li class="contact-list-item">Audi</li>
+              <li class="contact-list-item">Honda</li>
+              <li class="contact-list-item">Ford</li>
+              <li class="contact-list-item">Mercedes</li>
+              <li class="contact-list-item">Nissan</li>
+              <li class="contact-list-item">Bentley</li>
+              <li class="contact-list-item">Porsche</li>
+              <!-- Add more brands as needed -->
+          </ul>
+      </div>
+      <div class="socials">
+          <h3 class="contact-header socials-header">Socials</h3>
+          <div class="social">
+              <a href="https://www.facebook.com">
+                  <img src="facebook.webp" alt="Facebook">
+                  <span>Facebook</span>
+              </a>
+          </div>
+          <div class="social">
+              <a href="https://www.instagram.com/">
+                  <img src="instagram-logo.png" alt="Instagram">
+                  <span>Instagram</span>
+              </a>
+          </div>
+          <div class="social">
+              <a href="https://twitter.com/">
+                  <img src="x-logo.png" alt="Twitter">
+                  <span>Twitter</span>
+              </a>
+          </div>
+      </div>
+  </section>
+
+
 </body>
 </html>
