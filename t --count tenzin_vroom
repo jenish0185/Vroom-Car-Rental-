@@ -1,0 +1,237 @@
+[33mcommit 65fb53c1461abd2d4a91cca346bc2f7f8025db99[m[33m ([m[1;36mHEAD -> [m[1;32mtenzin_vroom[m[33m, [m[1;31morigin/tenzin_vroom[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/jenish-vroom[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Thu May 16 23:07:13 2024 +0545
+
+    80%
+
+[33mcommit e6b708d7522048322f43d82afd5f2cf8e18a89bf[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Wed May 15 23:51:04 2024 +0545
+
+    Admin Wallet, Favorites, Booking History, Payment
+
+[33mcommit 447338ffa8b0d99c50e9d3c0f6c5f7a24088c91a[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun May 12 06:42:52 2024 +0545
+
+    90% completed
+
+[33mcommit 31aaec73d5a90568d8cc39f6cd362ea600c9d841[m
+Merge: ac9e76c 4b3df97
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun May 12 02:36:49 2024 +0545
+
+    Resolved conflicts
+
+[33mcommit ac9e76ca6c2c7dcc4d75f288158097c8011f8e9c[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun May 12 02:33:57 2024 +0545
+
+    account CURD, Reviews, Redirect, links, bookingApproval, managedBookingCars,............
+
+[33mcommit 4b3df973a3ee405d5bf32e3d2f3aa2f10e0fd67d[m
+Author: tenzin2005 <np03cs4s230267@heraldcollege.edu.np>
+Date:   Sun May 5 03:34:24 2024 +0545
+
+    new changes car rental and car information
+
+[33mcommit 49cf7b210e5d8cd89bb49dcab0d3cf26bcc2fc2c[m
+Merge: eb33335 1348c70
+Author: tenzin2005 <np03cs4s230267@heraldcollege.edu.np>
+Date:   Sat May 4 21:20:14 2024 +0545
+
+    Merge remote-tracking branch 'origin/master' into tenzin_vroom
+
+[33mcommit 1348c703acaa5c6ae0ee3c1b2f53b12789afeaec[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sat May 4 17:17:30 2024 +0545
+
+    Filtertion feature + redirect feature + payment gateway
+
+[33mcommit eb3333597e0059fe42a3511db8315107eab247d5[m
+Merge: 21b7e81 8f503eb
+Author: tenzin2005 <np03cs4s230267@heraldcollege.edu.np>
+Date:   Sat May 4 13:15:04 2024 +0545
+
+    Merge remote-tracking branch 'origin/master' into tenzin_vroom
+
+[33mcommit 8f503eb44eb6b2912fc75b9a08fbef5873dba26a[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sat May 4 13:05:24 2024 +0545
+
+    page after renting where it shows details of the car to rent
+
+[33mcommit 21b7e8109e512e075f371d2c8c941905d494d4a9[m
+Merge: e85fbfa f49e9bc
+Author: tenzin2005 <np03cs4s230267@heraldcollege.edu.np>
+Date:   Fri May 3 13:46:47 2024 +0545
+
+    Merge remote-tracking branch 'origin/master' into tenzin_vroom
+
+[33mcommit f49e9bc048d95e048600e71fb5c5ec5aad4563fa[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Fri May 3 13:41:37 2024 +0545
+
+    Delete function for Admin
+
+[33mcommit bb0f78a6717e7afe4c6126a597cbefa7605f1bc3[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Fri May 3 01:55:36 2024 +0545
+
+    Update function for amdin
+
+[33mcommit e85fbfa789f139befaf10e83c7f08aca97a5b783[m
+Author: tenzin2005 <np03cs4s230267@heraldcollege.edu.np>
+Date:   Sun Apr 21 11:13:11 2024 +0545
+
+    new changes'
+
+[33mcommit 9c01ee2ed6c21c6bfb4a5fc3b7672d0910d97d3d[m[33m ([m[1;31morigin/sunil_vroom[m[33m)[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 21 09:49:05 2024 +0545
+
+    logout btn
+
+[33mcommit 29c02e86b17283c06ac7c77c45e6c1093b6784f8[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 21 09:37:34 2024 +0545
+
+    first sprit
+
+[33mcommit 954a2a7e6f1bb315ad14f8f731494bcc5c669a56[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 21 04:01:39 2024 +0545
+
+    front end and hosting
+
+[33mcommit 9279c1630526797248cefcbd6f069755131c1b87[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 21 02:10:42 2024 +0545
+
+    php
+
+[33mcommit 2d54402c60fb7452603676f0647ca1ca29f19aad[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 21 01:12:06 2024 +0545
+
+    hosting
+
+[33mcommit e2bb62f163fd2684cfccab3aa0547db2f71b1ad4[m
+Merge: 3a3a22d 7a0885d
+Author: Jenish  Shrestha <127487076+jenish0185@users.noreply.github.com>
+Date:   Sun Apr 21 00:31:46 2024 +0545
+
+    Merge pull request #3 from jenish0185/master
+    
+    update barnch
+
+[33mcommit 7a0885dc0d162b064503539ae894ea635826f367[m
+Author: Suneelboss <suniladhikari580@gmail.com>
+Date:   Sat Apr 20 23:19:12 2024 +0545
+
+    changes
+
+[33mcommit 7b08634ecf8f1b7cfd8e3671cf74f2ae7fcc8e43[m
+Author: Suneelboss <suniladhikari580@gmail.com>
+Date:   Sat Apr 20 21:17:36 2024 +0545
+
+    admin panel updated
+
+[33mcommit 0d68fecdd849e9e622e1435728aa51a056b37fe3[m
+Merge: c317022 3a3a22d
+Author: Jenish  Shrestha <127487076+jenish0185@users.noreply.github.com>
+Date:   Sat Apr 20 11:00:59 2024 +0545
+
+    Merge pull request #2 from jenish0185/master
+    
+    pull
+
+[33mcommit 3a3a22d8fa3a97565eb3e02ade71b1b497fed5f7[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sat Apr 20 10:52:15 2024 +0545
+
+    admin.html
+
+[33mcommit 6cf61fcddd2bb5ecb95791a8d832f7276120b446[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Thu Apr 18 12:21:23 2024 +0545
+
+    comments
+
+[33mcommit 2a473017976a54e5d17979195a91fd6ab69eb6cb[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Mon Apr 15 11:49:45 2024 +0545
+
+    changes
+
+[33mcommit b7ae1b55e4cfbd7fa42245111d7c8f47e48024b3[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Mon Apr 15 11:47:00 2024 +0545
+
+    jenish
+
+[33mcommit a0322ce055416d37299561b59e7f18f0c9f167e8[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 14 09:48:52 2024 +0545
+
+    message
+
+[33mcommit d6e3af1809b004a43de4a49efb7be7c0fac6f0e6[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 14 09:39:43 2024 +0545
+
+    new
+
+[33mcommit 9140b50b75900e8a0442670c838ab9143764d4d9[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 7 10:27:47 2024 +0545
+
+    new
+
+[33mcommit 5d1ce6afc905a14f33e87553fe1e9e5ab0c4292f[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 7 09:45:55 2024 +0545
+
+    new
+
+[33mcommit 9b922da81e7526ef23f29c60fc80723ac2d739e3[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 7 06:25:34 2024 +0545
+
+    new changes
+
+[33mcommit b5ab429971beae2ad24b7f4adfba4bf66b4639bd[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 7 05:56:27 2024 +0545
+
+    new changes
+
+[33mcommit b6c36aab4263d409ffce7bc6480cb62e2739170a[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 7 05:10:16 2024 +0545
+
+    new changes
+
+[33mcommit 4a2b0f7d7b6b944635f5adf0cb559337fefec65a[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sun Apr 7 01:11:26 2024 +0545
+
+    new
+
+[33mcommit 923fe0a2941b527f6431e183bc618bca8c5ba04f[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sat Apr 6 22:12:35 2024 +0545
+
+    new changes again
+
+[33mcommit f0c2e58ce44b62b9c4dc6533edb7a5527c46db11[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sat Apr 6 21:39:07 2024 +0545
+
+    New changes
+
+[33mcommit c3170229fa7bae9805ef1c6539aa2272a9551819[m
+Author: Jenish  Shrestha <bhagawati.jerry@gmail.com>
+Date:   Sat Apr 6 13:50:05 2024 +0545
+
+    Initial commit

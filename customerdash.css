@@ -1,272 +1,478 @@
-/* Reset CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  /* Reset CSS */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  font-family: Arial, sans-serif;
-}
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  header {
+    height: 200px;
+    background-color: #7B2CF8;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow items to wrap to the next line */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1550px;
+    /* Added max-width */
+    margin: 0 auto;
+    /* Center the header */
+  }
+
+  .branding {
+    display: flex;
+    align-items: center;
+  }
+
+  .branding img {
+    width: 100px;
+    /* Adjusted width of the logo */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-right: 10px;
+    /* Add some spacing between logo and text */
+  }
+
+  .vroom-text {
+    font-family: 'meddon';
+    font-size: 32px;
+    margin-bottom: 5px;
+  }
+
+  .slogan-text {
+    font-family: 'anek bangla';
+    font-size: 15px;
+  }
+
+  .nav-links {
+    flex-basis: 100%;
+    /* Take up full width initially */
+  }
+
+  .nav-links a {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Anek Bangla";
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-right: 50px;
+    /* Add margin between each link */
+  }
+
+  .currency-selector,
+  .manage-btn {
+    margin-top: 20px;
+    /* Add space between currency selector and manage button */
+  }
+
+  .currency-btn {
+    background-color: white;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+
+  .profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-image: url('image.png');
+    /* Replace 'images.png' with your image path */
+    background-size: cover;
+    border: none;
+    /* Remove the border */
+  }
+
+  .manage-btn {
+    background-color: #ffffff;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+
+  .car-image {
+    margin-bottom: 20px;
+  }
+
+  .car-details {
+    font-size: 18px;
+  }
+
+  /* Reset CSS */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  header {
+    height: 200px;
+    background-color: #7B2CF8;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vroom-text {
+    font-family: 'meddon';
+    font-size: 32px;
+    margin-bottom: 5px;
+    margin-top: -70px;
+  }
+
+  .slogan-text {
+    font-family: 'anek bangla';
+    margin-top: -15%;
+    font-size: 15px;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-around;
+    background-color: #7B2CF8;
+  }
+
+  .nav-links a {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Anek Bangla";
+    margin-top: 100px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-right: 50px;
+    /* Add margin between each link */
+  }
+
+  .currency-selector {
+    display: flex;
+    align-items: center;
+  }
+
+  .currency-btn {
+    background-color: white;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: -70px;
+  }
+
+  .profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-right: -100px;
+    background-image: url('image.png');
+    /* Replace 'images.png' with your image path */
+    background-size: cover;
+    border: none;
+    /* Remove the border */
+  }
+
+  .manage-btn {
+    background-color: #ffffff;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .left-panel {
+    border-radius: 10px;
+    margin-left: 20px;
+    width: 40%;
+  }
+
+  #map {
+    width: 400px;
+    height: 200px;
+    /* Adjust height as needed */
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+
+  .filter-panel {
+    width: 400px;
+    height: auto;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+
+  .filter-panel h2 {
+    margin-bottom: 20px;
+  }
 
 
-header {
-  height: 200px;
-  background-color: #7B2CF8;
-  color: white;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.branding {
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .car-panel,
+  .booking-panel {
 
-.vroom-text {
-  font-family: 'meddon';
-  font-size: 32px;
-  margin-bottom: 5px;
-  margin-top: -70px;
-}
+    margin-top: 20px;
+    width: 450px;
+    height: fit-content;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
 
-.slogan-text {
-  font-family: 'anek bangla';
-  margin-top: -15%;
-  font-size: 15px;
-}
+  .carPanel-bookingPanel,
+  .additional-price {
+    display: flex;
+    flex-wrap: wrap;
 
-.nav-links {
-  display: flex;
-  justify-content: space-around;
-  background-color: #7B2CF8;
-}
+    gap: 15%;
+    margin-top: 10px;
+  }
 
-.nav-links a {
-  font-size: 20px;
-  font-weight: 500;
-  font-family: "Anek Bangla";
-  margin-top: 100px;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  margin-right: 50px; /* Add margin between each link */
-}
+  .car-panel {
+    display: flex;
+    left: 23%;
+    width: 700px;
+  }
 
 
-.currency-selector {
-  display: flex;
-  align-items: center;
-}
 
-.currency-btn {
-  background-color: white;
-  color: #7B2CF8;
-  border: none;
-  padding: 15px 25px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 20px;
-  margin-top: -70px;
-}
-
-.profile-picture {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  margin-right: -100px;
-  background-image: url('image.png'); /* Replace 'images.png' with your image path */
-  background-size: cover;
-  border: none; /* Remove the border */
-}
+  .price-panel,
+  .car-details-panel {
 
 
-.manage-btn {
-  background-color: #ffffff;
-  color: #7B2CF8;
-  border: none;
-  padding: 15px 25px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    /* position:fixed; */
 
-main {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  margin-top: 30px; /* Add a gap of 50px */
-}
+    width: 300px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
 
-.left-panel {
-  border-radius: 10px;
-  margin-left: 20px;
-  width: 40%;
-}
+  }
 
-#map {
-  width: 400px;
-  height: 200px; /* Adjust height as needed */
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
+  .carPanel-bookingPanel {
+    position: relative;
+    /* Add position relative to the parent container */
+  }
 
-.filter-panel {
-  width: 400px;
-  height: auto;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
+  .car-image {
+    width: 60%;
+    position: relative;
+    /* Add position relative */
+  }
 
-.filter-panelh2{
-  margin-bottom: 100px;
-}
+  .car-image img {
+    width: 100%;
+    border-radius: 10px;
+  }
 
-.car-panel {
-  margin-top: 50px;
-  margin-right: 200px;
-  width: 900px;
-  display: flex;
-  align-items: flex-start;
-  background-color: white;
-  border-radius: 20px;
-  border: 2px solid #000000;
-  margin-bottom: 20px;
-  padding: 20px;
-}
+  .rating {
+    position: absolute;
+    /* Add position absolute */
+    bottom: 10px;
+    /* Adjust bottom spacing */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Center horizontally */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add background color */
+    color: white;
+    /* Set text color */
+    padding: 5px 10px;
+    /* Add padding */
+    border-radius: 5px;
+    /* Add border radius */
+  }
 
-.car-image {
-  
-  width: 40%;
-}
+  .price-panel {
 
-.car-image img {
-  margin-top: -10px;
-  margin-left: -10px;
-  width: 100%;
-  border-radius: 10px;
-}
+    height: 200px;
+    position: absolute;
+    /* Position the price panel absolutely */
+    left: 62%;
+    /* Align the price panel to the left of its parent container */
 
-.car-details {
-  flex: 1;
-  margin-left: 20px;
-}
+  }
 
-.car-details h3 {
-  margin-top: 0;
-  color: #000;
-  font-family: "Anek Bangla";
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
+  .car-details {
+    flex: 1;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+  }
 
-.car-specs {
-  margin-bottom: 20px;
-}
+  .car-details-panel {
+    position: absolute;
+    left: 20%;
+    /* Adjust the left position */
+    transform: translateX(-50%);
+    width: 500px;
+    /* Adjust the width if needed */
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
 
-.car-spec {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
 
-.car-spec img {
-  width: 20px;
-  margin-right: 5px;
-}
+  .car-specs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
 
-.price {
-  width: 30%;
-  text-align: center;
-}
+  .car-spec-left {
+    display: flex;
+    flex-direction: column;
+  }
 
-.price h4 {
-  margin-top: 0;
-  color: #000000a8;
-}
+  .car-spec-right {
+    display: flex;
+    flex-direction: column;
+  }
 
-.price p.number {
-  color: #000;
-  font-family: "Anek Bangla";
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
+  .car-spec {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
 
-.free-cancel {
-  color: #119F1F;
-  font-family: "Anek Bangla";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
+  .car-spec img {
+    width: 20px;
+    margin-right: 5px;
+  }
 
-.rent-btn {
-  width: 150px;
-  height: 50px;
-  background-color: #119F1F;
-  color: white; /* Set text color to white */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 50px; /* Add margin to the left */
-}
+  .price {
+    width: 30%;
+    text-align: center;
+  }
 
-.rent-btn a {
-  text-decoration: none; /* Remove underline */
-  color: white; /* Set text color to white */
-}
-.nav-links a.underline {
-  text-decoration: underline;
-}
-.location {
-  margin-bottom: 10px;
-}
+  .price h4 {
+    margin-top: 0;
+    color: #000000a8;
+  }
 
-/* .review {
-  margin-top: 20px;
-  border-top: 2px solid #000000;
-  padding-top: 20px;
-  display: flex;
-  align-items: center;
-}
+  .price p.number {
+    color: #000;
+    font-family: "Anek Bangla";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 
-.review .icon-star {
-  width: 20px;
-  height: 20px;
-  background-image: url('star-icon.png');
-  background-size: cover;
-}
+  .free-cancel {
+    color: #119F1F;
+    font-family: "Anek Bangla";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
 
-.review .rating {
-  margin: 0 5px;
-}
+  .rent-btn {
+    width: 150px;
+    height: 50px;
+    background-color: #119F1F;
+    color: white;
+    /* Set text color to white */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    /* Add margin to the left */
+  }
 
-.review-count {
-  margin-left: auto;
-}
+  /* Apply styles to anchor tag within .update-btn */
+  .rent-btn a {
+    text-decoration: none;
+    /* Remove underline */
+    color: white;
+    /* Set text color to white */
+  }
 
-.review-box {
-  background-color: #7B2CF8;
-  border-radius: 20px;
-  padding: 5px 10px;
-}
+  .nav-links a.underline {
+    text-decoration: underline;
+  }
 
-.review-count {
-  margin-left: auto;
-  color: #7B2CF8;
-  font-family: "Anek Bangla";
-  font-size: 14px;
-  font-weight: 600;
-} */
+  .location {
+    margin-bottom: 10px;
+  }
+
+
+
+
+  .continue-booking {
+    position: absolute;
+    /* Change position to absolute */
+    top: 110%;
+    /* Adjust the distance from the bottom */
+    left: 40%;
+    /* Adjust the left position to center horizontally */
+    z-index: 1000;
+    /* Ensure it's on top of other content */
+  }
+  .carBrand-carType, .carSeat-carAuto{
+    display: flex;
+    gap: 10px;
+    padding: 4px;
+  }
+
+  .continue-booking button {
+    background-color: #119f1f;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .car-panel,
+    .booking-panel,
+    .price-panel {
+      width: 100%;
+      /* Full width on smaller screens */
+    }
+  }
+
+  hr {
+    height: 80px;
+    width: 3px;
+    border: none;
+    /* Remove the default border */
+    background-color: black;
+    /* Set the color of the line */
+    transform: rotate(180deg);
+    /* Rotate the line 90 degrees clockwise */
+  }

@@ -3,14 +3,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: Arial, sans-serif;
-  }
-  
-  
-  header {
+}
+
+header {
     height: 200px;
     background-color: #7B2CF8;
     color: white;
@@ -18,34 +17,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .branding {
+}
+
+.branding {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .vroom-text {
+}
+
+.vroom-text {
     font-family: 'meddon';
     font-size: 32px;
     margin-bottom: 5px;
     margin-top: -70px;
-  }
-  
-  .slogan-text {
+}
+
+.slogan-text {
     font-family: 'anek bangla';
     margin-top: -15%;
     font-size: 15px;
-  }
-  
-  .nav-links {
+}
+
+.nav-links {
     display: flex;
     justify-content: space-around;
     background-color: #7B2CF8;
-  }
-  
-  .nav-links a {
+}
+
+.nav-links a {
     font-size: 20px;
     font-weight: 500;
     font-family: "Anek Bangla";
@@ -54,15 +53,14 @@
     text-decoration: none;
     padding: 10px 20px;
     margin-right: 50px; /* Add margin between each link */
-  }
-  
-  
-  .currency-selector {
+}
+
+.currency-selector {
     display: flex;
     align-items: center;
-  }
-  
-  .currency-btn {
+}
+
+.currency-btn {
     background-color: white;
     color: #7B2CF8;
     border: none;
@@ -71,9 +69,9 @@
     cursor: pointer;
     margin-right: 20px;
     margin-top: -70px;
-  }
-  
-  .profile-picture {
+}
+
+.profile-picture {
     width: 140px;
     height: 140px;
     border-radius: 50%;
@@ -81,48 +79,32 @@
     background-image: url('image.png'); /* Replace 'images.png' with your image path */
     background-size: cover;
     border: none; /* Remove the border */
-  }
-  
-  
-  .manage-btn {
+}
+
+.manage-btn {
     background-color: #ffffff;
     color: #7B2CF8;
     border: none;
     padding: 15px 25px;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  
-  
-  main {
-    display: flex;
-    justify-content: space-between;
+}
+
+.image-panel {
+    width: 500px; /* You can change this width */
+    height: auto; /* Automatically adjust height based on image */
+    margin: auto; /* Center the panel horizontally */
     padding: 20px;
-    margin-top: 50px; /* Add a gap between header and main content */
-  }
-  
-  
-/* New CSS for centering the form */
-.form-container {
-    margin-right: 800px;
-    display: center;
-    justify-content: center;
-    align-items: center;
-    margin-top: 80px;
-    width: 1000px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Change position to absolute */
+    top: 50%; /* Move the panel down by 50% of its own height */
+    left: 50%; /* Move the panel right by 50% of its own width */
+    transform: translate(-50%, -50%); /* Center the panel both horizontally and vertically */
 }
 
-#carForm {
-    width: 70%; /* Adjust width as needed */
-    max-width: 600px; /* Set a max-width for better responsiveness */
-    padding: 20px; /* Add some padding for better spacing */
-    background-color: rgb(193, 180, 251); /* Set a background color */
-    border-radius: 8px; /* Add border radius for rounded corners */
-    margin-top: 50px; /* Adjust margin top as needed */
+.image-panel img {
+    display: block;
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
 }
-
-  
-  
-  
-  

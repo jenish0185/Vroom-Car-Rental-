@@ -302,12 +302,9 @@ if ($result->num_rows > 0) {
       <div class="settings-links">
       <a href="admin_account.php"><i class="fas fa-user"></i> Account</a>
 
-        <a href="#"><i class="fas fa-question-circle"></i> How to use vroom</a>
-        <a href="#"><i class="fas fa-shield-alt"></i> contact support</a>
-        <a href="#"><i class="fas fa-lock"></i> terms and condition</a>
-        <a href="#"><i class="fas fa-file-alt"></i> privacy policy</a> <!-- Changed icon -->
-        <a href="#"><i class="fas fa-gem"></i> premium subscription</a> <!-- Changed icon -->
-        <a href="#"><i class="fas fa-exclamation-triangle"></i> emergency roadside</a>
+        <a href="howToUseVroom.html"><i class="fas fa-user"></i> How to use vroom</a> <!-- Added href attribute -->
+        <a href="contactsuppot.html"><i class="fas fa-shield-alt"></i> contact support</a>
+        <a href="legal.html"><i class="fas fa-exclamation-triangle"></i> Legal</a>
       </div>
       <div class="car-panel-wrapper">
         <!-- Your settings content goes here -->

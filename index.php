@@ -14,8 +14,8 @@
     
         .search-box {
             bottom: 50px;
-            margin-left: 1800px;
-            margin-top: 650px;
+            margin-left: 45%;
+            margin-top: 300px;
             display: flex;
             justify-content: space-between; /* Space items evenly */
             align-items: top; /* Align items vertically */
