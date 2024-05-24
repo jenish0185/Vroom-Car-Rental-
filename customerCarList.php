@@ -46,16 +46,7 @@
         
         <!-- Rent Button -->
         <div class="rent-btn">
-            <?php
-            // Check if user_id is set
-            if(isset($user_id)) {
-                // If user_id is set, redirect to CarInformation.php with both car_id and user_id
-                echo '<a href="CarInformation.php?car_id='.$row['id'].'&user_id='.$user_id.'">Rent</a>';
-            } else {
-                // If user_id is not set, redirect to login.php
-                echo '<a href="login.php">Rent</a>';
-            }
-            ?>
+            <a href="CarInformation.php?car_id=<?php echo $row['id']; ?>&user_id=<?php echo isset($user_id) ? $user_id : ''; ?>&token=<?php echo isset($token) ? $token : ''; ?>">Rent</a>
         </div>
 
 

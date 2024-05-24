@@ -1,3 +1,48 @@
+<?php
+ob_start(); // Start output buffering
+
+// Establish database connection
+$servername = "localhost";
+$username = "root"; // Replace with your actual database username
+$password = ""; // Replace with your actual database password
+$dbname = "user_login"; // Replace with your actual database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Set user ID to 1 by default
+$user_id = 1;
+
+// Retrieve user information from the database
+$query = "SELECT * FROM users WHERE id = $user_id";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+
+// Handle form submission to update user information
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_changes'])) {
+    // Process form data and update the database
+    $new_username = $_POST['new_username'];
+    $new_email = $_POST['new_email'];
+    $new_password = ($_POST['new_password'] != '') ? $_POST['new_password'] : $user['password'];
+    $new_phone = $_POST['new_phone'];
+
+    // Update user information in the database
+    $update_query = "UPDATE users SET username='$new_username', email='$new_email', password='$new_password', phone='$new_phone' WHERE id=$user_id";
+    if (mysqli_query($conn, $update_query)) {
+        // Redirect to the same page to refresh user data
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        echo "<div class='error-message'>Error updating record: " . mysqli_error($conn) . "</div>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +206,7 @@
 
 
   <main>
-    <div class="settings-container">
+  <div class="settings-container">
         <!-- Display user information and form to update -->
         <h2>User Account Settings</h2>
         <?php
@@ -188,7 +233,7 @@
         $user = mysqli_fetch_assoc($result);
 
         // Handle form submission to update user information
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_changes'])) {
             // Process form data and update the database
             $new_username = $_POST['new_username'];
             $new_email = $_POST['new_email'];
@@ -197,27 +242,29 @@
 
             // Update user information in the database
             $update_query = "UPDATE users SET username='$new_username', email='$new_email', password='$new_password', phone='$new_phone' WHERE id=$user_id";
-            mysqli_query($conn, $update_query);
-
-            // Redirect to the same page to refresh user data
-            header("Location: ".$_SERVER['PHP_SELF']);
-            exit();
+            if (mysqli_query($conn, $update_query)) {
+                // Redirect to the same page to refresh user data
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
+            } else {
+                echo "<div class='error-message'>Error updating record: " . mysqli_error($conn) . "</div>";
+            }
         }
         ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <label for="new_username">Username:</label>
-            <input type="text" id="new_username" name="new_username" value="<?php echo $user['username']; ?>">
+            <input type="text" id="new_username" name="new_username" value="<?php echo htmlspecialchars($user['username']); ?>">
             
             <label for="new_email">Email:</label>
-            <input type="email" id="new_email" name="new_email" value="<?php echo $user['email']; ?>">
+            <input type="email" id="new_email" name="new_email" value="<?php echo htmlspecialchars($user['email']); ?>">
             
             <label for="new_password">Password:</label>
             <input type="password" id="new_password" name="new_password" value="">
             
             <label for="new_phone">Phone:</label>
-            <input type="text" id="new_phone" name="new_phone" value="<?php echo $user['phone']; ?>">
+            <input type="text" id="new_phone" name="new_phone" value="<?php echo htmlspecialchars($user['phone']); ?>">
             
-            <button type="submit">Save Changes</button>
+            <button type="submit" name="save_changes">Save Changes</button>
         </form>
         <form id="uploadForm" enctype="multipart/form-data">
             <input type="file" name="profile_picture" id="profile_picture">

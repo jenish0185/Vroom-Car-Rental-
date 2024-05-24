@@ -290,7 +290,7 @@ if(isset($_GET['user_id'])) {
         ?>
         <div class="user-info">
             <p class="username"><?php echo $user_details['username']; ?></p>
-            <a href="account.php" class="edit-profile">Edit Profile</a>
+            <a href="account.php?user_id=<?php echo $_GET['user_id']; ?>" class="edit-profile">Edit Profile</a>
         </div>
     </div>
 
@@ -298,14 +298,11 @@ if(isset($_GET['user_id'])) {
 
       </div>
       <div class="settings-links">
-      <a href="account.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="fas fa-user"></i> Account</a>
+        <a href="account.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="fas fa-user"></i> Account</a>
 
-        <a href="#"><i class="fas fa-question-circle"></i> How to use vroom</a>
-        <a href="#"><i class="fas fa-shield-alt"></i> contact support</a>
-        <a href="#"><i class="fas fa-lock"></i> terms and condition</a>
-        <a href="#"><i class="fas fa-file-alt"></i> privacy policy</a> <!-- Changed icon -->
-        <a href="#"><i class="fas fa-gem"></i> premium subscription</a> <!-- Changed icon -->
-        <a href="#"><i class="fas fa-exclamation-triangle"></i> emergency roadside</a>
+        <a href="howToUseVroom.php?user_id=<?php echo $user_id; ?>"><i class="fas fa-question-circle"></i> How to use vroom</a>
+        <a href="contactsupport.php?user_id=<?php echo $user_id; ?>"><i class="fas fa-shield-alt"></i> contact support</a>
+        <a href="legal.php?user_id=<?php echo $user_id; ?>"><i class="fas fa-lock"></i> terms and condition</a>
       </div>
       <div class="car-panel-wrapper">
         <!-- Your settings content goes here -->

@@ -1,13 +1,67 @@
 <?php
-if(isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
-    echo "<script>console.log('User ID:', $user_id);</script>";
-} else {
-    // Handle the case where user ID is not provided
-    // For example, redirect the user to an error page or ask them to log in again
-    // This depends on your application's logic
+// Establish database connection
+$servername = "localhost";
+$username = "root"; // Replace with your actual database username
+$password = ""; // Replace with your actual database password
+$dbname = "user_login"; // Replace with your actual database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Retrieve user ID from URL parameter
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+if (!$user_id) {
     header("Location: error.php");
     exit();
+}
+
+// Retrieve user information from the database
+$query = "SELECT * FROM users WHERE id = $user_id";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+
+// Handle form submission to update user information
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_info'])) {
+    // Process form data and update the database
+    $new_username = $_POST['new_username'];
+    $new_email = $_POST['new_email'];
+    $new_password = ($_POST['new_password'] != '') ? $_POST['new_password'] : $user['password'];
+    $new_phone = $_POST['new_phone'];
+
+    // Update user information in the database
+    $update_query = "UPDATE users SET username='$new_username', email='$new_email', password='$new_password', phone='$new_phone' WHERE id=$user_id";
+    mysqli_query($conn, $update_query);
+
+    // Redirect to the same page to refresh user data
+    header("Location: account.php?user_id=$user_id");
+    exit();
+}
+
+// Handle file upload
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['upload'])) {
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == UPLOAD_ERR_OK) {
+        // Process the uploaded file here
+        $file_name = $_FILES['profile_picture']['name'];
+        $file_tmp = $_FILES['profile_picture']['tmp_name'];
+        $upload_dir = 'uploads/';
+        $target_file = $upload_dir . basename($file_name);
+
+        if (move_uploaded_file($file_tmp, $target_file)) {
+            // Update the database with the new profile picture path if needed
+            $update_query = "UPDATE users SET profile_picture='$target_file' WHERE id=$user_id";
+            mysqli_query($conn, $update_query);
+            $upload_message = "Profile picture uploaded successfully.";
+        } else {
+            $upload_message = "Error uploading the profile picture.";
+        }
+    } else {
+        $upload_message = "Please choose a file to upload.";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -214,28 +268,31 @@ if(isset($_GET['user_id'])) {
             exit();
         }
         ?>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?user_id=$user_id"; ?>">
+       <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?user_id=$user_id"; ?>">
             <label for="new_username">Username:</label>
-            <input type="text" id="new_username" name="new_username" value="<?php echo $user['username']; ?>">
+            <input type="text" id="new_username" name="new_username" value="<?php echo htmlspecialchars($user['username']); ?>">
             
             <label for="new_email">Email:</label>
-            <input type="email" id="new_email" name="new_email" value="<?php echo $user['email']; ?>">
+            <input type="email" id="new_email" name="new_email" value="<?php echo htmlspecialchars($user['email']); ?>">
             
             <label for="new_password">Password:</label>
             <input type="password" id="new_password" name="new_password" value="">
             
             <label for="new_phone">Phone:</label>
-            <input type="text" id="new_phone" name="new_phone" value="<?php echo $user['phone']; ?>">
+            <input type="text" id="new_phone" name="new_phone" value="<?php echo htmlspecialchars($user['phone']); ?>">
             
-            <button type="submit">Save Changes</button>
-        </form>
-        <form id="uploadForm" enctype="multipart/form-data">
-            <input type="file" name="profile_picture" id="profile_picture">
-            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_GET['user_id']); ?>">
-            <button type="submit">Upload</button>
+            <button type="submit" name="update_info">Save Changes</button>
         </form>
 
-        <div id="message"></div>
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
+            <input type="file" name="profile_picture" id="profile_picture">
+            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+            <button type="submit" name="upload">Upload</button>
+        </form>
+        <?php if (isset($upload_message)): ?>
+            <div id="message"><?php echo $upload_message; ?></div>
+        <?php endif; ?>
+
         <button id="viewImageButton" style="display: none;">View Image</button>
     </div>
 </main>
@@ -331,6 +388,14 @@ if(isset($_GET['user_id'])) {
             console.error('Error uploading image:', error);
             alert('Error uploading image. Please try again.');
         });
+    });
+
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        var fileInput = document.querySelector('input[type="file"]');
+        if (fileInput.files.length === 0) {
+            event.preventDefault();
+            alert('Please choose a file to upload.');
+        }
     });
 </script>
 

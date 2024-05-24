@@ -38,11 +38,6 @@
         </form>
         <p>Don't have an account already? <a href="signup.html">Sign Up</a></p>
     </div>
-    <div class="login-others">
-        <h2>Login with others</h2>
-        <button class="google-btn"><img src="google.webp"> Login with Google</button>
-        <button class="facebook-btn"><img src="facebook.webp"> Login with Facebook</button>
-    </div>
 </main>
 
 <?php
@@ -82,12 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         if ($user['is_admin'] == 1) {
             // If user is admin, redirect to admin dashboard
-            header("Location: admindash.php");
+            header("Location: admindash.php?user_id=" . $user['id']);
             exit();
         } else {
             // If user is regular user, redirect to customer dashboard
             $_SESSION['user_id'] = $user['user_id']; // Store user ID in session variable
-            header("Location: customerdash.php?user_id=" . $user['id']);
+            header("Location: index.php?user_id=" . $user['id']);
             exit();
         }
     } else {

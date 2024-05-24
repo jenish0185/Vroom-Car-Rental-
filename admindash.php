@@ -1,10 +1,14 @@
 <?php
-// Set the user ID to 1 by default
-$user_id = 1;
-
-// Output the user ID to the browser console
-echo "<script>console.log('User ID:', $user_id);</script>";
+if(isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+    echo "<script>console.log('User ID:', $user_id);</script>";
+} else {
+    // Redirect back to the login page if user_id parameter is missing
+    header("Location: error.php");
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -316,21 +320,7 @@ echo "<script>console.log('User ID:', $user_id);</script>";
 
 
 
-      
-
-      <div class="right-panel">
-        <!-- Wallet panel content -->
-        <h2>Wallet</h2>
-        <div class="wallet-content">
-          <h3>Today's Earnings:</h3>
-          <p>Rs. 0</p>
-          <h3>This Week's Earnings:</h3>
-          <p>Rs. 999</p>
-          <h3>This Month's Earnings:</h3>
-          <p>Rs. 994,923</p>
-        </div>
-      </div>
-
+   
       
 
         <!-- Overlay -->
@@ -554,7 +544,7 @@ echo "<script>console.log('User ID:', $user_id);</script>";
             
             // Redirect to the default page
             window.location.href = "admindash.php";
-}
+        }
 
 
 

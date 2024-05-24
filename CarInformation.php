@@ -64,6 +64,12 @@ if(isset($_GET['car_id'])) {
       href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
     />
     <style>
+        .car-image{
+            width: 600px;
+            height: 400px;
+
+        }
+       
       /* Styles for user profile picture */
       .user-profile-picture {
           width: 50px; /* Adjust as needed */
@@ -300,11 +306,24 @@ if(isset($_GET['car_id'])) {
     <p><strong>Heating:</strong> <?php echo ($row['heating'] == 1) ? 'Yes' : 'No'; ?></p><br>
     <!-- Add more car details as needed -->
 
+    <!-- Price Panel -->
+    <div class="price-panel">
+      <h3>Car Price and Booking Duration</h3>
+      <p>Price: $<?php echo $row['carPrice']; ?></p>
+      <?php
+      // Calculate the number of days between pickup and drop dates
+      $pickup_date = strtotime('2024-05-13');
+      $drop_date = strtotime('2024-05-14');
+      $days_diff = ceil(abs($drop_date - $pickup_date) / (60 * 60 * 24));
+      ?>
+      <p>Booking Duration: <?php echo $days_diff; ?> days</p>
+    </div><br>
+
 
 
     <!-- Reviews Panel -->
     <section id="reviews" class="panel">
-        <h2>Reviews</h2>
+        <h2>Reviews</h2><br>
 
         <!-- Add Review Button -->
         <button id="add-review-btn">Add Review</button><br>
@@ -316,7 +335,7 @@ if(isset($_GET['car_id'])) {
             <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" required>
             <textarea name="review" placeholder="Your Review" rows="5" required></textarea>
             <button type="submit" name="add_review">Add Review</button>
-        </form>
+        </form><br>
 
 
 

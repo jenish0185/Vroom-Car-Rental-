@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 200px;
+    background-color: #7B2CF8;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vroom-text {
+    font-family: 'meddon';
+    font-size: 32px;
+    margin-bottom: 5px;
+    margin-top: -70px;
+}
+
+.slogan-text {
+    font-family: 'anek bangla';
+    margin-top: -15%;
+    font-size: 15px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    background-color: #7B2CF8;
+}
+
+.nav-links a {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Anek Bangla";
+    margin-top: 100px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-right: 50px;
+    /* Add margin between each link */
+}
+
+.currency-selector {
+    display: flex;
+    align-items: center;
+}
+
+.currency-btn {
+    background-color: white;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-top: -70px;
+}
+
+.profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-right: -100px;
+    background-image: url('image.png');
+    /* Replace 'images.png' with your image path */
+    background-size: cover;
+    border: none;
+    /* Remove the border */
+}
+
+.manage-btn {
+    background-color: #ffffff;
+    color: #7B2CF8;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.content p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.contact-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+.contact-item h3 {
+    color: #7B2CF8;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-item p i {
+    margin-right: 10px;
+    color: #7B2CF8;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+    }
+
+    .contact-item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+

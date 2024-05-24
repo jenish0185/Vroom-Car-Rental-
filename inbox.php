@@ -118,6 +118,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['notification_id'])) {
       href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
     />
     <style>
+
+    .center-buttons {
+            text-align: center;
+            display: flex;
+            gap: 10px;
+          }
+          .approve{
+            background-color: #4CAF50; /* Green */
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+                margin-right: 5px;
+                border-radius: 5px;
+                
+          }
+          .approve:hover {
+                background-color: #45a049;
+            }
+          .disapprove{
+            background-color: #f44336; /* Red */
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+                border:black;
+                border-radius: 5px;
+          }
+          .disapprove:hover {
+                background-color: #45a049;
+            }
+          li {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
           /* New styles for the contact panel */
           #contact {
         margin-top: 250px;
@@ -276,15 +312,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['notification_id'])) {
                             <form action="inbox.php" method="post">
                                 <input type="hidden" name="notification_id" value="<?php echo htmlspecialchars($notification['notification_id']); ?>">
                                 <input type="hidden" name="status" value="approved">
-                                <button type="submit">Approve</button>
+                                <button type="submit" class="approve">Approve</button>
                             </form>
                             <form action="inbox.php" method="post">
                                 <input type="hidden" name="notification_id" value="<?php echo htmlspecialchars($notification['notification_id']); ?>">
                                 <input type="hidden" name="status" value="disapproved">
-                                <button type="submit">Disapprove</button>
-                            </form>
+                                <button type="submit" class="disapprove">Disapprove</button>
                         </div>
-                    </li>
+                    </li><br>
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>

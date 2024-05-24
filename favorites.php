@@ -249,9 +249,10 @@ if(isset($_GET['user_id'])) {
                       <div class="remove-btn">
                           <?php
                           // Display remove button
-                          echo '<a href="favorites.php?user_id='.$user_id.'&car_id='.$row['id'].'">Remove from Favorites</a>';
+                          echo '<a href="remove_favorite.php?user_id='.$user_id.'&car_id='.$row['id'].'">Remove from Favorites</a>';
                           ?>
                       </div>
+
                   </div>
               </div>
               <?php

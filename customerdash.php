@@ -3,6 +3,14 @@ if(isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     echo "<script>console.log('User ID:', $user_id);</script>";
 }
+$pickUpLocation = isset($_GET['pickUpLocation']) ? $_GET['pickUpLocation'] : '';
+$pickUpDate = isset($_GET['pickUpDate']) ? $_GET['pickUpDate'] : '';
+$pickUpTime = isset($_GET['pickUpTime']) ? $_GET['pickUpTime'] : '';
+$dropOffLocation = isset($_GET['dropOffLocation']) ? $_GET['dropOffLocation'] : '';
+$dropOffDate = isset($_GET['dropOffDate']) ? $_GET['dropOffDate'] : '';
+$dropOffTime = isset($_GET['dropOffTime']) ? $_GET['dropOffTime'] : '';
+// Concatenate location, pickup date, pickup time, drop-off date, and drop-off time into a token
+$token = urlencode("$pickUpLocation,$pickUpDate,$pickUpTime,$dropOffLocation,$dropOffDate,$dropOffTime");
 ?>
 
 <!DOCTYPE html>
@@ -154,16 +162,6 @@ if(isset($_GET['user_id'])) {
         <h2>Filter</h2><br>
         <!-- Filtering options -->
         <form action="" method="post">
-          <label for="price">Price Per Day:</label><br>
-          <input type="radio" id="price-0-5000" name="price" value="0-5000">
-          <label for="price-0-5000">0-5000</label><br>
-          <input type="radio" id="price-5000-10000" name="price" value="5000-10000">
-          <label for="price-5000-10000">5000-10000</label><br>
-          <input type="radio" id="price-10000-15000" name="price" value="10000-15000">
-          <label for="price-10000-15000">10000-15000</label><br>
-          <input type="radio" id="price-15000-20000" name="price" value="15000-20000">
-          <label for="price-15000-20000">15000-20000</label><br>
-          <br>
           <input type="checkbox" id="airbags" name="specs[]" value="airbags" <?php if(isset($_POST['specs']) && in_array('airbags', $_POST['specs'])) echo 'checked'; ?>>
           <label for="airbags">Airbags</label><br>
           <input type="checkbox" id="absBrakes" name="specs[]" value="absBrakes" <?php if(isset($_POST['specs']) && in_array('absBrakes', $_POST['specs'])) echo 'checked'; ?>>
@@ -190,6 +188,19 @@ if(isset($_GET['user_id'])) {
     </div>
     
     <div class="car-info-panel">
+      <div class="search-results">
+          <div style="display: flex; align-items: center;">
+              <div>
+                  <h2><span id="pickUpLocation"></span></h2>
+                  <p id="pickUpDateTime"></p>
+              </div>
+              <div style="padding: 0 20px;">&gt;</div>
+              <div>
+                  <h2><span id="dropOffLocation"></span></h2>
+                  <p id="dropOffDateTime"></p>
+              </div>
+          </div>
+      </div><br>
       <h1>Available Cars:</h1>
       <?php
      
@@ -353,6 +364,35 @@ if(isset($_GET['user_id'])) {
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <script src="customerdash.js"></script>
+
+  <script>
+    // Function to format date and time
+    function formatDateTime(date, time) {
+        const d = new Date(date + " " + time);
+        const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        return d.toLocaleDateString('en-US', options);
+    }
+
+    // Retrieving data from sessionStorage
+    var pickUpLocation = sessionStorage.getItem('location');
+    var pickUpDate = sessionStorage.getItem('pickUpDate');
+    var pickUpTime = sessionStorage.getItem('pickUpTime');
+    var dropOffLocation = sessionStorage.getItem('location'); // Adjust if drop-off location is different
+    var dropOffDate = sessionStorage.getItem('dropOffDate');
+    var dropOffTime = sessionStorage.getItem('dropOffTime');
+
+    // Update HTML content with search parameters
+    document.getElementById('pickUpLocation').textContent = pickUpLocation;
+    document.getElementById('dropOffLocation').textContent = dropOffLocation;
+
+    // Format and display pick-up date
+    const pickUpDateTime = formatDateTime(pickUpDate, pickUpTime);
+    document.getElementById('pickUpDateTime').textContent = pickUpDateTime;
+
+    // Format and display drop-off date
+    const dropOffDateTime = formatDateTime(dropOffDate, dropOffTime);
+    document.getElementById('dropOffDateTime').textContent = dropOffDateTime;
+  </script>
   
 </body>
 </html>

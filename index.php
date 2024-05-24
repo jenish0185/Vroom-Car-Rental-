@@ -1,3 +1,10 @@
+<?php
+if(isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+    echo "<script>console.log('User ID:', $user_id);</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +13,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vroom</title>
     <style>
+        .login-btn {
+            float: right;
+        }
+
+        .login-btn a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn a:hover {
+            background-color: #0056b3;
+        }
         .alert {
         color: rgb(255, 0, 0);
         font-size: 12px;
@@ -14,8 +38,8 @@
     
         .search-box {
             bottom: 50px;
-            margin-left: 1800px;
-            margin-top: 650px;
+            margin-left: -300px;
+            margin-top: 200px;
             display: flex;
             justify-content: space-between; /* Space items evenly */
             align-items: top; /* Align items vertically */
@@ -114,6 +138,17 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Anek Bangla:wght@300;400;500;600;700;800&display=swap"
     />
+
+    <script>
+        function confirmLogout() {
+            var confirmation = confirm("Are you sure you want to logout?");
+            if (confirmation) {
+                window.location.href = 'index.php';
+            }
+        }
+    </script>
+
+
 </head>
 
 <body>
@@ -134,10 +169,14 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <!-- login button -->
-            <div class="login-btn">
-                <a href="login.php">Login</a>
-            </div>
+            <!-- Change button text and link based on whether user is logged in -->
+            <?php if (isset($user_id)): ?>
+                <a href="javascript:void(0);" class="login-btn" onclick="confirmLogout()">Logout</a>
+            <?php else: ?>
+                <a href="login.php" class="login-btn">Login</a>
+            <?php endif; ?>
+
+
         </div>
     </header>
 
@@ -266,35 +305,38 @@
     }
 
     // SQL query to fetch car details
-    $sql = "SELECT carName, carSeats, carPrice, carTransmission, carImage FROM car_details LIMIT 10";
+    $sql = "SELECT id, carName, carSeats, carPrice, carTransmission, carImage FROM car_details LIMIT 10";
+
     $result = $conn->query($sql);
     ?>
 
     <div class="featured-cars">
         <h2>Checkout the Featured Cars</h2>
         <div class="car-list">
-            <?php
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo '<a href="customerdash.php" class="car-link">';
-                    echo '<div class="car">';
-                    // Decode the base64 encoded image retrieved from the database
-                    $imageData = base64_decode($row['carImage']);
-                    // Output the image data
-                    echo '<img src="data:image/jpeg;base64,'.base64_encode($imageData).'" alt="'.$row['carName'].'">';
-                    echo '<h3 class="car-name">' . $row["carName"] . '</h3>';
-                    echo '<p>Seats: ' . $row["carSeats"] . '</p>';
-                    echo '<p>Price: ' . $row["carPrice"] . '</p>';
-                    echo '<p>' . $row["carTransmission"] . '</p>';
-                    echo '</div>';
-                    echo '</a>';
-                }
-            } else {
-                echo "0 results";
+        <?php
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while ($row = $result->fetch_assoc()) {
+                // Echo the link with the user ID and car ID as query parameters
+                echo '<a href="CarInformation.php?car_id=' . $row['id'] . '&user_id=' . (isset($user_id) ? $user_id : '') . '" class="car-link">';
+                echo '<div class="car">';
+                // Decode the base64 encoded image retrieved from the database
+                $imageData = base64_decode($row['carImage']);
+                // Output the image data
+                echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" alt="' . $row['carName'] . '">';
+                echo '<h3 class="car-name">' . $row["carName"] . '</h3>';
+                echo '<p>Seats: ' . $row["carSeats"] . '</p>';
+                echo '<p>Price: ' . $row["carPrice"] . '</p>';
+                echo '<p>' . $row["carTransmission"] . '</p>';
+                echo '</div>';
+                echo '</a>';
             }
-            $conn->close();
-            ?>
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+        ?>
+
         </div>
     </div>
 
@@ -433,7 +475,7 @@
         sessionStorage.setItem('dropOffTime', dropOffTime);
 
         // Redirect to search results page
-        window.location.href = 'customerdash.php';
+        window.location.href = '<?php echo isset($_GET['user_id']) ? 'customerdash.php?user_id='.$_GET['user_id'] : 'customerdash.php'; ?>';
     }
 </script>
 </body>
