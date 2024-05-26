@@ -53,7 +53,8 @@ if(isset($_GET['user_id'])) {
     }
 
     .car-image {
-      width: 40%;
+      width: 150px;
+      height: 70px;
     }
 
     .car-image img {
@@ -284,11 +285,12 @@ if(isset($_GET['user_id'])) {
 <header>
     <!-- For header/logo  -->
     <div class="branding">
-    <a href="index.php" class="vroom-text">
-        <h1>Vroom</h1>
-    </a>
-    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
+        <a href="index.php?user_id=<?php echo $user['id']; ?>" class="vroom-text">
+            <h1>Vroom</h1>
+        </a>
+        <p class="slogan-text"><a href="index.php?user_id=<?php echo $user['id']; ?>">Drive, Explore, and Repeat</a></p>
     </div>
+
     <nav>
         <div class="nav-links">
             <a href="customerdash.php?user_id=<?php echo $user_id; ?>">Car rentals</a>
@@ -306,10 +308,10 @@ if(isset($_GET['user_id'])) {
 
 
   <main>
-  <h2>Booked Cars:</h2>
+  <h2>Booking History:</h2>
     <?php
       // Fetch booked cars for the user from car_rental database
-      $booked_cars_query = "SELECT * FROM booking WHERE user_id = ?";
+      $booked_cars_query = "SELECT * FROM bookingHistory WHERE user_id = ?";
       $booked_cars_stmt = $car_rental_conn->prepare($booked_cars_query);
       $booked_cars_stmt->bind_param("i", $user_id);
       $booked_cars_stmt->execute();
@@ -346,58 +348,20 @@ if(isset($_GET['user_id'])) {
       <div class="car-details">
         <!-- Display car name -->
         <h3><?php echo $car_row['carName']; ?></h3>
-        <!-- Display car brand -->
-        <div class="car-spec">
-          <img src="brand-image.png" alt="Brand Icon">
-          <span><?php echo $car_row['carBrand']; ?></span>
-        </div>
-        <!-- Display car type -->
-        <div class="car-spec">
-          <img src="vehicles.png" alt="Type Icon">
-          <span><?php echo $car_row['carType']; ?></span>
-        </div>
-        <!-- Display number of seats -->
-        <div class="car-spec">
-          <img src="car-chair.png" alt="Seats">
-          <span><?php echo $car_row['carSeats']; ?> seats</span>
-        </div>
-        <!-- Display transmission type with color indicating automatic or manual -->
-        <div class="car-spec">
-          <img src="gear-shift.png" alt="Transmission">
-          <span style="color: <?php echo ($car_row['carTransmission'] == 'Automatic') ? 'rgb(2, 255, 2)' : 'rgb(255, 0, 0)'; ?>"><?php echo $car_row['carTransmission']; ?></span>
-        </div>
+        
         <!-- Display car location with color indicating different locations -->
         <p class="location" style="color:<?php echo ($car_row['carLocation'] == 'Kathmandu') ? '#4285F4' : '#F4B400'; ?>"><?php echo $car_row['carLocation']; ?></p>
       </div>
         
       <!-- Price Section -->
       <div class="price">
-        <!-- Price for a day -->
-        <h4>Price for a day:</h4>
-        <p class="number">Rs. <?php echo number_format($car_row['carPrice'], 2); ?></p>
-        <!-- Free cancellation -->
-        <p class="free-cancel">Free cancellation</p>
-
-
-        <!-- Cancel Button -->
-        <form action="cancel_booking.php" method="POST">
-            <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
-            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-            <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
-            <button type="submit" class="cancel-btn">Cancel</button>
-        </form>
-
-
-        <!-- Finish Booking Button -->
-        <form id="finishBookingForm" action="finish_booking.php" method="post">
-            <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
-            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-            <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
-            <button class="finish-btn" type="submit">Finish Booking</button>
-        </form>
-
-
-      </div>
+    <!-- Price for a day -->
+    <h4>Price for a day:</h4>
+    <p class="number">Rs. <?php echo number_format($car_row['carPrice'], 2); ?></p>
+    
+    <!-- Display booking date -->
+    <p style="font-weight: bold; font-size: 18px;">Booked on: <?php echo date('F j, Y', strtotime($row['booking_date'])); ?></p>
+</div>
     </div>
     <?php
           } else {
@@ -412,25 +376,7 @@ if(isset($_GET['user_id'])) {
       mysqli_close($car_rental_conn);
     ?>
 
-    <script>
-      // Function to cancel booking
-      function cancelBooking(bookingId) {
-        // Ask for confirmation before canceling the booking
-        if(confirm("Are you sure you want to cancel this booking?")) {
-          // Redirect to cancel booking page or perform appropriate action
-          window.location.href = "cancel_booking.php?booking_id=" + bookingId;
-        }
-      }
-
-      // Function to finish booking
-      function finishBooking(bookingId) {
-        // Ask for confirmation before finishing the booking
-        if(confirm("Are you sure you want to finish this booking?")) {
-          // Redirect to finish booking page or perform appropriate action
-          window.location.href = "finish_booking.php?booking_id=" + bookingId;
-        }
-      }
-    </script>
+    
   </main>
   
   <section id="contact" class="panel">

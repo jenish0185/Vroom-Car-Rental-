@@ -252,17 +252,17 @@ if ($result->num_rows > 0) {
 <header>
     <!-- For header/logo  -->
     <div class="branding">
-    <a href="index.php" class="vroom-text">
-        <h1>Vroom</h1>
-    </a>
-    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
+            <a href="index.php?user_id=<?php echo $user['id']; ?>" class="vroom-text">
+                <h1>Vroom</h1>
+            </a>
+            <p class="slogan-text"><a href="index.php?user_id=<?php echo $user['id']; ?>">Drive, Explore, and Repeat</a></p>
     </div>
     <nav>
       <div class="nav-links">
-        <a href="admindash.php" onclick="navigateTo('admindash.php', this)">Car hostings</a>
-        <a href="wallet.php" onclick="navigateTo('wallet.php', this)">Wallet</a>
-        <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
-        <a href="setting.php" class="underline">Settings</a>
+        <a href="admindash.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('admindash.php', this)">Car hostings</a>
+        <a href="wallet.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('wallet.php', this)">Wallet</a>
+        <a href="inbox.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('inbox.php', this)">Inbox</a>
+        <a href="setting.php?user_id=<?php echo $user_id; ?>" class="underline">Settings</a>
       </div>
     </nav>
     

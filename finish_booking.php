@@ -27,6 +27,12 @@ if(isset($_POST['booking_id'], $_POST['user_id'], $_POST['car_id'])) {
     $delete_booking_stmt->bind_param("i", $booking_id);
     $delete_booking_stmt->execute();
 
+    // Insert into bookingHistory table
+    $insert_booking_history_query = "INSERT INTO bookingHistory (user_id, car_id, booking_date) VALUES (?, ?, NOW())";
+    $insert_booking_history_stmt = $car_rental_conn->prepare($insert_booking_history_query);
+    $insert_booking_history_stmt->bind_param("ii", $user_id, $car_id);
+    $insert_booking_history_stmt->execute();
+
     // Close connection to car_rental database
     mysqli_close($car_rental_conn);
 

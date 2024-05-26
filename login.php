@@ -81,14 +81,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // If user is regular user, redirect to customer dashboard
-            $_SESSION['user_id'] = $user['user_id']; // Store user ID in session variable
+            $_SESSION['user_id'] = $user['id']; // Store user ID in session variable
             header("Location: index.php?user_id=" . $user['id']);
             exit();
         }
     } else {
-        // User does not exist or credentials are incorrect, show error message
-        echo "Invalid email or password";
+        // No matching user found, set error message in session variable
+        $_SESSION['login_error'] = "Invalid email or password";
+        header("Location: login.php"); // Redirect back to login page
+        exit();
     }
+    
+
 
     // Close database connection
     $conn->close();
@@ -97,4 +101,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 </body>
+<script>
+    // Check if the PHP session variable 'login_error' is set
+    <?php if(isset($_SESSION['login_error'])): ?>
+        // Display the error message in a panel
+        var errorMessage = "<?php echo $_SESSION['login_error']; ?>";
+        alert(errorMessage);
+        // Clear the session variable
+        <?php unset($_SESSION['login_error']); ?>
+    <?php endif; ?>
+</script>
+
 </html>

@@ -2,9 +2,10 @@
 	"folders": [
 		{
 			"path": ".."
+		},
+		{
+			"path": "../../../Users/jenis/OneDrive/Documents/Collaborative Development/RedirectPanel"
 		}
 	],
-	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "Login page"
-	}
+	"settings": {}
 }

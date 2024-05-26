@@ -252,18 +252,18 @@ if(isset($_GET['user_id'])) {
   <header>
     <!-- For header/logo  -->
     <div class="branding">
-    <a href="index.php" class="vroom-text">
-        <h1>Vroom</h1>
-    </a>
-    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
-
+        <a href="index.php?user_id=<?php echo $user['id']; ?>" class="vroom-text">
+            <h1>Vroom</h1>
+        </a>
+        <p class="slogan-text"><a href="index.php?user_id=<?php echo $user['id']; ?>">Drive, Explore, and Repeat</a></p>
     </div>
+
     <nav>
       <div class="nav-links">
-        <a href="admindash.php" class="underline">Car hostings</a>
-        <a href="wallet.php" onclick="navigateTo('wallet.php', this)">Wallet</a>
-        <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
-        <a href="setting.php" onclick="navigateTo('setting.php', this)">Settings</a>
+        <a href="admindash.php?user_id=<?php echo $user_id; ?>" class="underline">Car hostings</a>
+        <a href="wallet.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('wallet.php', this)">Wallet</a>
+        <a href="inbox.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('inbox.php', this)">Inbox</a>
+        <a href="setting.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('setting.php', this)">Settings</a>
 
       </div>
     </nav>
@@ -589,51 +589,71 @@ if(isset($_GET['user_id'])) {
         }
 
         // Function to submit the form
-        function submitForm() {
-            // Disable the submit button to prevent multiple submissions
-            document.getElementById("submitButton").disabled = true;
+function submitForm() {
+    // Disable the submit button to prevent multiple submissions
+    document.getElementById("submitButton").disabled = true;
 
-            // Validate first panel fields
-            if (!validateFirstPanel()) {
-                alert("Please fill out all required fields in the first panel.");
-                // Re-enable the submit button if validation fails
-                document.getElementById("submitButton").disabled = false;
-                return;
-            }
+    // Validate first panel fields
+    if (!validateFirstPanel()) {
+        alert("Please fill out all required fields in the first panel.");
+        // Re-enable the submit button if validation fails
+        document.getElementById("submitButton").disabled = false;
+        return;
+    }
 
-            // Serialize form data
-            var formData = new FormData(document.getElementById("carForm"));
+    // Serialize form data
+    var formData = new FormData(document.getElementById("carForm"));
 
-            // Manually handle checkbox values in the second panel
-            var checkboxes = document.querySelectorAll('#secondPanel input[type="checkbox"]');
-            checkboxes.forEach(function(checkbox) {
-                formData.append(checkbox.name, checkbox.checked ? "1" : "0");
-            });
+    // Manually handle checkbox values in the second panel
+    var checkboxes = document.querySelectorAll('#secondPanel input[type="checkbox"]');
+    checkboxes.forEach(function(checkbox) {
+        formData.append(checkbox.name, checkbox.checked ? "1" : "0");
+    });
 
-            // Send fetch request
-            fetch("process_form.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log(data);
-                // Re-enable the submit button after the request is completed
-                document.getElementById("submitButton").disabled = false;
-                // Redirect to the default page after successful submission
-                goBackToDefaultPage();
-            })
-            .catch(error => {
-                console.error("Fetch error:", error);
-                // Re-enable the submit button if an error occurs
-                document.getElementById("submitButton").disabled = false;
-            });
+    // Send fetch request
+    fetch("process_form.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
         }
+        return response.text();
+    })
+    .then(data => {
+        console.log(data);
+        // Re-enable the submit button after the request is completed
+        document.getElementById("submitButton").disabled = false;
+        // Redirect to the default page after successful submission
+        goBackToDefaultPage();
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        // Re-enable the submit button if an error occurs
+        document.getElementById("submitButton").disabled = false;
+    });
+}
+
+// Function to validate the first panel fields
+function validateFirstPanel() {
+    var carName = document.getElementById("carName").value;
+    var carBrand = document.getElementById("carBrand").value;
+    var carType = document.getElementById("carType").value;
+    var carSeats = document.getElementById("carSeats").value;
+    var carSpace = document.getElementById("carSpace").value;
+    var carTransmission = document.getElementById("carTransmission").value;
+    var carEngine = document.getElementById("carEngine").value;
+    var carMileage = document.getElementById("carMileage").value;
+    var carPrice = document.getElementById("carPrice").value;
+
+    // Check if any of the fields are empty
+    if (carName === "" || carBrand === "" || carType === "" || carSeats === "" || carSpace === "" || carTransmission === "" || carEngine === "" || carMileage === "" || carPrice === "") {
+        return false; // Return false if any field is empty
+    }
+    return true; // Return true if all fields are filled
+}
+
 
 
         function displayReviewDetails() {
@@ -647,7 +667,6 @@ if(isset($_GET['user_id'])) {
             var carTransmission = document.getElementById("carTransmission").value;
             var carEngine = document.getElementById("carEngine").value;
             var carMileage = document.getElementById("carMileage").value;
-            var electric = document.getElementById("electric").value;
             var carPrice = document.getElementById("carPrice").value;
             var reviewText = `
                 <p><strong>Car Name:</strong> ${carName}</p>
@@ -658,7 +677,6 @@ if(isset($_GET['user_id'])) {
                 <p><strong>Transmission Type:</strong> ${carTransmission}</p>
                 <p><strong>Engine Type:</strong> ${carEngine}</p>
                 <p><strong>Mileage:</strong> ${carMileage}</p>
-                <p><strong>Electric:</strong> ${electric}</p>
                 <p><strong>Price:</strong> ${carPrice}</p>
             `;
             reviewDetails.innerHTML = reviewText;

@@ -221,10 +221,10 @@ if(isset($_POST['car_id'])) {
 <header>
     <!-- For header/logo  -->
     <div class="branding">
-    <a href="index.php" class="vroom-text">
-        <h1>Vroom</h1>
-    </a>
-    <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
+            <a href="index.php?user_id=<?php echo $user['id']; ?>" class="vroom-text">
+                <h1>Vroom</h1>
+            </a>
+            <p class="slogan-text"><a href="index.php?user_id=<?php echo $user['id']; ?>">Drive, Explore, and Repeat</a></p>
     </div>
     <nav>
       <div class="nav-links">
@@ -303,60 +303,7 @@ if(isset($_POST['car_id'])) {
 </main>
 
 
-  <section id="contact" class="panel">
-      <div class="vroom-info">
-          <h2 class="contact-header vroom-header">Vroom</h2>
-          <p>Email: vroom@gmail.com</p>
-          <p>Phone: +977 1234567890</p>
-      </div>
-      <div class="about-vroom">
-          <h3 class="contact-header about-vroom-header">About Vroom</h3>
-          <ul class="contact-list">
-              <li class="contact-list-item">About Us</li>
-              <li class="contact-list-item">Career</li>
-              <li class="contact-list-item">Terms of Service</li>
-              <li class="contact-list-item">Privacy Policy</li>
-          </ul>
-      </div>
-      <div class="top-affiliated-brands">
-          <h3 class="contact-header top-brands-header">Top Affiliated Brands</h3>
-          <ul class="contact-list">
-              <li class="contact-list-item">BMW</li>
-              <li class="contact-list-item">Lamborghini</li>
-              <li class="contact-list-item">Ferrari</li>
-              <li class="contact-list-item">Audi</li>
-              <li class="contact-list-item">Honda</li>
-              <li class="contact-list-item">Ford</li>
-              <li class="contact-list-item">Mercedes</li>
-              <li class="contact-list-item">Nissan</li>
-              <li class="contact-list-item">Bentley</li>
-              <li class="contact-list-item">Porsche</li>
-              <!-- Add more brands as needed -->
-          </ul>
-      </div>
-      <div class="socials">
-          <h3 class="contact-header socials-header">Socials</h3>
-          <div class="social">
-              <a href="https://www.facebook.com">
-                  <img src="facebook.webp" alt="Facebook">
-                  <span>Facebook</span>
-              </a>
-          </div>
-          <div class="social">
-              <a href="https://www.instagram.com/">
-                  <img src="instagram-logo.png" alt="Instagram">
-                  <span>Instagram</span>
-              </a>
-          </div>
-          <div class="social">
-              <a href="https://twitter.com/">
-                  <img src="x-logo.png" alt="Twitter">
-                  <span>Twitter</span>
-              </a>
-          </div>
-      </div>
-  </section>
-
+  
     <script>
       function selectPayment(paymentMethod, provider, image) {
         console.log("Selecting payment:", paymentMethod, provider);

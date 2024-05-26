@@ -1,4 +1,14 @@
 <?php
+if(isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+    echo "<script>console.log('User ID:', $user_id);</script>";
+} else {
+    // Redirect back to the login page if user_id parameter is missing
+    header("Location: error.php");
+    exit();
+}
+?>
+<?php
 session_start();
 
 // Database configurations
@@ -6,8 +16,6 @@ $db_host = 'localhost';
 $db_username = 'root';
 $db_password = '';
 $db_name = 'car_rental';
-
-$user_id = 1;
 
 // Output the user ID to the browser console
 echo "<script>console.log('User ID:', $user_id);</script>";
@@ -318,17 +326,17 @@ $conn->close();
     <header>
         <!-- For header/logo  -->
         <div class="branding">
-            <a href="index.php" class="vroom-text">
+            <a href="index.php?user_id=<?php echo $user['id']; ?>" class="vroom-text">
                 <h1>Vroom</h1>
             </a>
-            <p class="slogan-text"><a href="index.php">Drive, Explore, and Repeat</a></p>
+            <p class="slogan-text"><a href="index.php?user_id=<?php echo $user['id']; ?>">Drive, Explore, and Repeat</a></p>
         </div>
         <nav>
             <div class="nav-links">
-                <a href="admindash.php" onclick="navigateTo('admindash.php', this)">Car hostings</a>
-                <a href="wallet.php" class="underline">Wallet</a>
-                <a href="inbox.php" onclick="navigateTo('inbox.php', this)">Inbox</a>
-                <a href="setting.php" onclick="navigateTo('setting.php', this)">Settings</a>
+                <a href="admindash.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('admindash.php', this)">Car hostings</a>
+                <a href="wallet.php?user_id=<?php echo $user_id; ?>" class="underline">Wallet</a>
+                <a href="inbox.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('inbox.php', this)">Inbox</a>
+                <a href="setting.php?user_id=<?php echo $user_id; ?>" onclick="navigateTo('setting.php', this)">Settings</a>
             </div>
         </nav>
 

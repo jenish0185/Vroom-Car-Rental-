@@ -64,7 +64,7 @@
         const phone = document.getElementById('phone').value.trim();
         const emailRegex = /^[a-zA-Z0-9.@$#&]+@[a-zA-Z]+\.(com|COM)$/; // Updated email regex
 
-        if (!username.match(/^[A-Za-z]{1}[a-z]{2,12}$/)) {
+        if (!username.match(/^[A-Za-z]{1}[a-z]{2,24}$/)) {
             alert('Please enter a valid username. It should start with a letter, have at least 3 characters, and maximum 13 characters.');
             return false;
         }
